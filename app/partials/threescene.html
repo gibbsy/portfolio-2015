@@ -1,0 +1,85 @@
+<div class="brand" ng-hide="appViewState.threeUi!='brand'" >
+<div ng-class="{show:showLogo}" class="logo-img">
+<img ng-src="images/logo-{{appViewState.hue}}.png">
+</div>
+<div ng-class="{fadein:showSublinks}" class="sublinks">
+ <div class="brand-ui" id="designer"> <h2 >Designer / Developer</h2></div>
+   <div class="brand-ui" id="about-link"><div class="about-link-bg about-bg-image-{{appViewState.hue}}"></div><a href="">About</a></div>
+   <div class="brand-ui" id="explore-work"><div class="explore-link-bg explore-bg-image-{{appViewState.hue}}"></div><a href="" ng-click="exploreWork()">Explore Work</a></div>
+    </div>
+</div>
+   <!--  <hr class="halfway" /> -->
+    
+    <div class="view-select" ng-hide="appViewState.threeUi=='brand'">
+        <div class="view-select-bg"></div>
+                <p>MODE:</p>
+          
+                <ul class="explode-icon bg-color-hover-child-dark-{{appViewState.hue}}" class="icon-container" ng-class="{true: 'bg-color-child-dark-' + appViewState.hue }[appViewState.tileMode=='explode']" ng-click="explodeView()">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+
+
+           
+                <ul class="grid-icon bg-color-hover-child-dark-{{appViewState.hue}}" ng-class="{true: 'bg-color-child-dark-' + appViewState.hue }[appViewState.tileMode=='grid']" ng-click="resetGrid()">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+           
+        
+    </div>
+         <div class='next-tile' ng-hide="appViewState.threeUi!='details'" ng-click="nextTile()">
+            <div class="nextbg bg-image-{{appViewState.hue}}"></div><a>Next</a>
+        </div>
+         
+         <div class='prev-tile' ng-hide="appViewState.threeUi!='details'" ng-click="prevTile()">
+            <div class="prevbg bg-image-{{appViewState.hue}}"></div><a>Previous</a>
+        </div>   
+
+    <div class='logo-top-left' ng-hide="appViewState.threeUi=='brand'" ng-click="resetThree()"><img ng-src="images/logo-{{appViewState.hue}}.png" alt="Andrew Gillon"></div>
+
+    <div class="project-details" ng-hide="appViewState.threeUi!='details'">
+
+       <!-- <h1>{{hideInfo.hide}}  {{appViewState.threeUi}} {{factoryTest}}</h1>  -->
+
+        <!-- ng-class="{show-info:hideInfo=='false'}" -->
+
+
+    <h1 content-change content="projectInfo.title"></h1>
+
+     <h4 class="text-color-{{appViewState.hue}}" content-change content="projectInfo.client" sync="'#view-btn'"></h4>
+
+
+     
+    </div>
+    <div class="ui" id="view-btn" ng-hide="appViewState.threeUi!='details'" ng-click='viewProject()'>
+        <div class='view-btn-bg bg-image-{{appViewState.hue}}'></div>
+        <h4>View Project</h4>
+    </div> 
+
+
+       <!--  <a class="ui" id="view-btn" ng-hide="appViewState.threeUi!='details'" ng-click='viewProject()' href=''>
+        <div class='view-btn-bg bg-color-dark-{{appViewState.hue}}-hover'></div>
+       <p>View Project</p></a> -->
+
+
+
+<mythree id="container"></mythree>
+
+</div>
+
+
+
+
+<!--                         <div ng-switch-when="failed">
+
+    <strong>Oops</strong>: One of your images failed to load :(
+
+</div> -->
+

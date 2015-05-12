@@ -1,0 +1,267 @@
+.next-tile {
+  width: 88px;
+  height: 234px;
+  position: absolute;
+  right:0;
+  top: 35%;
+  z-index: 5000;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+}
+
+.nextbg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 88px;
+  height: 234px;
+  background-color: none;
+  opacity: 0.2;
+  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+
+  /*-webkit-transform: perspective(50) rotate(-231deg) rotateX(-355deg) rotateY(16deg) rotateZ(0deg) skew(140deg, 5deg);
+  -moz-transform: perspective(50) rotate(-231deg) rotateX(-355deg) rotateY(16deg) rotateZ(0deg) skew(140deg, 5deg);
+  -o-transform: perspective(50) rotate(-231deg) rotateX(-355deg) rotateY(16deg) rotateZ(0deg) skew(140deg, 5deg);
+  -ms-transform: perspective(50) rotate(-231deg) rotateX(-355deg) rotateY(16deg) rotateZ(0deg) skew(140deg, 5deg);
+  transform: perspective(50) rotate(-231deg) rotateX(-355deg) rotateY(16deg) rotateZ(0deg) skew(140deg, 5deg);*/
+
+  /*-webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;*/
+
+}
+
+.next-tile .nextbg {
+   -moz-transform: translate(7px,0);
+  -o-transform: translate(7px,0);
+  -ms-transform: translate(7px,0);
+  -webkit-transform: translate(7px,0); 
+  transform: translate(7px,0);
+}
+
+.nextbg.bg-image-purple {
+
+  background-image: url('/images/next_btn_bg_purple.png'); 
+
+}
+
+.nextbg.bg-image-blue {
+
+  background-image: url('/images/next_btn_bg_blue.png'); 
+
+}
+
+.next-tile a {
+  position: absolute;
+  top: 127px;
+  right: 20px;
+  width: 24px;
+  height: 34px;
+  background: url('/images/next-arrow.png') no-repeat 0 0;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+}
+
+.next-tile:hover .nextbg {
+  -moz-transform: translate(0,0);
+  -o-transform: translate(0,0);
+  -ms-transform: translate(0,0);
+  -webkit-transform: translate(0,0); 
+  transform: translate(0,0);
+  opacity: 1;
+
+}
+
+.next-tile:hover a {
+/*  -moz-transform: translate(7px,0);
+  -o-transform: translate(7px,0);
+  -ms-transform: translate(7px,0);
+  -webkit-transform: translate(7px,0); 
+  transform: translate(7px,0);*/
+}
+
+
+.prev-tile {
+  width: 92px;
+  height: 215px;
+  position: absolute;
+  left:0;
+  top: 40%;
+  z-index: 5000;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+}
+
+.prevbg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 92px;
+  height: 215px;
+  background-color: none; 
+  opacity: 0.2;
+/* */
+
+  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+}
+
+.prevbg.bg-image-purple {
+
+  background-image: url('/images/prev_btn_bg_purple.png'); 
+
+}
+
+.prevbg.bg-image-blue {
+
+  background-image: url('/images/prev_btn_bg_blue.png'); 
+
+}
+
+.prev-tile a {
+  position: absolute;
+  top: 83px;
+  left: 20px;
+  width: 24px;
+  height: 34px;
+  background: url('/images/prev-arrow.png') no-repeat 6px 0;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  -moz-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  -o-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  -ms-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  -webkit-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+}
+
+.prev-tile .prevbg {
+  -moz-transform: translate(-7px,0);
+  -o-transform: translate(-7px,0);
+  -ms-transform: translate(-7px,0);
+  -webkit-transform: translate(-7px,0); 
+  transform: translate(-7px,0);
+}
+
+.prev-tile:hover .prevbg {
+  -moz-transform: translate(0,0);
+  -o-transform: translate(0,0);
+  -ms-transform: translate(0,0);
+  -webkit-transform: translate(0,0); 
+  transform: translate(0,0);
+  opacity: 1;
+}
+
+.prev-tile:hover a {
+  background-position: 0 0;
+}
+
+
+.next-project {
+  width: 88px;
+  height: 234px;
+  position: fixed;
+  right: -100px;
+  top: 25%;
+  z-index: 5000;
+  cursor: pointer;
+  background: none;
+  -moz-transition: right 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition: right 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition: right 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition: right 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition: right 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+ 
+}
+
+.next-project a {
+  position: absolute;
+  top: 127px;
+  right: 20px;
+  width: 24px;
+  height: 34px;
+  background: url('/images/next-arrow.png') no-repeat 0 0;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+}
+
+.next-project:hover .nextbg {
+
+  opacity: 1;
+
+}
+
+
+.prev-project {
+  width: 92px;
+  height: 228px;
+  position: fixed;
+  left: -100px;
+  top: 31%;
+  z-index: 5000;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  -moz-transition: left 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition: left 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition: left 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition: left 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition: left 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+}
+
+
+.prev-project a {
+  position: absolute;
+  top: 83px;
+  left: 20px;
+  width: 24px;
+  height: 34px;
+  background: url('/images/prev-arrow.png') no-repeat 6px 0;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  -moz-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  -o-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  -webkit-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+}
+
+.prev-project:hover .prevbg {
+  opacity: 1;
+}
+
+.next-project-in {
+  right: 0;
+}
+
+.prev-project-in {
+  left: 0;
+}
+
+.prev-project:hover a {
+  background-position: 0 0;
+}
+
+.next-project:hover a {
+ background-position: 6px 0; 
+}

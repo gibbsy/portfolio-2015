@@ -1,0 +1,480 @@
+/*////////  COLOR PALETTE  ///////*
+
+/*blue: "#7aa0d6"
+green: "#77e234"
+pink: "#f2297c"
+purple: "#461ca8"
+red: "#ffcdc9"*/
+
+.text-color-blue {
+
+  color: #7aa0d6 !important;
+
+}
+
+.text-color-blue-hover:hover {
+
+  color: #7aa0d6 !important;
+
+}
+
+.text-color-green {
+
+  color: #77e234 !important;
+
+}
+
+.text-color-green-hover:hover {
+
+  color: #77e234 !important;
+
+}
+
+.text-color-pink {
+
+  color: #f2297c !important;
+
+}
+
+.text-color-pink-hover:hover {
+
+  color: #f2297c !important;
+
+}
+
+.text-color-purple {
+
+  color: #461ca8 !important;
+
+}
+
+.text-color-purple-hover:hover {
+
+  color: #461ca8 !important;
+
+}
+
+.text-color-red {
+
+  color: #ffcdc9 !important;
+
+}
+
+.text-color-red-hover:hover {
+
+  color: #ffcdc9 !important;
+
+}
+
+/*///*/
+
+.bg-color-blue {
+
+  background-color: #7aa0d6 !important;
+
+}
+
+.bg-color-blue-hover:hover {
+
+  background-color: #7aa0d6 !important;
+
+}
+
+.bg-color-green {
+
+  background-color: #77e234 !important;
+
+}
+
+.bg-color-green-hover:hover {
+
+  background-color: #77e234 !important;
+
+}
+
+.bg-color-pink {
+
+  background-color: #f2297c !important;
+
+}
+
+.bg-color-pink-hover:hover {
+
+  background-color: #f2297c !important;
+
+}
+
+.bg-color-purple {
+
+  background-color: #461ca8 !important;
+
+}
+
+.bg-color-purple-hover:hover {
+
+  background-color: #461ca8 !important;
+
+}
+
+.bg-color-red {
+
+  background-color: #ffcdc9 !important;
+
+}
+
+.bg-color-red-hover:hover {
+
+  background-color: #ffcdc9 !important;
+
+}
+
+
+/*bright-blue: "#4641a0"
+bright-green: "#f6ff59"
+bright-pink: "#e00677"
+bright-purple: "#a93ad8"
+bright-red: "#ef7064"*/
+
+
+.text-color-bright-blue {
+
+  color: #4641a0 !important;
+
+}
+
+.text-color-bright-blue-hover:hover {
+
+  color: #4641a0 !important;
+
+}
+
+.text-color-bright-green {
+
+  color: #f6ff59 !important;
+
+}
+
+.text-color-bright-green-hover:hover {
+
+  color: #f6ff59 !important;
+
+}
+
+.text-color-bright-pink {
+
+  color: #e00677 !important;
+
+}
+
+.text-color-bright-pink-hover:hover {
+
+  color: #e00677 !important;
+
+}
+
+.text-color-bright-purple {
+
+  color: #a93ad8 !important;
+
+}
+
+.text-color-bright-purple-hover:hover {
+
+  color: #a93ad8 !important;
+
+}
+
+.text-color-bright-red {
+
+  color: #ef7064 !important;
+
+}
+
+.text-color-bright-red-hover:hover {
+
+  color: #ef7064 !important;
+
+}
+
+/*///*/
+
+.bg-color-bright-blue {
+
+  background-color: #4641a0 !important;
+
+}
+
+.bg-color-bright-blue-hover:hover {
+
+  background-color: #4641a0 !important;
+
+}
+
+.bg-color-bright-green {
+
+  background-color: #f6ff59 !important;
+
+}
+
+.bg-color-bright-green-hover:hover {
+
+  background-color: #f6ff59 !important;
+
+}
+
+.bg-color-bright-pink {
+
+  background-color: #e00677 !important;
+
+}
+
+.bg-color-bright-pink-hover:hover {
+
+  background-color: #e00677 !important;
+
+}
+
+.bg-color-bright-purple {
+
+  background-color: #a93ad8 !important;
+
+}
+
+.bg-color-bright-purple-hover:hover {
+
+  background-color: #a93ad8 !important;
+
+}
+
+.bg-color-bright-red {
+
+  background-color: #ef7064 !important;
+
+}
+
+.bg-color-bright-red-hover:hover {
+
+  background-color: #ef7064 !important;
+
+}
+
+
+
+
+/*bright-blue: "#60a7ea"
+bright-green: "#64f47a"
+bright-pink: "#9013c1"
+bright-purple: "#8500e5"
+bright-red: "#db1c26"
+dark-blue: "#03157a"
+dark-green: "#006623"
+dark-pink: "#c202c9"
+dark-purple: "#440977"
+dark-red: "#a8230f"
+*/
+
+/*///////////////*/
+
+/*dark-blue: "#24018c"
+dark-green: "#0ea53c"
+dark-pink: "#c60f90"
+dark-purple: "#630193"
+dark-red: "#9b0629"
+*/
+
+.text-color-dark-blue {
+
+  color: #24018c !important;
+
+}
+
+.text-color-dark-blue-hover:hover {
+
+  color: #24018c !important;
+
+}
+
+.text-color-dark-green {
+
+  color: #0ea53c !important;
+
+}
+
+.text-color-dark-green-hover:hover {
+
+  color: #0ea53c !important;
+
+}
+
+.text-color-dark-pink {
+
+  color: #c60f90 !important;
+
+}
+
+.text-color-dark-pink-hover:hover {
+
+  color: #c60f90 !important;
+
+}
+
+.text-color-dark-purple {
+
+  color: #630193 !important;
+
+}
+
+.text-color-dark-purple-hover:hover {
+
+  color: #630193 !important;
+
+}
+
+.text-color-dark-red {
+
+  color: #9b0629 !important;
+
+}
+
+.text-color-dark-red-hover:hover {
+
+  color: #9b0629 !important;
+
+}
+
+/*///*/
+
+.bg-color-dark-blue {
+
+  background-color: #24018c !important;
+
+}
+
+.bg-color-dark-blue-hover:hover {
+
+  background-color: #24018c !important;
+
+}
+
+.bg-color-dark-green {
+
+  background-color: #0ea53c !important;
+
+}
+
+.bg-color-dark-green-hover:hover {
+
+  background-color: #0ea53c !important;
+
+}
+
+.bg-color-dark-pink {
+
+  background-color: #c60f90 !important;
+
+}
+
+.bg-color-dark-pink-hover:hover {
+
+  background-color: #c60f90 !important;
+
+}
+
+.bg-color-dark-purple {
+
+  background-color: #630193 !important;
+
+}
+
+.bg-color-dark-purple-hover:hover {
+
+  background-color: #630193 !important;
+
+}
+
+.bg-color-dark-red {
+
+  background-color: #9b0629 !important;
+
+}
+
+.bg-color-dark-red-hover:hover {
+
+  background-color: #9b0629 !important;
+
+}
+
+/*/////////////////////*/
+
+
+.bg-color-hover-child-dark-blue:hover div, .bg-color-hover-child-dark-blue:hover li {
+
+  background-color: #24018c !important;
+
+}
+
+
+.bg-color-hover-child-dark-green:hover div, .bg-color-hover-child-dark-green:hover li  {
+
+  background-color: #0ea53c !important;
+
+}
+
+.bg-color-hover-child-dark-pink:hover div, .bg-color-hover-child-dark-pink:hover li  {
+
+  background-color: #c60f90 !important;
+
+}
+
+
+.bg-color-hover-child-dark-purple:hover div, .bg-color-hover-child-dark-purple:hover li  {
+
+  background-color: #630193 !important;
+
+}
+
+
+
+.bg-color-hover-child-dark-red:hover div, .bg-color-hover-child-dark-red:hover li  {
+
+  background-color: #9b0629 !important;
+
+}
+
+/*/////////////////////*/
+
+
+
+.bg-color-child-dark-blue div, .bg-color-child-dark-blue li {
+
+  background-color: #24018c !important;
+
+}
+
+
+.bg-color-child-dark-green div, .bg-color-child-dark-green li  {
+
+  background-color: #0ea53c !important;
+
+}
+
+.bg-color-child-dark-pink div, .bg-color-child-dark-pink li  {
+
+  background-color: #c60f90 !important;
+
+}
+
+
+.bg-color-child-dark-purple div, .bg-color-child-dark-purple li  {
+
+  background-color: #630193 !important;
+
+}
+
+
+
+.bg-color-child-dark-red div, .bg-color-child-dark-red li  {
+
+  background-color: #9b0629 !important;
+
+}

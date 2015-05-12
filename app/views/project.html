@@ -1,0 +1,63 @@
+<div class="loading-project-container" ng-show="appViewState.loadingProject">
+        <projectloader></projectloader>
+</div>
+<div class="hero-image-container bg-color-dark-{{appViewState.hue}}" ng-class="{fadein:showImage}" bg-image img-loc="heroImg">
+	<div class="close-btn" ng-click="close()"></div>
+	<div class="project-title" >
+		<h1 ng-bind-html="project.title"></h1>
+		<div class="text-divider"></div>
+		<h4 ng-bind-html="project.client"></h4>
+		<div class="text-divider"></div>
+	</div>
+	<div class="hero-clip"></div>
+</div>
+ <div class="copy-content" ng-class="{copyfadein:showCopy}">
+  	<h4 ng-bind-html="project.tags" class="text-color-dark-{{appViewState.hue}}"></h4>
+	<div class="intro" ng-bind-html="project.intro"></div>
+	<div class="article-single-col" ng-bind-html="project.content"></div>
+	
+</div>
+<div class="media-wrapper" scroll-reveal>
+	<div class="angle-top"></div>
+	<div class="media-content">
+		<div class="loading-content-container" ng-show="appViewState.loadingContent">
+        <projectloader></projectloader>
+		</div>
+		<div ng-switch on="vidContent">
+
+			<div ng-switch-when="include">
+
+				<div ng-repeat="vid in project.vimeo_ids" data-reveal>
+
+					<div vimeo vimeo-id="vid" class="fluid-vimeo-wrapper">
+						
+					</div>
+
+				</div>
+			</div>
+		</div> <!-- end vid content -->
+		<div ng-switch on="imagesReady">
+
+			<div ng-switch-when="ready">
+
+				<div ng-repeat="img in project.contentImages" data-reveal>
+
+					<img ng-src="{{img}}"/>
+
+				</div>
+			</div>
+		</div> <!-- end images -->
+	</div>
+	<div class="angle-bottom"></div>
+</div>
+ <div class="next-project" ng-class="{'next-project-in':showPrevNext}" ng-click="goToNext()">
+    <div class="nextbg bg-image-{{appViewState.hue}}"></div><a>Next</a>
+</div>
+
+<div class="prev-project" ng-class="{'prev-project-in':showPrevNext}" ng-click="goToPrev()">
+    <div class="prevbg bg-image-{{appViewState.hue}}"></div><a>Previous</a>
+</div>   
+
+<promo-video></promo-video>
+
+
