@@ -24,6 +24,8 @@ return {
 
     var view = 'scene';
 
+    scope.isAnimating = true;
+
     scope.exploreWork = function () {
 
       scope.appViewState.threeUi = 'browse';
@@ -485,7 +487,13 @@ return {
       }
     }
 
-    scope.tilesToGrid = function () {    
+    scope.tilesToGrid = function () { 
+
+    scope.isAnimating = true;
+
+      $timeout(function() {
+        scope.isAnimating = false;
+      },4000);   
 
       for (var p in scope.myProjects) {
 
@@ -529,6 +537,12 @@ return {
     }
 
     scope.explodeTiles = function () {
+
+      scope.isAnimating = true;
+
+      $timeout(function() {
+        scope.isAnimating = false;
+      },4000);
 
       flipAllTiles('color');
 
@@ -875,6 +889,10 @@ return {
         createTiles();
      },1000);
 
+       $timeout(function() {
+        scope.isAnimating = false;
+     },8000);
+
     }
 
     function createTiles() {
@@ -909,6 +927,10 @@ return {
     function onDocumentMouseDown( event ) {
 
       event.preventDefault();
+
+      if ( scope.isAnimating == true ) {
+        return;
+      }
 
       var vector = new THREE.Vector3( ( event.clientX / $window.innerWidth ) * 2 - 1, - ( event.clientY / $window.innerHeight ) * 2 + 1, 0.5 );
       vector.unproject( camera );
@@ -1012,7 +1034,7 @@ return {
       camera.quaternion.copy(newQuaternion);
      /* camera.position.x += ( mouseX - camera.position.x ) * .0001;
       camera.position.y += ( - mouseY - camera.position.y ) * .00005;*/
-      camera.position.x += ( mouseX - camera.position.x ) * .0001;
+      camera.position.x += ( mouseX - camera.position.x ) * .00005;
       //target.object.rotation.y += ( mouseX - target.object.rotation.y ) * .00001;
 
       //directionalLight.quaternion.copy(newQuaternion);

@@ -181,11 +181,7 @@
   -ms-transition: height 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ), width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ), left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   -webkit-transition: height 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ), width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ), left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   transition: height 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ), width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ), left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-   /* -webkit-transform: rotate(-90deg) skew(55deg);
-  -moz-transform: rotate(-90deg) skew(55deg);
-  -ms-transform: rotate(-90deg) skew(55deg);
-  -o-transform: rotate(-90deg) skew(55deg);
-  transform: rotate(-90deg) skew(55deg);*/
+
 }
 
 .explore-link-bg {
@@ -289,151 +285,6 @@
   height: 0;
 }
 
-/*//// 3JS SCENE NEXT PREV BUTTONS , ////*/ 
-
-.halfway {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  border: 1px solid #999;
-  z-index: 5000;
-}
-
-.next-tile {
-  width: 88px;
-  height: 234px;
-  position: absolute;
-  right:0;
-  top: 35%;
-  z-index: 5000;
-  overflow: hidden;
-  cursor: pointer;
-  background: none;
-}
-
-.nextbg {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 88px;
-  height: 234px;
-  background-color: none;
-  opacity: 0.2;
-  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-
-}
-
-.nextbg.bg-image-purple {
-
-  background-image: url('/images/next_btn_bg_purple.png'); 
-
-}
-
-.nextbg.bg-image-blue {
-
-  background-image: url('/images/next_btn_bg_blue.png'); 
-
-}
-
-.next-tile a {
-  position: absolute;
-  top: 127px;
-  right: 20px;
-  width: 24px;
-  height: 34px;
-  background: url('/images/next-arrow.png') no-repeat 0 0;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-}
-
-.next-tile:hover .nextbg {
-
-  opacity: 1;
-
-}
-
-.next-tile:hover a , .next-project:hover a {
-
-}
-
-
-.prev-tile {
-  width: 92px;
-  height: 215px;
-  position: absolute;
-  left:0;
-  top: 40%;
-  z-index: 5000;
-  overflow: hidden;
-  cursor: pointer;
-  background: none;
-}
-
-.prevbg {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 92px;
-  height: 215px;
-  background-color: none; 
-  opacity: 0.2;
-
-
-  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-}
-
-.prevbg.bg-image-purple {
-
-  background-image: url('/images/prev_btn_bg_purple.png'); 
-
-}
-
-.prevbg.bg-image-blue {
-
-  background-image: url('/images/prev_btn_bg_blue.png'); 
-
-}
-
-.prev-tile a {
-  position: absolute;
-  top: 83px;
-  left: 20px;
-  width: 24px;
-  height: 34px;
-  background: url('/images/prev-arrow.png') no-repeat 6px 0;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  -moz-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
-  -o-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
-  -ms-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
-  -webkit-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
-  transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
-}
-
-.prev-tile:hover .prevbg {
-
-  opacity: 1;
-}
-
-.prev-tile:hover a {
-  background-position: 0 0;
-}
-
 
 /*//// 3JS SCENE PROJECT INFO ////*/
 
@@ -452,11 +303,13 @@
 
 .project-details h1 {
   text-transform: uppercase;
+  font-weight: 500;
   color: #fff;
   font-family: "futura-pt";
   font-size: 18px;
-  letter-spacing: 9px;
+  letter-spacing: 8px;
   margin: 0;
+  margin-left: 8px;
    -moz-transition:all 0.5s;
   -o-transition:all 0.5s;
   -ms-transition:all 0.5s;
@@ -470,7 +323,8 @@
   font-size: 12px;
   letter-spacing: 6px;
   color: #fff;
-  margin-top: 15px;
+  margin-top: 10px;
+  margin-left: 6px;
   -moz-transition:all 0.5s;
   -o-transition:all 0.5s;
   -ms-transition:all 0.5s;
@@ -487,14 +341,29 @@
   opacity: 1;
 }
 
+.txt-divider {
+  position: absolute;
+  width: 4%;
+  height: 1px;
+  left: 48%;
+  display: inline-block;
+  top: 50px;
+  background-color: #fff;
+  z-index: 501;
+}
+
 #view-btn {
   position: absolute;
   cursor: pointer;
-  width: 197px;
-  height: 43px;
-  bottom: 8%;
-  left: 44%;
+  width: 8%;
+  height: 40px;
+  bottom: 7.5%;
+  left: 46%;
   z-index: 500;
+  padding: 0;
+  margin: 0;
+  /*border: 1px solid #461ca8;*/
+  text-align: center;
   -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
@@ -505,19 +374,16 @@
 
 #view-btn h4 {
   font-family: netto_otbold;
-  position: absolute;
-  top: 14px;
-  width: 100%;
+  position: relative;
   color: #ddd;
   text-decoration: none;
-  display: block;
+  display: inline-block;
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 7px;
   text-align: center;
   font-weight: normal;
-  padding: 0;
-  margin: 0;
+  margin: 12px 0 0 2px;
 }
 
 
@@ -546,9 +412,23 @@
 }
 
 #view-btn:hover .view-btn-bg {
-  top: 0;
-  left: 0;
-  width: 197px;
-  height: 43px;
+  top: -10px;
+  left: -16px;
+  width: 193px;
+  height: 52px;
 
+}
+
+.view-btn-bg-keyline {
+  position: absolute;
+  top: -10px;
+  left: -16px;
+  width: 193px;
+  height: 52px;
+  background-color: none;
+
+}
+
+.view-btn-bg-keyline.bg-image-purple {
+  background: url('/images/view_project_keyline_purple.png') no-repeat 0 0;
 }

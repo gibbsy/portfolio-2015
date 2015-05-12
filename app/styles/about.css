@@ -1,0 +1,18 @@
+/*/////////// ABOUT CONTENT VIEW ///////////////*/
+
+.about-container {
+  position: fixed;
+  z-index: 5000;
+  width: 96%;
+  height:96%;
+  background: #1b012d;
+  top: 2%;
+  left:2%;
+
+
+}
+
+.page-about {
+  padding: 10%;
+  color: #fff;
+}

@@ -1,11 +1,12 @@
 /*/////////// PROJECT CONTENT VIEW ///////////////*/
 
-.page {
+.page-project {
   position:absolute; 
   top:0;  
   width:100%; 
   display: block;
   background-color: #fff;
+  color: #eee;
 }
 
 .projects-container {

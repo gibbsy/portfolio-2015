@@ -38,11 +38,11 @@
   width: 210px;
   height: 110px;
   background: url('/images/view-mode-bg.png');
-  -moz-transition:all cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.5s;
-  -o-transition:all cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.5s;
-  -ms-transition:all cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.5s;
-  -webkit-transition:all cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.5s;
-  transition:all cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.5s;
+  -moz-transition:all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -o-transition:all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -ms-transition:all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -webkit-transition:all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition:all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 }
 
@@ -51,6 +51,7 @@
   margin: 0 10px 10px 20px;
   padding: 3px;
   z-index: 200;
+  cursor: pointer;
   -moz-transition:all 0.5s;
   -o-transition:all 0.5s;
   -ms-transition:all 0.5s;

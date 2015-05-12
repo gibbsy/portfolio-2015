@@ -4,6 +4,7 @@
 @import '/styles/prev-next-ui.css';
 @import '/styles/three-view-mode.css';
 @import '/styles/project.css';
+@import '/styles/about.css';
 @import '/styles/colours.css';
 
 
@@ -51,7 +52,10 @@ a.debug-projects:hover {
   color: #222;
 }
 
-
+.view-container {
+position: absolute;
+top: 100%;
+}
 
 
 

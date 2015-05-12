@@ -70,7 +70,7 @@ angular.module('angularApp').animation('.three-focus', function() {
 
 
 
-angular.module('angularApp').animation('.project-focus', function() {
+angular.module('angularApp').animation('.projects-container', function() {
   return {
 
     addClass : function(element, className, done) {
@@ -79,7 +79,9 @@ angular.module('angularApp').animation('.project-focus', function() {
       position: 'absolute',
       top: '100%',
       left: 0,
-      opacity: 1
+      opacity: 1,
+      width: '100%',
+      zIndex: 10000
     })
       .animate({
         top: 0
@@ -102,72 +104,56 @@ angular.module('angularApp').animation('.project-focus', function() {
     })
       .animate({
         opacity: 0
-      },600,'easeInOutCubic', done);
-
-      
+      },500,'easeInOutCubic', done);
 
       return function(element) {
-
-          //alert('removed project-focus'); 
+ 
         
       }
     }
   }
 });
 
-
-/// move between projects
-
-/*angular.module('angularApp').animation('.slidein', function() {
-
-  var animateIn = function(element, className, done) {
-
-    element.css({
-      position: 'absolute',
-      top: '100%',
-      left: 0,
-      display: 'block'
-    });
-
-    jQuery(element).animate({
-      top: 0
-    },1200, "easeInOutQuart", done);
-
-    return function(cancel) {
-      if(cancel) {
-        element.stop();
-      }
-    };
-  }
-
+angular.module('angularApp').animation('.about-container', function() {
   return {
-    addClass: animateIn
-  };
+
+    addClass : function(element, className, done) {
+
+      element.css({
+      position: 'fixed',
+      width: 0,
+      height:'96%',
+      background: '#ccc',
+      top: '2%',
+      left:'2%',
+      opacity: 1,
+      zIndex:5000
+    })
+      .animate({
+       'width': '96%'
+      },700,'easeInOutCubic', done);
+
+       return function() {
+
+        
+      }
+
+    },
+    removeClass : function(element, className, done) {
+
+      element.css({
+      opacity: 1,
+      
+    })
+      .animate({
+        opacity: 0
+      },600,'easeInOutCubic', done);
+
+      return function(element) {
+
+       
+      }
+    }
+  }
 });
 
-angular.module('angularApp').animation('.slideout', function() {
-
-  var animateOut = function(element, className, done) {
-
-    element.css({
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      display: 'block'
-    });
-
-    jQuery(element).animate({
-      top: '-100%'
-    },1200, "easeInOutQuart", done);
-
-    return function(cancel) {
-      if(cancel) {
-        element.stop();
-      }
-    };
-  }
-
-  return {
-    addClass: animateOut
-  };
-});*/

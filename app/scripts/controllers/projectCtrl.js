@@ -12,7 +12,7 @@ angular.module('angularApp')
 
 //////////////// DETERMINE WHICH ANIMATION IS NECESSARY //////////////////////
 
-    $scope.pageClass = 'page';
+    $scope.pageClass = 'page-project';
 
     $scope.showImage = false;
     $scope.showCopy = false;
@@ -30,6 +30,11 @@ angular.module('angularApp')
     var imgUrls = [],
     domain = 'http://localhost:9000';
     //domain = 'http://beta.andrewgillon.com/';
+
+    var container = angular.element('.view-container'),
+    threeView = angular.element('.three');
+
+    $animate.removeClass(container,'about-container');
 
     projectSetUp();
 
@@ -177,7 +182,7 @@ function setPrevProject() {
 
 $scope.goToNext = function() {
 
-  angular.element('.page').fadeOut();
+  angular.element('.page-project').fadeOut();
 
   $scope.appViewState.direction='rtl';
 
@@ -204,7 +209,7 @@ $scope.goToNext = function() {
 
 $scope.goToPrev = function() {
 
-  jQuery('.page').fadeOut();
+  jQuery('.page-project').fadeOut();
 
   $scope.appViewState.direction='ltr';
 
@@ -231,12 +236,18 @@ $scope.goToPrev = function() {
 
 $scope.close = function() {
 
-      var threeView = angular.element('.three');
-      var projects = angular.element('.projects-container');
       $scope.appViewState.viewing='three';
       $scope.appViewState.direction='';
       $animate.addClass(threeView,'three-focus');
-      $animate.removeClass(projects,'project-focus').then(function(){
+      $animate.removeClass(container,'projects-container').then(function(){
+
+        var cont = angular.element('.view-container')
+        .attr( "style", "" )
+        .css({
+          position:'absolute',
+          top:'100%'
+        });
+
         $scope.$apply(function() {
           $location.path('');
           });
@@ -280,9 +291,7 @@ function prepareToLoad() {
 
       }   
 
-      var container = angular.element('.projects-container'),
-      threeView = angular.element('.three');
-      $animate.addClass(container,'project-focus').then(function() {
+      $animate.addClass(container,'projects-container').then(function() {
         
            $animate.removeClass(threeView,'three-focus');
         

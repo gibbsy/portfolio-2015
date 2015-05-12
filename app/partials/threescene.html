@@ -4,7 +4,7 @@
 </div>
 <div ng-class="{fadein:showSublinks}" class="sublinks">
  <div class="brand-ui" id="designer"> <h2 >Designer / Developer</h2></div>
-   <div class="brand-ui" id="about-link"><div class="about-link-bg about-bg-image-{{appViewState.hue}}"></div><a href="">About</a></div>
+   <div class="brand-ui" id="about-link"><div class="about-link-bg about-bg-image-{{appViewState.hue}}"></div><a ng-href="/#/about">About</a></div>
    <div class="brand-ui" id="explore-work"><div class="explore-link-bg explore-bg-image-{{appViewState.hue}}"></div><a href="" ng-click="exploreWork()">Explore Work</a></div>
     </div>
 </div>
@@ -56,11 +56,13 @@
      <h4 class="text-color-{{appViewState.hue}}" content-change content="projectInfo.client" sync="'#view-btn'"></h4>
 
 
-     
+    <!-- <div class="txt-divider"></div> -->
     </div>
+
     <div class="ui" id="view-btn" ng-hide="appViewState.threeUi!='details'" ng-click='viewProject()'>
         <div class='view-btn-bg bg-image-{{appViewState.hue}}'></div>
-        <h4>View Project</h4>
+        <div class='view-btn-bg-keyline bg-image-{{appViewState.hue}}'></div>
+        <h4>View</h4>
     </div> 
 
 
