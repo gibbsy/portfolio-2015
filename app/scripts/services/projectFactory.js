@@ -21,58 +21,6 @@ angular.module('angularApp')
 			var theProject = allProjects[ID];
 			return theProject;
 		},
-		mediaQuery: function (ID) {
-			var theMedia = $http({
-				method: 'GET',
-				url: 'http://localhost:8888/andrewgillon/wordpress/wp-json/media/' + ID,
-				withCredentials: true,
-				header: {'Content-Type': 'application/x-www-form-urlencoded'}
-			});
-			return theMedia;
-		},
-		mediaArray: function (array) {
-			var theArray = array,
-				theUrls = {},
-				loadedUrls = 0,
-				postFunction = function(){};
-
-			function imageLoaded(){
-				loadedUrls++;
-				if (loadedUrls===theArray.length){
-					postFunction(theUrls);
-					
-				}
-			}
-
-			for(var i=0; i < theArray.length; i++) {
-				var ID = theArray[i];
-				
-				$http({
-					method: 'GET',
-					url: 'http://localhost:8888/andrewgillon/wordpress/wp-json/media/' + ID,
-					withCredentials: true,
-					header: {'Content-Type': 'application/x-www-form-urlencoded'}
-				}).then(function(response){
-           
-		          var url = response.data.guid;
-
-		          var key = response.data.ID;
-
-		          theUrls[key] = url;
-
-		          imageLoaded();
-
-		        }, function(err){
-		          console.log(err);
-		        })
-			}
-
-			return { 
-				done: function(f){
-					postFunction=f || postFunction
-				}
-			}
-		},
 		getDeepLinking: function() {
 			return deepLinking;
 		},

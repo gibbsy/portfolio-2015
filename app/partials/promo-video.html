@@ -1,4 +1,8 @@
 <div class="home-promo">
-<a class="back-home" ng-click="close()">View all projects</a> 
+<div class="home-btn" ng-click="close()">
+<div class='home-btn-bg bg-image-{{appViewState.hue}}'></div>
+<div class='home-btn-bg-keyline bg-image-{{appViewState.hue}}'></div>
+<h4>Close</h4> 
+</div>
 <video id="{{promoVideoId}}" class='video-js vjs-default-skin' my-vjs><source ng-src='/media/promo-animation.mp4' type='video/mp4' /></video>
 </div> 

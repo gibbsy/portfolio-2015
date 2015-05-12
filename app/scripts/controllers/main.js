@@ -22,8 +22,6 @@ angular.module('angularApp')
     $scope.myProjects = {};
     $scope.numImages = 0;
 
-   // $scope.hideBranding = { hide: false};
-
    function setWelcome() {
     var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
     if(is_chrome) {

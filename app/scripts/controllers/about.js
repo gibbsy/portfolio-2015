@@ -13,33 +13,54 @@ angular.module('angularApp')
    $scope.pageClass = 'page-about';
 
    var container = angular.element('.view-container'),
-      threeView = angular.element('.three');
+      threeView = angular.element('.three'),
+      aboutContent = angular.element('.about-me');
+
+      $scope.showAbout = false;
 
       $animate.removeClass(container,'projects-container');
 
       $timeout(function() {
+      	$scope.appViewState.viewing = 'about';
+      	$scope.appViewState.showthree = 'false';
 		$animate.addClass(container,'about-container');
       },200);
+
+      $timeout(function() {
+      	$scope.showAbout = true;
+      },1000);
       
 
      $scope.closeAbout = function() {
 
-     	$animate.removeClass(container,'about-container').then(function() {
+     	$scope.showAbout = false;
 
-     		// clear container styles and move it out the way
+     	$timeout(function(){
 
-     		var cont = angular.element('.view-container')
-     		.attr( "style", "" )
-     		.css({
-     			position:'absolute',
-     			top:'100%'
-     		});
+			$scope.appViewState.viewing='three';
+			$scope.appViewState.direction='';
 
-     		 $scope.$apply(function() {
-          		$location.path('');
-          	});
+			$animate.removeClass(container,'about-container').then(function() {
 
-     	});
+					// clear container styles and move it out the way
+
+					var cont = angular.element('.view-container')
+					.attr( "style", "" )
+					.css({
+						position:'absolute',
+						top:'100%'
+					});
+
+					 $scope.$apply(function() {
+						$location.path('');
+					});
+
+			});
+
+
+     	},500);
+
+     	
 
      }
 

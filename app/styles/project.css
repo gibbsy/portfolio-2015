@@ -43,7 +43,8 @@
   font-size:32px;
   letter-spacing: 10px;
   margin: 0;
-   -moz-transition:all 0.5s;
+  -moz-transition:all 0.5s;
+  -ms-transition:all 0.5s;
   -o-transition:all 0.5s;
   -webkit-transition:all 0.5s;
   transition:all 0.5s;
@@ -58,6 +59,7 @@
   margin-top: 20px;
   display: inline-block;
   -moz-transition:all 0.5s;
+  -ms-transition:all 0.5s;
   -o-transition:all 0.5s;
   -webkit-transition:all 0.5s;
   transition:all 0.5s;
@@ -140,6 +142,7 @@
   text-align: left;
   opacity: 0;
   -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
@@ -158,6 +161,8 @@
   margin-top: 0;
   text-align: center;
   -moz-transition:all 0.5s;
+  -webkit-transition:all 0.5s;
+  -ms-transition:all 0.5s;
   -o-transition:all 0.5s;
   transition:all 0.5s;
 
@@ -166,9 +171,8 @@
 .intro {
   width: 100%;
   padding: 20px 0;
-  font-family: source_sans_prolight;
-  font-size: 1.5em;
-  line-height: 1.8;
+  font-size: 2em;
+  line-height: 2;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 
@@ -177,9 +181,8 @@
 
 
 .article-single-col {
-  font-family: source_sans_prolight;
   display: block;
-  font-size: 1.2em;
+  font-size: 1.4em;
   line-height: 1.8; 
 }
 
@@ -283,11 +286,87 @@
 
 }
 
-.home-promo a {
+
+
+.home-btn {
   position: fixed;
-  bottom: -2000px;
-  color: #ccc;
+  cursor: pointer;
+  width: 8%;
+  height: 40px;
+  bottom: -200px;
+  left: 46%;
   z-index: 1;
+  padding: 0;
+  margin: 0;
+  /*border: 1px solid #461ca8;*/
+  text-align: center;
+  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+
+}
+
+.home-btn h4 {
+  font-family: netto_otbold;
+  position: relative;
+  color: #ddd;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 7px;
+  text-align: center;
+  font-weight: normal;
+  margin: 12px 0 0 2px;
+}
+
+
+.home-btn-bg {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  width: 0;
+  height: 0;
+  background-color: none;
+  -moz-transition: height 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition: height 0.5 cubic-bezier( 0.6, 0.2, 0.1, 1 ), width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ), left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition: height 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ), width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ), left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition: height 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ), width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ), left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition: height 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ), width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ), left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+
+}
+
+.home-btn-bg.bg-image-blue {
+  background: url('/images/view_project_btn_bg_blue.png') no-repeat 0 0;
+
+}
+
+.home-btn-bg.bg-image-purple {
+  background: url('/images/view_project_btn_bg_purple.png') no-repeat 0 0;
+}
+
+.home-btn:hover .home-btn-bg {
+  top: -10px;
+  left: -16px;
+  width: 193px;
+  height: 52px;
+
+}
+
+.home-btn-bg-keyline {
+  position: absolute;
+  top: -10px;
+  left: -16px;
+  width: 193px;
+  height: 52px;
+  background-color: none;
+
+}
+
+.home-btn-bg-keyline.bg-image-purple {
+  background: url('/images/view_project_keyline_purple.png') no-repeat 0 0;
 }
 
 
@@ -320,6 +399,7 @@
 .rtl.ng-leave {
     -webkit-transition:all 1s cubic-bezier(0.86, 0, 0.07, 1);
     -moz-transition:all 1s cubic-bezier(0.86, 0, 0.07, 1);
+    -ms-transition:all 1s cubic-bezier(0.86, 0, 0.07, 1);
     -o-transition: all 1s cubic-bezier(0.86, 0, 0.07, 1);
     transition: all 1s cubic-bezier(0.86, 0, 0.07, 1);
 }
@@ -353,6 +433,7 @@
 .ltr.ng-leave {
     -webkit-transition: all 1s cubic-bezier(0.86, 0, 0.07, 1);
     -moz-transition: all 1s cubic-bezier(0.86, 0, 0.07, 1);
+    -ms-transition: all 1s cubic-bezier(0.86, 0, 0.07, 1);
     -o-transition: all 1s cubic-bezier(0.86, 0, 0.07, 1);
     transition: all 1s cubic-bezier(0.86, 0, 0.07, 1);
 }

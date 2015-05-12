@@ -1,18 +1,63 @@
 /*/////////// ABOUT CONTENT VIEW ///////////////*/
 
 .about-container {
-  position: fixed;
-  z-index: 5000;
-  width: 96%;
-  height:96%;
-  background: #1b012d;
-  top: 2%;
-  left:2%;
 
+ /* styles added inline see animations.js */
 
 }
 
 .page-about {
-  padding: 10%;
+  padding: 5% 10%;
   color: #fff;
+}
+
+.page-about h1 {
+  font-weight: 500;
+  font-size: 80px;
+}
+
+.page-about p {
+  font-weight: 200;
+  font-size: 1.8em;
+  line-height: 1.8;
+  letter-spacing: 0.1em;
+}
+
+.about-me {
+  position: relative;
+  width: 50%;
+  display: block;
+  opacity: 1;
+  padding:0;
+  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+}
+
+.about-me.fade-up {
+  opacity: 1;
+  margin-top: 0;
+}
+
+.close-btn.about {
+  position: absolute;
+  right: 2%;
+  top: 3%;
+}
+
+
+.about-me.ng-hide-add.ng-hide-add-active,
+.about-me.ng-hide-remove.ng-hide-remove-active {
+  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+}
+
+.about-me.ng-hide {
+  opacity: 0;
+  padding-top: 20px;
 }

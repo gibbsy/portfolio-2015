@@ -123,14 +123,14 @@ angular.module('angularApp').animation('.about-container', function() {
       position: 'fixed',
       width: 0,
       height:'96%',
-      background: '#ccc',
+      background: '#23143e',
       top: '2%',
       left:'2%',
       opacity: 1,
       zIndex:5000
     })
       .animate({
-       'width': '96%'
+       width: '96%'
       },700,'easeInOutCubic', done);
 
        return function() {
@@ -142,11 +142,12 @@ angular.module('angularApp').animation('.about-container', function() {
     removeClass : function(element, className, done) {
 
       element.css({
-      opacity: 1,
-      
+      right: '2%',
+      left:''      
     })
       .animate({
-        opacity: 0
+        width: 0,
+        right: '2%'
       },600,'easeInOutCubic', done);
 
       return function(element) {

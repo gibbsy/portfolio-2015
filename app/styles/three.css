@@ -285,6 +285,29 @@
   height: 0;
 }
 
+.about-top-right {
+  position: absolute;
+  top: 3.5%;
+  right: 3%;
+  text-align: center;
+  z-index: 100;
+}
+
+.about-top-right a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: netto_otbold;
+  position: relative;
+  color: #ddd;
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 7px;
+  text-align: center;
+  font-weight: normal;
+  margin: 12px 0 0 2px;
+}
+
 
 /*//// 3JS SCENE PROJECT INFO ////*/
 
@@ -357,7 +380,7 @@
   cursor: pointer;
   width: 8%;
   height: 40px;
-  bottom: 7.5%;
+  bottom: 6.5%;
   left: 46%;
   z-index: 500;
   padding: 0;

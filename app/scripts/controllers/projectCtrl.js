@@ -91,11 +91,7 @@ if ((projectFactory.getDeepLinking())==='READY') {
 
               // check that the three ui is ready before going to the project
 
-              
-                prepareToLoad();
-            
-
-              
+                prepareToLoad();        
 
         }
       }
@@ -276,7 +272,6 @@ function prepareToLoad() {
       for (var i = 0 ; i < $scope.project.content_images.length; i++ ) {
 
           imgUrls.push(domain + $scope.project.content_images[i]);
-         // console.log(domain + $scope.project.content_images[i]);
         }
 
       } else {

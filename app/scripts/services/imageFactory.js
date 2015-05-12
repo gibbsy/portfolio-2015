@@ -3,22 +3,16 @@ angular.module('angularApp')
   .factory('imageFactory', ['$http','$q','$rootScope','$timeout', function ($http, $q, $rootScope, $timeout) {
 
   	// thanks to Ben Nadel http://www.bennadel.com/blog/2597-preloading-images-in-angularjs-with-promises.htm
-
-	// I manage the preloading of image objects. Accepts an array of image URLs.
 	
 	function Preloader( featuredImgs ) {
 
-	    // I am the image SRC values to preload.
 	    this.featuredImgs = featuredImgs;
-	   
 
-	    // As the images load, we'll need to keep track of the load/error
-	    // counts when announing the progress on the loading.
 	    this.imageCount = this.featuredImgs.length;
 	    this.loadCount = 0;
 	    this.errorCount = 0;
 		this.imgStore = [];
-	    // I am the possible states that the preloader can be in.
+
 	    this.states = {
 	        PENDING: 1,
 	        LOADING: 2,
@@ -26,7 +20,6 @@ angular.module('angularApp')
 	        REJECTED: 4
 	    };
 
-	    // I keep track of the current state of the preloader.
 	    this.state = this.states.PENDING;
 
 	    // When loading the images, a promise will be returned to indicate
@@ -59,37 +52,27 @@ angular.module('angularApp')
 	    // Best practice for "instnceof" operator.
 	    constructor: Preloader,
 
-
 	    // ---
 	    // PUBLIC METHODS.
 	    // ---
-
-
-	    // I determine if the preloader has started loading images yet.
 	    isInitiated: function isInitiated() {
 
 	        return( this.state !== this.states.PENDING );
 
 	    },
 
-
-	    // I determine if the preloader has failed to load all of the images.
 	    isRejected: function isRejected() {
 
 	        return( this.state === this.states.REJECTED );
 
 	    },
 
-
-	    // I determine if the preloader has successfully loaded all of the images.
 	    isResolved: function isResolved() {
 
 	        return( this.state === this.states.RESOLVED );
 
 	    },
 
-
-	    // I initiate the preload of the images. Returns a promise.
 	    load: function load() {
 
 	        // If the images are already loading, return the existing promise.
@@ -117,13 +100,10 @@ angular.module('angularApp')
 	    // PRIVATE METHODS.
 	    // ---
 
-
-	    // I handle the load-failure of the given image location.
 	    handleImageError: function handleImageError( imageLocation ) {
 
 	        this.errorCount++;
 
-	        // If the preload action has already failed, ignore further action.
 	        if ( this.isRejected() ) {
 
 	            return;

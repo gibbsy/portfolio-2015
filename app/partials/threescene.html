@@ -8,7 +8,6 @@
    <div class="brand-ui" id="explore-work"><div class="explore-link-bg explore-bg-image-{{appViewState.hue}}"></div><a href="" ng-click="exploreWork()">Explore Work</a></div>
     </div>
 </div>
-   <!--  <hr class="halfway" /> -->
     
     <div class="view-select" ng-hide="appViewState.threeUi=='brand'">
         <div class="view-select-bg"></div>
@@ -43,20 +42,18 @@
         </div>   
 
     <div class='logo-top-left' ng-hide="appViewState.threeUi=='brand'" ng-click="resetThree()"><img ng-src="images/logo-{{appViewState.hue}}.png" alt="Andrew Gillon"></div>
+    <div class="about-top-right" ng-hide="appViewState.threeUi=='brand'">
+        <div class='view-btn-bg bg-image-{{appViewState.hue}}'></div>
+        <a ng-href="/#/about">About</a>
+    </div>
 
     <div class="project-details" ng-hide="appViewState.threeUi!='details'">
-
-       <!-- <h1>{{hideInfo.hide}}  {{appViewState.threeUi}} {{factoryTest}}</h1>  -->
-
-        <!-- ng-class="{show-info:hideInfo=='false'}" -->
 
 
     <h1 content-change content="projectInfo.title"></h1>
 
      <h4 class="text-color-{{appViewState.hue}}" content-change content="projectInfo.client" sync="'#view-btn'"></h4>
 
-
-    <!-- <div class="txt-divider"></div> -->
     </div>
 
     <div class="ui" id="view-btn" ng-hide="appViewState.threeUi!='details'" ng-click='viewProject()'>
@@ -66,22 +63,8 @@
     </div> 
 
 
-       <!--  <a class="ui" id="view-btn" ng-hide="appViewState.threeUi!='details'" ng-click='viewProject()' href=''>
-        <div class='view-btn-bg bg-color-dark-{{appViewState.hue}}-hover'></div>
-       <p>View Project</p></a> -->
-
-
 
 <mythree id="container"></mythree>
 
 </div>
-
-
-
-
-<!--                         <div ng-switch-when="failed">
-
-    <strong>Oops</strong>: One of your images failed to load :(
-
-</div> -->
 

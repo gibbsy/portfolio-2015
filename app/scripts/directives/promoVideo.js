@@ -18,12 +18,7 @@ angular.module('angularApp')
         parallax = (scrolled - scrollTarget)*0.3,
         video = videojs(scope.promoVideoId);
 
-        /*  console.log(scrolled);
-        console.log(scrollTarget);
-        console.log(element);
-        */
-
-        angular.element('.home-promo a').css({'bottom':parallax});
+        angular.element('.home-btn').css({'bottom':parallax});
 
         if (scrolled >= scrollTarget) {
 
