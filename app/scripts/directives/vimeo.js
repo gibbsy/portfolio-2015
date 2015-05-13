@@ -13,7 +13,6 @@ angular.module('angularApp')
     	var id = scope.vimeoId,
     		vidHTML = '<iframe src="//player.vimeo.com/video/' + id + '" width="720" height="405" wmode="transparent" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>',
     		el = angular.element(element);
-    		console.log(vidHTML);
     		el.append(vidHTML);
 
 

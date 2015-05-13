@@ -28,8 +28,7 @@ angular.module('angularApp')
     $scope.imagesReady = "wait";
 
     var imgUrls = [],
-    domain = 'http://localhost:9000';
-    //domain = 'http://beta.andrewgillon.com/';
+    domain = 'http://' + $window.location.host;
 
     var container = angular.element('.view-container'),
     threeView = angular.element('.three');
@@ -65,9 +64,7 @@ if ((projectFactory.getDeepLinking())==='READY') {
 
         prepareToLoad();
 
-      },50);
-
-      
+      },50); 
 
     } else { 
 
@@ -307,7 +304,6 @@ function prepareToLoad() {
                           function() {
 
                               $scope.heroImg = event.target.src;   
-                              console.info( "Loaded Hero Image" ); 
                           }
                       );
 
@@ -348,7 +344,6 @@ function prepareToLoad() {
                 $scope.isSuccessful = true;
                 $scope.project.contentImages = imgUrls;
 
-                console.info( "Loaded Content Images" );
                 $scope.appViewState.loadingContent = false;   
 
                 showProjectContent();          
@@ -361,15 +356,12 @@ function prepareToLoad() {
                 $scope.isLoading = false;
                 $scope.isSuccessful = false;
 
-                console.error( "Image Failed", featuredImg );
                 console.info( "Preload Failure" );
 
             },
             function handleNotify( event ) {
 
                 $scope.percentLoaded = event.percent;
-
-                console.info( "Percent loaded:", event.percent );
             
             });
 

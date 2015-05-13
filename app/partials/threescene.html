@@ -1,5 +1,5 @@
 <div class="brand" ng-hide="appViewState.threeUi!='brand'" >
-<div ng-class="{show:showLogo}" class="logo-img">
+<div ng-class="{show:showLogo}" class="logo-img" ng-click="resetThree()">
 <img ng-src="images/logo-{{appViewState.hue}}.png">
 </div>
 <div ng-class="{fadein:showSublinks}" class="sublinks">
@@ -19,9 +19,7 @@
                     <li></li>
                     <li></li>
                 </ul>
-
-
-           
+        
                 <ul class="grid-icon bg-color-hover-child-dark-{{appViewState.hue}}" ng-class="{true: 'bg-color-child-dark-' + appViewState.hue }[appViewState.tileMode=='grid']" ng-click="resetGrid()">
                     <li></li>
                     <li></li>
@@ -43,7 +41,7 @@
 
     <div class='logo-top-left' ng-hide="appViewState.threeUi=='brand'" ng-click="resetThree()"><img ng-src="images/logo-{{appViewState.hue}}.png" alt="Andrew Gillon"></div>
     <div class="about-top-right" ng-hide="appViewState.threeUi=='brand'">
-        <div class='view-btn-bg bg-image-{{appViewState.hue}}'></div>
+        <div class='about-btn-bg bg-image-{{appViewState.hue}}'></div>
         <a ng-href="/#/about">About</a>
     </div>
 

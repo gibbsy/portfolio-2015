@@ -122,7 +122,6 @@ angular.module('angularApp')
 
         function handleResolve( imgStore ) {
 
-            console.info( "Preload Successful" );
             for ( var i = 0 ; i < imgStore.length ; i++ ) {
 
             var img = imgStore[i];
@@ -147,15 +146,12 @@ angular.module('angularApp')
             $scope.isLoading = "loaded";
             $scope.isSuccessful = "failed";
 
-            console.error( "Image Failed", featuredImg );
             console.info( "Preload Failure" );
 
         },
         function handleNotify( event ) {
 
             $scope.percentLoaded = event.percent;
-
-            console.info( "Percent loaded:", event.percent );
 
         });
     }

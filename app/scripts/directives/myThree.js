@@ -34,6 +34,10 @@ return {
 
     scope.resetThree = function () {
 
+      if (scope.isAnimating) {
+        return
+      }
+
       view = 'scene'
       scope.explodeTiles();
       targetTile = undefined;
@@ -956,6 +960,8 @@ return {
 
           if (thisObject.tile==targetTile) {
 
+            scope.viewProject();
+            
             return;
 
           } else {

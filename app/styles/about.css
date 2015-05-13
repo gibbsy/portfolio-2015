@@ -12,11 +12,12 @@
 }
 
 .page-about h1 {
-  font-weight: 300;
-  font-size: 3em;
+  font-weight: 700;
+  font-size: 3.4em;
   letter-spacing: 0.1em;
   margin: 0;
   padding: 0;
+  margin-bottom: 40px;
 }
 
 .page-about p {
@@ -33,11 +34,7 @@
   opacity: 1;
   padding:0;
   float: left;
-  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+
 }
 
 .about-right-col {
@@ -45,6 +42,8 @@
   width: 35%;
   margin-left: 5%;
   padding-top: 10px;
+  opacity: 1;
+
 }
 
 #portrait-img {
@@ -66,7 +65,8 @@
   top: 3%;
 }
 
-
+.about-right-col.ng-hide-add.ng-hide-add-active,
+.about-right-col.ng-hide-remove.ng-hide-remove-active,
 .about-me.ng-hide-add.ng-hide-add-active,
 .about-me.ng-hide-remove.ng-hide-remove-active {
   -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
@@ -76,7 +76,92 @@
   transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
 }
 
-.about-me.ng-hide {
+.about-right-col.ng-hide-remove.ng-hide-remove-active {
+  -moz-transition-delay: 0.2s;
+  -o-transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s;
+  -ms-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+
+.about-me.ng-hide, .about-right-col.ng-hide {
   opacity: 0;
   padding-top: 20px;
+
 }
+
+.email-btn {
+  position: relative;
+  text-align: center;
+  display: block;
+  margin: 50px 0 0 10px;
+  z-index: 100;
+  width: 360px;
+  height: 80px;
+}
+
+.email-btn-bg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 50%;
+  -moz-transition: height 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition: height 0.5 cubic-bezier( 0.6, 0.2, 0.1, 1 ), width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ), left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition: height 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ), width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ), left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition: height 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ), width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ), left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition: height 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ), width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ), left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+
+}
+
+.email-btn-bg-keyline {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left:0;
+}
+
+.email-btn-bg {
+    left: -30%;
+}
+
+
+.email-btn-bg {
+  background: url('/images/email_btn_bg.png') no-repeat 0 0;
+}
+
+.email-btn-bg-keyline {
+  background: url('/images/email_btn_bg_keyline.png') no-repeat 0 0;
+}
+
+.email-btn a {
+ position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  font-family: netto_otbold;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 10px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  -moz-transition:all 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition:all 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition:all 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition:all 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition:all 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+}
+
+.email-btn:hover > .email-btn-bg {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left:0;
+
+}
+
+.email-btn a:hover {
+  letter-spacing: 12px;
+}
+

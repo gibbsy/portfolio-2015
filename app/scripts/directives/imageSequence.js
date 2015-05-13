@@ -18,8 +18,6 @@ angular.module('angularApp')
     		locString = scope.imageLoc,
     		imageCache = {};
 
-    		console.log(numFrames);
-
     		for (var i = 0; i < numFrames; i++) {
 
     			var theSrc = locString + i.toString() + '.png';
@@ -48,10 +46,9 @@ angular.module('angularApp')
     	function checkProgress () {
     		
     		if( framesLoaded == numFrames ) {
-    			console.info("image sequence loaded");
+
     			startAnimation();
     		} else {
-    				console.info("loaded " + framesLoaded );
     			return;
     		}
 

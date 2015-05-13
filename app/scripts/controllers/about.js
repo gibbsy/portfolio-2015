@@ -14,9 +14,12 @@ angular.module('angularApp')
 
    var container = angular.element('.view-container'),
       threeView = angular.element('.three'),
-      aboutContent = angular.element('.about-me');
+      aboutContent = angular.element('.about-me'),
+      threeUiView = $scope.appViewState.threeUi;
 
       $scope.showAbout = false;
+
+      $scope.appViewState.threeUi = 'about';
 
       $animate.removeClass(container,'projects-container');
 
@@ -51,6 +54,8 @@ angular.module('angularApp')
 						top:'100%'
 					});
 
+          $scope.appViewState.threeUi = threeUiView;
+          
 					 $scope.$apply(function() {
 						$location.path('');
 					});
