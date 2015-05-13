@@ -303,12 +303,19 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            '*.{ico,png,txt}',
+            '*.{ico,png,txt,jpg}',
             '.htaccess',
             '*.html',
+            'styles/{,*/}*.css',
             'views/{,*/}*.html',
-            'images/{,*/}*.{webp}',
-            'fonts/*'
+            'partials/{,*/}*.html',
+            'images/{,*/}*.{webp,jpg,png}',
+            'images/{,*/*/}*.{webp,jpg,png}',
+            'styles/*.{css,eot,svg,ttf,woff,woff2}',
+            'fonts/*',
+            'data/*',
+            'media/*',
+            'media/{,*/}*.{mp4,mp3,wav}'
           ]
         }, {
           expand: true,
@@ -390,7 +397,7 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
-    'filerev',
+    //'filerev',
     'usemin',
     'htmlmin'
   ]);

@@ -1,13 +1,3 @@
-@import '/styles/body.css';
-@import '/styles/preloader.css';
-@import '/styles/three.css';
-@import '/styles/prev-next-ui.css';
-@import '/styles/three-view-mode.css';
-@import '/styles/project.css';
-@import '/styles/about.css';
-@import '/styles/colours.css';
-
-
 a.debug {
   position: absolute;
   background: #ddd;

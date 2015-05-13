@@ -94,6 +94,24 @@
 			
 		},
 		{	"index": 5,
+			"title": "John Lewis Partnership Pitch",
+			"client":"Penna",
+			"slug":"jlp-pitch",
+			"featured_image": "/images/content/featured/512_0017_jlp.jpg",
+			"tags":["Creative Direction / Design"],
+			"subtitle":"this is my project",
+			"intro": "<p>this is an intro to my project</p>",
+			"content":"<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n<p>Mauris non nulla libero. Vivamus luctus quis nibh vel varius. Suspendisse quis dignissim purus. Integer ut nulla vel mi sollicitudin efficitur. Sed velit arcu, luctus et lacinia ut, finibus ut dui. Vivamus at massa eros. Morbi porta risus et mauris consectetur, id interdum libero rutrum. Fusce ullamcorper nulla quis mauris venenatis condimentum.</p>\n",
+			"hero_image":"/images/content/heroes/hero-jlp.jpg",
+			"content_images":[
+							"/images/content/jlp-01.jpg",
+							"/images/content/jlp-02.jpg",
+							"/images/content/jlp-03.jpg"
+							],
+			"vimeo_ids":[]
+			
+		},
+		{	"index": 6,
 			"title": "This is Ground Control",
 			"client":"ground-control",
 			"slug":"ground-control-website",
@@ -107,7 +125,7 @@
 			"vimeo_ids":[]
 			
 		},
-		{	"index": 6,
+		{	"index": 7,
 			"title": "Gatorade website concepts",
 			"client":"Gatorade",
 			"slug":"gatorade-site-conecepts",
@@ -126,15 +144,15 @@
 			"vimeo_ids":[]
 			
 		},
-		{	"index": 7,
+		{	"index": 8,
 			"title": "Wireworks digital agency",
 			"client":"Wireworks",
 			"slug":"Wireworks-digital-agency",
 			"featured_image": "/images/content/featured/512_0010_wireworks.jpg",
 			"tags":["Brand / Creative Direction"],
 			"subtitle":"this is my project",
-			"intro": "<p>this is an intro to my project</p>",
-			"content":"<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n<p>Mauris non nulla libero. Vivamus luctus quis nibh vel varius. Suspendisse quis dignissim purus. Integer ut nulla vel mi sollicitudin efficitur. Sed velit arcu, luctus et lacinia ut, finibus ut dui. Vivamus at massa eros. Morbi porta risus et mauris consectetur, id interdum libero rutrum. Fusce ullamcorper nulla quis mauris venenatis condimentum.</p>\n",
+			"intro": "<p>In 2009 I was given a very exciting opportunity - to co-found a digital agency in Partnership with the award winning Post-Production House Glassworks.</p>",
+			"content":"<p>Wireworks is the digital sister company of Glassworks London (www.glassworks.co.uk). As co-founder and Creative Director I was involved in all areas of the business from developing the brand identity and proposition to quoting, pitching and hiring as well as managing developers and designers. During my time at Wireworks I led many projects in partnership with top advertising agencies and also direct to a wide range of clients from Pepsico to Reckitt Benckiser. I was responsible for the entire creative output of the studio - this meant directing and managing teams of designers and developers across numerous projects simultaneously. Being a startup company has meant I was also still very much involved in the production process and so have more than kept my hand in - designing, animating and coding on a daily basis.</p>",
 			"hero_image":"/images/content/heroes/hero-image-wireworks.jpg",
 			"content_images":[
 								"/images/content/wireworks-01.jpg",
@@ -143,7 +161,7 @@
 			"vimeo_ids":[]
 			
 		},
-		{	"index": 8,
+		{	"index": 9,
 			"title": "Technology at GCHQ",
 			"client":"GCHQ",
 			"slug":"technology-at-gchq",
@@ -165,7 +183,7 @@
 			"vimeo_ids":[]
 			
 		},
-		{	"index": 9,
+		{	"index": 10,
 			"title": "Here come the Hair Monsters",
 			"client":"Schwarzkopff Got2be",
 			"slug":"got2be",
@@ -182,7 +200,7 @@
 			"vimeo_ids":[ "41368668" ]
 			
 		},
-		{	"index": 10,
+		{	"index": 11,
 			"title": "Beat the Street",
 			"client":"Creative Nation",
 			"slug":"beat-the-street",
@@ -199,7 +217,7 @@
 			"vimeo_ids":[ ]
 			
 		},
-		{	"index": 11,
+		{	"index": 12,
 			"title": "Heartworks e-Learning Application",
 			"client":"Inventive Medical",
 			"slug":"heartworks-elearning",
@@ -218,7 +236,7 @@
 			"vimeo_ids":[]
 			
 		},
-		{	"index": 12,
+		{	"index": 13,
 			"title": "Crash the Web",
 			"client":"BBC America YouTube Takeover",
 			"slug":"crash-the-web",
@@ -234,24 +252,6 @@
 								"/images/content/crash-course-03.jpg"
 							],
 			"vimeo_ids":[ "127142708" ]
-			
-		},
-		{	"index": 13,
-			"title": "John Lewis Partnership Pitch",
-			"client":"Penna",
-			"slug":"jlp-pitch",
-			"featured_image": "/images/content/featured/512_0017_jlp.jpg",
-			"tags":["Creative Direction / Design"],
-			"subtitle":"this is my project",
-			"intro": "<p>this is an intro to my project</p>",
-			"content":"<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n<p>Mauris non nulla libero. Vivamus luctus quis nibh vel varius. Suspendisse quis dignissim purus. Integer ut nulla vel mi sollicitudin efficitur. Sed velit arcu, luctus et lacinia ut, finibus ut dui. Vivamus at massa eros. Morbi porta risus et mauris consectetur, id interdum libero rutrum. Fusce ullamcorper nulla quis mauris venenatis condimentum.</p>\n",
-			"hero_image":"/images/content/heroes/hero-jlp.jpg",
-			"content_images":[
-							"/images/content/jlp-01.jpg",
-							"/images/content/jlp-02.jpg",
-							"/images/content/jlp-03.jpg"
-							],
-			"vimeo_ids":[]
 			
 		},
 		{	"index": 14,

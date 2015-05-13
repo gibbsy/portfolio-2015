@@ -12,28 +12,47 @@
 }
 
 .page-about h1 {
-  font-weight: 500;
-  font-size: 80px;
+  font-weight: 300;
+  font-size: 3em;
+  letter-spacing: 0.1em;
+  margin: 0;
+  padding: 0;
 }
 
 .page-about p {
-  font-weight: 200;
-  font-size: 1.8em;
-  line-height: 1.8;
-  letter-spacing: 0.1em;
+  font-weight: 300;
+  font-size: 1.2em;
+  line-height: 1.6;
+  letter-spacing: 0.05em;
 }
 
 .about-me {
   position: relative;
-  width: 50%;
+  width: 60%;
   display: block;
   opacity: 1;
   padding:0;
+  float: left;
   -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+}
+
+.about-right-col {
+  float: left;
+  width: 35%;
+  margin-left: 5%;
+  padding-top: 10px;
+}
+
+#portrait-img {
+  position: relative;
+  width: 100%;
+  max-width: 370px;
+  display: block;
+  margin: 0 auto;
 }
 
 .about-me.fade-up {

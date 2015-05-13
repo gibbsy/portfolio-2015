@@ -100,7 +100,7 @@
   background: url('../images/close-btn.png');
   position: absolute;
   top: 25px;
-  right: 25px;
+  right: 28px;
   opacity: 0.5;
   cursor: pointer;
   -moz-transition:all 0.5s;
@@ -171,19 +171,19 @@
 .intro {
   width: 100%;
   padding: 20px 0;
-  font-size: 2em;
-  line-height: 2;
+  font-size: 1.8em;
+  line-height: 1.6;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-
+  font-weight: 300;
 }
-
-
 
 .article-single-col {
   display: block;
   font-size: 1.4em;
   line-height: 1.8; 
+  font-weight: 300;
+  letter-spacing: 0.03em;
 }
 
 .copy-content p {
@@ -262,8 +262,6 @@
   height: 100%;
 
 }
-
-
 
 .home-promo {
   width: 100%;

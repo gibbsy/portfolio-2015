@@ -7,16 +7,7 @@ return {
 restrict: 'A',
 link:  function linkFunc(scope, element, attrs) {
 
-
-            //angular.element(element).css({ opacity : 0, 'padding-top' : '+=15', 'transition' : 'all 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 )'});
-
-            //console.log($window.pageYOffset+'offset')
-
-            // $timeout(function() {
-            //     angular.element(element).css({ 'opacity': 1 , 'padding-top' : '-=15'});
-            // },5000);
-
-            /////////////////////////
+            /// based on the scrollReveal js plugin but heavily modified for this site
 
             var _requestAnimFrame;
             var _handler;
@@ -24,12 +15,9 @@ link:  function linkFunc(scope, element, attrs) {
             var myEl = element;
             var revealEl;
 
-            //console.log(myEl);
         
             function scrollReveal (myElement) {
 
-                // keep track of how many els to reveal
-                //console.log('revealing '+scope.reveals+' elements');
                 self = this;
                 self.index = scope.reveals;
                 self.theElem   = myElement;
@@ -42,7 +30,7 @@ link:  function linkFunc(scope, element, attrs) {
                 /// wait till the media has been added to the dom then store in an object
 
                 function waitForMedia() {
-                  //console.log('fired');
+                
                   $timeout(function() {
 
                     if ( scope.imagesReady=="ready" && angular.element('[data-reveal]') ) {
@@ -121,8 +109,6 @@ link:  function linkFunc(scope, element, attrs) {
                     
                 self.scrolled = self.scrollY();
 
-                //console.log(elems);
-
                 $timeout(function(){
                    self.animate();
                 },1000);
@@ -132,8 +118,6 @@ link:  function linkFunc(scope, element, attrs) {
                 animate: function(){
 
                   for ( var elKey in self.elems ) {
-
-                      //console.log(self.elems[elKey]);
 
                       var showit = self.elems[elKey].showme;
                       var visible;
@@ -145,11 +129,6 @@ link:  function linkFunc(scope, element, attrs) {
                       self.elems[elKey].seen = true;
 
                       showit.css( self.reveal );
-                        
-                      //console.log(showit);
-
-                        /*$window.removeEventListener( 'scroll', _handler, false );
-                        $window.removeEventListener( 'resize', _handler, false );*/
 
                       } else if ( !visible ){
                         
@@ -173,26 +152,12 @@ link:  function linkFunc(scope, element, attrs) {
 
                 isElemInViewport: function( elem ){
 
-                  /*var el    = self.theElem;
-                  var elHeight = el.height();
-
-                  console.log(el+'height'+elHeight);
-
-                  var elTop    = el.offset().top-self.getViewportH();
-
-                  console.log('top'+elTop);
-
-                  var elBottom = elTop + elHeight;
-                  var vFactor  = self.vFactor || 0;*/
-
                   var kinel = elem,
                   elTop= kinel.offset().top,
                   scrolled = angular.element($window).scrollTop(),
                   elHeight = kinel.height(),
                   vFactor = self.vFactor,
                   elBottom = elTop + elHeight;
-
-                  //console.log ('height '+elHeight+'top '+elTop+'scrolled '+scrolled);
 
                   return ( confirmBounds() || isPositionFixed() );
 
@@ -207,9 +172,6 @@ link:  function linkFunc(scope, element, attrs) {
                   }
 
                   function isPositionFixed(){
-
-                   /* console.log(el);
-                    var style = el[0].currentStyle;*/
 
                     return false; //style.position === 'fixed';
                   }
@@ -240,8 +202,6 @@ link:  function linkFunc(scope, element, attrs) {
               } // End of the scrollReveal prototype ======================================|
 
 
-
-
              _handler = function( e ){
 
                 if ( !self.blocked ){
@@ -255,8 +215,6 @@ link:  function linkFunc(scope, element, attrs) {
                 }
               }
 
-                
-
               // RequestAnimationFrame polyfill.
               _requestAnimFrame = (function(){
 
@@ -269,14 +227,8 @@ link:  function linkFunc(scope, element, attrs) {
                       };
               }());
 
-
-          
                     
-              revealEl = new scrollReveal( myEl ); 
-                     
-
-            
-                  
+              revealEl = new scrollReveal( myEl );               
   
         }
     }

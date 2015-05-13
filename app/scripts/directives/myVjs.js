@@ -13,7 +13,6 @@ angular.module('angularApp')
         var vidId = scope.promoVideoId;
 
         if(vidId) {
-          //console.log(vidId);
 
           if (angular.element('#'+vidId[0])) {
 
@@ -22,7 +21,6 @@ angular.module('angularApp')
                  height = width * aspectRatio;
 
             videojs(vidId, {'autoplay': false, 'preload':'auto', 'width': width, 'height': height}, function(){
-            //console.log(this);
 
             });
 
