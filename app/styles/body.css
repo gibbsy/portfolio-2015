@@ -1,5 +1,5 @@
 body {
-    font-family: "futura-pt", helvetica;
+    font-family: "futura-pt", helvetica, arial, sans-serif;
     background-color: #1a181b;
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@ body {
  } 
 
  h1 {
-  font-family: "futura-pt";
+  font-family: "futura-pt", helvetica, arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 5px;
 }

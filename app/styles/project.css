@@ -38,7 +38,7 @@
 }
 
 .project-title h1 {
-  font-family: "futura-pt";
+  font-family: "futura-pt", helvetica, arial, sans-serif;
   line-height: 1.5;
   font-size:32px;
   letter-spacing: 10px;
@@ -52,7 +52,7 @@
 }
 
 .project-title h4 {
-  font-family: netto_otbold;
+  font-family: netto_otbold, helvetica, arial, sans-serif;
   font-size: 13px;
   letter-spacing: 6px;
   color: #fff;
@@ -155,7 +155,7 @@
 }
 
 .copy-content h4 {
-  font-family: netto_otbold;
+  font-family: netto_otbold, helvetica, arial, sans-serif;
   font-size: 13px;
   letter-spacing: 6px;
   margin-top: 0;

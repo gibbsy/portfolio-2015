@@ -86,7 +86,7 @@
 } 
 
 .brand h1 {
-  font-family: "futura-pt";
+  font-family: "futura-pt", helvetica, arial, sans-serif;
   display: inline;
   background: none;
   font-size: 90px;
@@ -120,7 +120,7 @@
   top: 20px;
   left: 0;
   width: 100%;
-  font-family: netto_otbold;
+  font-family: netto_otbold, helvetica, arial, sans-serif;
   text-transform: uppercase;
   font-size: 16px;
   letter-spacing: 12px;

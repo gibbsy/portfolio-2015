@@ -7,7 +7,7 @@
 }
 
 .page-about {
-  padding: 5% 10%;
+  padding: 7% 10% 2% 10%;
   color: #fff;
 }
 
@@ -25,6 +25,15 @@
   font-size: 1.2em;
   line-height: 1.6;
   letter-spacing: 0.05em;
+}
+
+.page-about p a {
+  color: #ce24ff;
+  text-decoration: none;
+}
+
+.page-about p a:hover {
+
 }
 
 .about-me {
@@ -128,6 +137,56 @@
   letter-spacing: 11px;
   background-color: #fff;
   color: #23143e;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1580px) { 
+
+.page-about {
+  padding: 8%;
+}
+
+.page-about h1 {
+  font-size: 3em;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.page-about p {
+  font-size: 1.2em;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+}
+
+.email-btn {
+  margin-top: 40px;
+}
+
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 1199px) { 
+
+.page-about {
+  padding: 8%;
+}
+
+.page-about h1 {
+  font-size: 2em;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.page-about p {
+  font-size: 1em;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+}
+
+.email-btn {
+  margin-top: 30px;
+}
+
+
 }
 
 
