@@ -235,6 +235,7 @@
   margin: 0 auto;
   padding-top: 180px;
   min-height: 1000px;
+  max-width: 1180px;
 }
 
 .media-content img {

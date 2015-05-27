@@ -43,8 +43,8 @@
 			"featured_image": "/images/content/featured/512_0003_gchq3.jpg",
 			"tags":["UX / Creative Direction / Design"],
 			"subtitle":"this is my project",
-			"intro": "<p>this is an intro to my project</p>",
-			"content":"<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n<p>Mauris non nulla libero. Vivamus luctus quis nibh vel varius. Suspendisse quis dignissim purus. Integer ut nulla vel mi sollicitudin efficitur. Sed velit arcu, luctus et lacinia ut, finibus ut dui. Vivamus at massa eros. Morbi porta risus et mauris consectetur, id interdum libero rutrum. Fusce ullamcorper nulla quis mauris venenatis condimentum.</p>\n",
+			"intro": "<p>Big brother's not so little website.</p>",
+			"content":"<p>Careers website for the British intelligence and security agency GCHQ. I did all the UX and design for this website, there's also a good amount of rich media and video content on there which I was responsible for too. You can check out that stuff <a href='/projects/gchq-video-content'>here.</a>It kept me busy for a while this one.</p>",
 			"hero_image":"/images/content/heroes/hero-gchq-site.jpg",
 			"content_images":[	
 								"/images/content/gchq-site-01.jpg",
@@ -60,11 +60,11 @@
 			"featured_image": "/images/content/featured/512_0004_rory.jpg",
 			"tags":["Design / Development"],
 			"subtitle":"this is my project",
-			"intro": "<p>this is an intro to my project</p>",
-			"content":"<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n<p>Mauris non nulla libero. Vivamus luctus quis nibh vel varius. Suspendisse quis dignissim purus. Integer ut nulla vel mi sollicitudin efficitur. Sed velit arcu, luctus et lacinia ut, finibus ut dui. Vivamus at massa eros. Morbi porta risus et mauris consectetur, id interdum libero rutrum. Fusce ullamcorper nulla quis mauris venenatis condimentum.</p>\n",
+			"intro": "<p>Showreel website for commercials director Rory Kelleher. I built this minimal ajax powered wordpress theme to showcase the work.</p>",
+			"content":"",
 			"hero_image":"/images/content/heroes/rory-gradients.jpg",
 			"content_images":[
-								"/images/content/rk-01.jpg",
+								"/images/content/rk-00.jpg",
 								"/images/content/rk-02.jpg",
 								"/images/content/rk-03.jpg",
 								"/images/content/rk-04.jpg",
@@ -118,10 +118,13 @@
 			"featured_image": "/images/content/featured/512_0008_ground-control.jpg",
 			"tags":["Brand / Design / Development"],
 			"subtitle":"this is my project",
-			"intro": "<p>Houston, we have a new website</p>",
-			"content":"<p>Ground Control is a relatively new Animation Production Company based in London but with incredible Directors all over the World. I designed the identity and website for the company and also built the website for them. It is a simple responsive site with a slick, understated UI that puts the glorious video content first.</p>",
+			"intro": "<p>Houston, we have a new website.</p>",
+			"content":"<p>Identity, web design and build for the new Animation Production studio Ground Control.</p>",
 			"hero_image":"/images/content/heroes/ground-ctrl-gradients.jpg",
-			"content_images":["/images/content/ground-ctrl-01.jpg"],
+			"content_images":[
+							"/images/content/ground-ctrl-01.jpg",
+							"/images/content/ground-ctrl-02.jpg"
+							],
 			"vimeo_ids":[]
 			
 		},
@@ -132,8 +135,8 @@
 			"featured_image": "/images/content/featured/512_0007_gatorade-concept.jpg",
 			"tags":["UX / Design"],
 			"subtitle":"this is my project",
-			"intro": "<p>this is an intro to my project</p>",
-			"content":"<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n<p>Mauris non nulla libero. Vivamus luctus quis nibh vel varius. Suspendisse quis dignissim purus. Integer ut nulla vel mi sollicitudin efficitur. Sed velit arcu, luctus et lacinia ut, finibus ut dui. Vivamus at massa eros. Morbi porta risus et mauris consectetur, id interdum libero rutrum. Fusce ullamcorper nulla quis mauris venenatis condimentum.</p>\n",
+			"intro": "<p>Giving a famous drinks brand some digital legs.</p>",
+			"content":"<p>Gatorade is a great sports drinks brand with a growing reputation over here in Great England. At Wireworks we were lucky enough to do a few cool projects with these guys over a two year period. But we wanted to do more. Thats why I went all out with these concepts to show them what their website could be. Sadly it's still only what it could be.</p>",
 			"hero_image":"/images/content/heroes/hero-gatorade-site.jpg",
 			"content_images":[
 								"/images/content/gatorade-site-01.jpg",
