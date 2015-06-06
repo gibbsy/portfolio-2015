@@ -7,7 +7,7 @@ return {
 restrict: 'A',
 link:  function linkFunc(scope, element, attrs) {
 
-            /// based on the scrollReveal js plugin but heavily modified for this site
+            /// based on the scrollReveal js plugin but modified for this site
 
             var _requestAnimFrame;
             var _handler;

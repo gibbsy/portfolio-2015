@@ -123,8 +123,8 @@
 			"hero_image":"/images/content/heroes/ground-ctrl-gradients.jpg",
 			"content_images":[
 							
-							"/images/content/ground-ctrl-02.jpg",
 							"/images/content/ground-ctrl-01.jpg",
+							"/images/content/ground-ctrl-02.jpg",
 							"/images/content/ground-ctrl-03.jpg"
 							],
 			"vimeo_ids":[]
@@ -230,7 +230,7 @@
 			"tags":["UX / Creative Direction"],
 			"subtitle":"this is my project",
 			"intro": "<p>Cutting edge e-learning application that trains doctors and nurses in echocardiography</p>",
-			"content":"<p>At Wireworks, we worked very closely with Heartworks for over 2 years to create a stunning e-learning application to exist alongside the unique Heartworks training simulator. The course content has been developed by world leading echocardiography experts and Wireworks have created a range of interactive multimedia tools to make this a truly interactive learning experience. We are still working with Heartworks to maintain and improve the application, which has been accredited by the American Society of Echocardiography (ASE).</p>",
+			"content":"<p>At Wireworks, we worked with Heartworks for over 2 years to create an e-learning application to exist alongside the unique Heartworks training simulator. The course content has been developed by world leading echocardiography experts and Wireworks have created a range of interactive multimedia tools to make this a truly interactive learning experience. We are still working with Heartworks to maintain and improve the application, which has been accredited by the American Society of Echocardiography (ASE).</p>",
 			"hero_image":"/images/content/heroes/hero-heartworks.jpg",
 			"content_images":[
 							"/images/content/heartworks-01.jpg",

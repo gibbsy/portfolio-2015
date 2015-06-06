@@ -477,7 +477,7 @@
 
 #view-btn:hover .view-btn-bg {
   top: -10px;
-  left: -16px;
+  left: -22px;
   width: 193px;
   height: 52px;
 
@@ -486,7 +486,7 @@
 .view-btn-bg-keyline {
   position: absolute;
   top: -10px;
-  left: -16px;
+  left: -22px;
   width: 193px;
   height: 52px;
   background-color: none;

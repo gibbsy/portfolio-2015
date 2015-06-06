@@ -114,6 +114,53 @@
   opacity: 1;
 }
 
+.scroll-prompt {
+  position: fixed;
+  bottom: -20px;
+  left:43%;
+  width: 176px;
+  height: 76px;
+  z-index: 5000;
+  background-image: url('../images/scroll_bg.png');
+  text-align: center;
+  padding: 0;
+  padding-right: 10px;
+  opacity: 0;
+  -moz-transition:all 0.5s;
+  -o-transition:all 0.5s;
+  -webkit-transition:all 0.5s;
+  -ms-transition:all 0.5s;
+  transition:all 0.5s;
+}
+
+.scroll-prompt h4 {
+  margin: 0;
+  color: #ccc;
+  width: 100%;
+  padding-top: 26px;
+  text-align: center;
+  font-family: netto_otbold;
+  position: relative;
+  color: #999;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 7px;
+  text-align: center;
+  font-weight: normal;
+}
+
+.scroll-prompt img {
+  display: block;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+
+.scroll-prompt.showprompt {
+  opacity: 1;
+  bottom: 10px;
+}
+
 .hero-clip {
   position: absolute;
   display: block;
@@ -246,6 +293,24 @@
 }
 
 
+img.first-image {
+  margin: 20px auto;
+  padding-top: 20px;
+  opacity: 0;
+  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+ 
+}
+
+img.first-image.showfirst {
+  padding-top: 0;
+  opacity: 1;
+}
+
+
 .fluid-vimeo-wrapper {
   position: relative;
   margin-top: 20px;
@@ -348,7 +413,7 @@
 
 .home-btn:hover .home-btn-bg {
   top: -10px;
-  left: -16px;
+  left: -22px;
   width: 193px;
   height: 52px;
 
@@ -357,7 +422,7 @@
 .home-btn-bg-keyline {
   position: absolute;
   top: -10px;
-  left: -16px;
+  left: -22px;
   width: 193px;
   height: 52px;
   background-color: none;

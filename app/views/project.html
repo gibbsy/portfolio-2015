@@ -16,6 +16,7 @@
 	<div class="article-single-col" ng-bind-html="project.content"></div>
 	
 </div>
+<scrollprompt></scrollprompt>
 <div class="media-wrapper" scroll-reveal>
 	<div class="angle-top"></div>
 	<div class="media-content">
@@ -35,6 +36,8 @@
 				</div>
 			</div>
 		</div> <!-- end vid content -->
+		<img ng-src="{{project.firstImage}}" ng-class="{showfirst:showFirstImage}" class="first-image"/>
+
 		<div ng-switch on="imagesReady">
 
 			<div ng-switch-when="ready">

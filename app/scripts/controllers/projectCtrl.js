@@ -22,6 +22,7 @@ angular.module('angularApp')
 
     $scope.fullyLoaded = false;
     $scope.showPrevNext = false;
+    $scope.showFirstImage = false;
 
     $scope.vidContent = "hide";
 
@@ -266,7 +267,7 @@ function prepareToLoad() {
 
      if ( $scope.project.content_images.length ) {
         
-      for (var i = 0 ; i < $scope.project.content_images.length; i++ ) {
+      for (var i = 1 ; i < $scope.project.content_images.length; i++ ) {
 
           imgUrls.push(domain + $scope.project.content_images[i]);
         }
@@ -309,7 +310,7 @@ function prepareToLoad() {
 
                       if ( imgUrls ) {
 
-                        loadTheContent();
+                        loadTheFirstImage();
                         $scope.appViewState.loadingProject = false;
                         showProjectHero();
 
@@ -331,6 +332,37 @@ function prepareToLoad() {
               )
               .prop( "src", $scope.project.hero_image );
 
+    }
+
+    function loadTheFirstImage() {
+
+      var firstImage = $( new Image() );
+
+      firstImage.load(
+                  function( event ) {
+
+                      $scope.$apply(
+                          function() {
+
+                              $scope.project.firstImage = event.target.src;   
+                          }
+                      );
+
+                      loadTheContent();
+
+                      $timeout(function() {
+                        $scope.showFirstImage = true;
+                      },2000);
+
+                  }
+              )
+              .error(
+                  function( event ) {
+
+                      console.info('error loading hero')
+                  }
+              )
+              .prop( "src", $scope.project.content_images[0] );
     }
 
     function loadTheContent() {
@@ -389,6 +421,10 @@ function prepareToLoad() {
 
       },1500);
 
+      $timeout(function() {
+        $scope.showPrevNext = true;
+      },2000);
+
     }
 
     function showProjectContent() {
@@ -399,9 +435,7 @@ function prepareToLoad() {
         $scope.fullyLoaded = true;
       },500);
 
-      $timeout(function() {
-        $scope.showPrevNext = true;
-      },700);
+      
 
     }
 
