@@ -122,8 +122,10 @@
 			"content":"<p>Identity, web design and build for the new Animation Production studio Ground Control.</p>",
 			"hero_image":"/images/content/heroes/ground-ctrl-gradients.jpg",
 			"content_images":[
+							
+							"/images/content/ground-ctrl-02.jpg",
 							"/images/content/ground-ctrl-01.jpg",
-							"/images/content/ground-ctrl-02.jpg"
+							"/images/content/ground-ctrl-03.jpg"
 							],
 			"vimeo_ids":[]
 			
