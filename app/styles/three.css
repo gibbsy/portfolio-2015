@@ -117,13 +117,13 @@
 
 .brand-ui h2 , .brand-ui a {
   position: absolute;
-  top: 20px;
+  top: 0;
   left: 0;
   width: 100%;
   font-family: netto_otbold, helvetica, arial, sans-serif;
   text-transform: uppercase;
-  font-size: 16px;
-  letter-spacing: 12px;
+  font-size: 15px;
+  letter-spacing: 10px;
   color: #fff;
   text-decoration: none;
   text-align: center;
@@ -137,9 +137,9 @@
 #designer {
   position: absolute;
   top: 95px;
-  left:6%;
+  left:0;
   text-align: center;
-  width: 420px;
+  width: 490px;
   height: 20px;
 }
 
@@ -150,7 +150,7 @@
 #about-link {
   position: absolute;
   top: 160px;
-  right: 6%;
+  right: 2%;
   text-align: center;
   width: 155px;
   height: 49px;
@@ -158,7 +158,7 @@
 
 #explore-work {
   position: absolute;
-  top: 250px;
+  top: 230px;
   right: 15%;
   width: 316px;
   height: 54px;
@@ -173,7 +173,7 @@
   position: absolute;
   width: 0;
   height: 0;
-  top: 50%;
+  top: 0;
   z-index: -1;
   background-color: none;
   -moz-transition: height 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , width 0.2s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , top 0.3s cubic-bezier( 0.6, 0.2, 0.1, 1 ) , left 0.6s cubic-bezier( 0.6, 0.2, 0.1, 1 );
@@ -218,7 +218,7 @@
 .brand-ui:hover > .about-link-bg , .brand-ui:hover > .explore-link-bg {
   width: 100%;
   height: 100%;
-  top: 0;
+  top: -20px;
   left:0;
    /*-webkit-transform: rotate(-10deg) skew(-15deg);
   -moz-transform: rotate(-10deg) skew(-15deg);
@@ -477,7 +477,7 @@
 
 #view-btn:hover .view-btn-bg {
   top: -10px;
-  left: -22px;
+  left: -26px;
   width: 193px;
   height: 52px;
 
@@ -486,7 +486,7 @@
 .view-btn-bg-keyline {
   position: absolute;
   top: -10px;
-  left: -22px;
+  left: -26px;
   width: 193px;
   height: 52px;
   background-color: none;

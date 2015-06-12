@@ -42,6 +42,8 @@ angular.module('angularApp')
 
 function projectSetUp() {
 
+  //console.log($routeParams.slug);
+
   $scope.appViewState.loadingProject = true;
   $scope.appViewState.loadingContent = true;
 
@@ -175,17 +177,22 @@ function setPrevProject() {
 }
 
 $scope.goToNext = function() {
+  
+  var goingTo = $scope.nextProject,
+      theUrl = '/project/'+ goingTo.slug;
 
-  angular.element('.page-project').fadeOut();
+
+  jQuery('.page-project').fadeOut();    
+
+/*  angular.element('.page-project').fadeOut();
 
   $scope.appViewState.direction='rtl';
 
   $scope.appViewState.aniStatus='wait';
 
-  var goingTo = $scope.nextProject,
-      theUrl = '/project/'+ goingTo.slug;
+  
 
-  projectFactory.setTarget(goingTo);
+  projectFactory.setTarget(goingTo);*/
 
   if($scope.$$phase) {
 
@@ -203,16 +210,18 @@ $scope.goToNext = function() {
 
 $scope.goToPrev = function() {
 
-  jQuery('.page-project').fadeOut();
+  var goingTo = $scope.prevProject,
+      theUrl = '/project/'+ goingTo.slug;
+
+  jQuery('.page-project').fadeOut();    
+
+/*  jQuery('.page-project').fadeOut();
 
   $scope.appViewState.direction='ltr';
 
   $scope.appViewState.aniStatus='wait';
 
-  var goingTo = $scope.prevProject,
-      theUrl = '/project/'+ goingTo.slug;
-
-  projectFactory.setTarget(goingTo);
+  projectFactory.setTarget(goingTo);*/
 
   if($scope.$$phase) {
 
@@ -248,6 +257,63 @@ $scope.close = function() {
       });
 
 }
+
+$scope.$on('$locationChangeStart', function(event, next, current) {
+
+  //console.log(current);
+  //console.log(next);
+   
+  var n = next.lastIndexOf('/'),
+      thePath = next.substring(n + 1);
+
+   if (thePath == '' || thePath == 'about' ) { 
+
+    $scope.close();
+
+   } else if (thePath != $scope.project.slug) {
+
+    for (var p in $scope.projects) {
+
+          var project = $scope.projects[p];
+
+          if (project.slug===thePath) {
+
+              $scope.getProject = project;
+
+              projectFactory.setTarget(project);      
+
+        } 
+
+   }
+
+   if (!$scope.getProject) {
+
+    console.log('404 invalid url')
+   
+   }
+    
+    console.log($scope.getProject);
+
+   if ($scope.getProject == $scope.nextProject) {
+
+      $scope.appViewState.direction='rtl';
+
+      $scope.appViewState.aniStatus='wait';
+
+   } else { 
+
+      $scope.appViewState.direction='ltr';
+
+      $scope.appViewState.aniStatus='wait';
+
+   }
+
+ }
+
+
+});
+
+
 ///////////// GET THE PROJECT DATA ////////////////
 
 function prepareToLoad() {

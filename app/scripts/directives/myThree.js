@@ -9,9 +9,25 @@ return {
   link: function linkFunc(scope, element, attrs) {
 
    var mouseX = 0, mouseY = 0,
+    winWidth = $window.innerWidth,
+    winHeight = $window.innerHeight,
+    windowHalfX = winWidth / 2,
+    windowHalfY = winHeight / 2,
+    gridPaddingX = winWidth * 0.13,
+    gridPaddingY = winHeight * 0.16,
+    tileWidth, tileHeight;
+    
+    if( winWidth < 1100 ) {
 
-    windowHalfX = $window.innerWidth / 2,
-    windowHalfY = $window.innerHeight / 2;
+      tileWidth = 100,
+      tileHeight = 80;
+
+    } else {
+
+      tileWidth = 150,
+      tileHeight = 120;
+
+    }
 
     var container, stats;
     var camera, scene, renderer, light, directionalLight, directionalLight2, directionalLight3, spotlight, triangle, lightTarget, shape;
@@ -121,8 +137,8 @@ return {
       var delay = delay || 0,
         theObj = this.object,
         complete = callback || undefined,
-        gridX = ( ( this.order % 5 ) * 220 ) - (windowHalfX/2),
-        gridY = ( - ( Math.floor( this.order / 5 ) % 8 ) * 180 ) + 200,
+        gridX = ( ( this.order % 5 ) * gridPaddingX ) - (windowHalfX/2),
+        gridY = ( - ( Math.floor( this.order / 5 ) % 8 ) * gridPaddingY ) + 200,
         gridZ = ( Math.floor( this.order / 25 ) ) * 100 - 200;
 
       var gridTween = new TWEEN.Tween( theObj.position ).to( {
@@ -138,8 +154,8 @@ return {
       backToGrid: function () {
 
     var theObj = this.object,
-        gridX = ( ( this.order % 5 ) * 220 ) - (windowHalfX/2),
-        gridY = ( - ( Math.floor( this.order / 5 ) % 8 ) * 180 ) + 200,
+        gridX = ( ( this.order % 5 ) * gridPaddingX ) - (windowHalfX/2),
+        gridY = ( - ( Math.floor( this.order / 5 ) % 8 ) * gridPaddingY ) + 200,
         gridZ = ( Math.floor( this.order / 25 ) ) * 100 - 200;
 
       var gridTween = new TWEEN.Tween( theObj.position ).to( {
@@ -768,9 +784,9 @@ return {
 
       container = angular.element('#container')[0];
 
-      camera = new THREE.PerspectiveCamera( 55, $window.innerWidth / $window.innerHeight, 1, 12000 );
+      camera = new THREE.PerspectiveCamera( 55, winWidth / winHeight, 1, 12000 );
       camera.position.y = 0;
-      camera.position.x = -400;
+      camera.position.x = 0;
       camera.position.z = 0;
       scene = new THREE.Scene();
 
@@ -866,7 +882,7 @@ return {
      // renderer = new THREE.WebGLRenderer({ antialias:true });
       renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer({ antialias:true }) : new THREE.CanvasRenderer();
       renderer.setClearColor( 0x1a181b );
-      renderer.setSize( $window.innerWidth, $window.innerHeight );
+      renderer.setSize( winWidth, winHeight );
       renderer.shadowMapEnabled = false;
 
       container.appendChild(renderer.domElement);
@@ -906,7 +922,7 @@ return {
         //console.log(scope.myProjects[i].featuredImage[0]);
 
         scope.myProjects[i].map = scope.myProjects[i].featuredImage[0];
-        scope.myProjects[i].tile = new contentTile(i,150,120,0.9,scope.appViewState.hue,scope.myProjects[i].map);
+        scope.myProjects[i].tile = new contentTile(i,tileWidth,tileHeight,1,scope.appViewState.hue,scope.myProjects[i].map);
 
         var newObj = scope.myProjects[i].tile;
 
@@ -920,11 +936,12 @@ return {
 
 
     function onWindowResize() {
-
-      camera.aspect = $window.innerWidth / $window.innerHeight;
+      winWidth = $window.innerWidth;
+      winHeight = $window.innerHeight;
+      camera.aspect = winWidth / winHeight;
       camera.updateProjectionMatrix();
 
-      renderer.setSize( $window.innerWidth, $window.innerHeight );
+      renderer.setSize( winWidth, winHeight );
 
       }
 
@@ -936,7 +953,7 @@ return {
         return;
       }
 
-      var vector = new THREE.Vector3( ( event.clientX / $window.innerWidth ) * 2 - 1, - ( event.clientY / $window.innerHeight ) * 2 + 1, 0.5 );
+      var vector = new THREE.Vector3( ( event.clientX / winWidth ) * 2 - 1, - ( event.clientY / winHeight ) * 2 + 1, 0.5 );
       vector.unproject( camera );
 
       var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
@@ -985,8 +1002,8 @@ return {
       mouseX = event.clientX - windowHalfX;
       mouseY = event.clientY - windowHalfY;
 
-      mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-      mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+      mouse.x = ( event.clientX / winWidth ) * 2 - 1;
+      mouse.y = - ( event.clientY / winHeight ) * 2 + 1;
 
     }
 

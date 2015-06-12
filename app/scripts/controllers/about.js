@@ -69,4 +69,17 @@ angular.module('angularApp')
 
      }
 
+     $scope.$on('$locationChangeStart', function(event, next, current) {
+   
+   var thePath = $location.path();
+
+   if (thePath == '/') { 
+
+    $scope.closeAbout();
+
+   }
+
+
+});
+
   }]);
