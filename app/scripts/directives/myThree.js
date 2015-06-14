@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularApp')
-  .directive('mythree', ['$window','$document','$timeout', 'imageFactory','projectFactory', function ($window, $document, $timeout, imageFactory, projectFactory) {
+  .directive('mythree', ['$window', '$location','$document','$timeout', 'ngAudio', 'imageFactory','projectFactory', function ($window, $location, $document, $timeout, ngAudio, imageFactory, projectFactory) {
 
 return {
   restrict: 'E',
@@ -41,6 +41,56 @@ return {
     var view = 'scene';
 
     scope.isAnimating = true;
+    scope.soundOn = true;
+
+    var whomp = ngAudio.load("media/sound/whomp.mp3"),
+    whoosh = ngAudio.load("media/sound/whoosh1.mp3"),
+    whomp2 = ngAudio.load("media/sound/whomp2.mp3"),
+    glitch = ngAudio.load("media/sound/glitch.mp3"),
+    zap = ngAudio.load("media/sound/zap.mp3"),
+    electro = ngAudio.load("media/sound/electro-zoom.mp3");
+
+    scope.selectSound = ngAudio.load("media/sound/select.mp3");
+
+    var ambient;
+
+    function createSound() {
+
+        var bg = document.createElement('audio');
+
+        ambient = jQuery( bg );
+
+        ambient.on('canplay', function( event ) {
+
+            scope.soundOn = true;
+      
+        })
+        .prop('src', '/media/sound/soundscape.mp3')
+        .prop('autoplay', 'autoplay')
+        .prop('loop', 'loop')
+        .prop('id', 'ambient-sound');
+
+    }
+
+    
+
+    scope.toggleSound = function () {
+      if (scope.soundOn == true) {
+
+        ambient.animate({volume: 0}, 1000);
+        ngAudio.mute();
+        scope.soundOn = false;
+
+      } else if (scope.soundOn == false) {
+
+        ambient.animate({volume: 1}, 1000);
+        ngAudio.unmute();
+        scope.soundOn = true;
+
+      }
+
+    }
+
 
     scope.exploreWork = function () {
 
@@ -76,6 +126,23 @@ return {
       scope.appViewState.threeUi = 'browse';
       scope.appViewState.tileMode = 'grid'; 
       scope.tilesToGrid();
+
+    }
+
+    scope.viewProject = function () {
+
+      console.log(scope.selectSound);
+
+      if(scope.soundOn === true){
+      
+       scope.selectSound.play();
+    
+    }
+      scope.target = projectFactory.getTarget();
+
+      var goGet = '/project/'+scope.target.slug;
+
+      $location.path(goGet);
 
     }
 
@@ -266,6 +333,12 @@ return {
 
         r1.start();
 
+        if (scope.soundOn === true) {
+
+             whomp.play();
+          
+          }
+
          return { 
             done:function(f){
                 postaction=f || postaction 
@@ -296,6 +369,12 @@ return {
         r1.chain(r2);
 
         r1.start();
+
+        if (scope.soundOn === true) {
+
+             whomp.play();
+          
+          }
 
          return { 
             done:function(f){
@@ -430,6 +509,21 @@ return {
           .easing( TWEEN.Easing.Quadratic.InOut)
           .delay(100)
           .onComplete(function() {
+            if (scope.soundOn === true) {
+                  whomp.play();
+              }
+            $timeout(function() {
+                if (scope.soundOn === true) {
+                  whomp.play();
+                }
+              },2500);
+
+            $timeout(function() {
+                if (scope.soundOn === true) {
+                  whomp2.play();
+                }
+              },4000);
+
             secondMove();
             })
           .start();
@@ -440,6 +534,11 @@ return {
               .easing( TWEEN.Easing.Quadratic.InOut)
               .delay(4500)
               .start();
+              $timeout(function() {
+                if (scope.soundOn === true) {
+                  whoosh.play();
+                }
+              },4750);
             }
     }
 
@@ -513,7 +612,13 @@ return {
 
       $timeout(function() {
         scope.isAnimating = false;
-      },4000);   
+      },4000); 
+
+      $timeout(function() {
+            if (scope.soundOn === true) {
+              glitch.play();
+            }
+        },500);  
 
       for (var p in scope.myProjects) {
 
@@ -552,6 +657,9 @@ return {
             targetObj = undefined;
             $timeout(function() {
              flipAllTiles('image');
+                if (scope.soundOn === true) {
+                  whomp.play();
+                }
             },500);
         }).start();
     }
@@ -563,6 +671,24 @@ return {
       $timeout(function() {
         scope.isAnimating = false;
       },4000);
+
+      if (scope.soundOn === true) {
+      $timeout(function() {
+              whoosh.play();
+        },750);
+
+        $timeout(function() {
+              whomp2.play();
+        },1750);  
+
+      $timeout(function() {
+             electro.play();
+        },2000); 
+
+       $timeout(function() {
+             whoosh.play();
+        },3000); 
+    }
 
       flipAllTiles('color');
 
@@ -592,7 +718,6 @@ return {
           .delay(500)
           .easing( TWEEN.Easing.Quadratic.Out);
           
-
            var camRotation = new TWEEN.Tween(camera.rotation).to({
             x: 0,
             y: 0,
@@ -611,6 +736,12 @@ return {
     }
 
     scope.nextTile = function () {
+
+     if (scope.soundOn === true) {
+
+           whomp.play();
+        
+      }
 
       var current = projectFactory.getTarget(),
       currentLoc = current.index,
@@ -635,6 +766,12 @@ return {
     }
 
       scope.prevTile = function () {
+
+     if (scope.soundOn === true) {
+
+         whomp.play();
+      
+      }
 
       var current = projectFactory.getTarget(),
       currentLoc = current.index,
@@ -781,6 +918,8 @@ return {
     }
 
     function init() {
+
+      createSound();
 
       container = angular.element('#container')[0];
 
@@ -949,6 +1088,8 @@ return {
 
       event.preventDefault();
 
+      //console.log(ambient);
+
       if ( scope.isAnimating == true ) {
         return;
       }
@@ -972,6 +1113,13 @@ return {
           return;
         
         } else {
+
+
+          if (scope.soundOn === true) {
+
+             whomp.play();
+          
+          }
 
           var thisObject = hit.fetchParent();
 

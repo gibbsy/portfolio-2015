@@ -8,7 +8,7 @@
  * Controller of the 3D scene
  */
 angular.module('angularApp')
-  .controller('MainCtrl', ['$scope', '$window', '$location', '$animate', '$timeout', 'projectFactory', 'imageFactory', function ($scope, $window, $location, $animate, $timeout, projectFactory, imageFactory) {
+  .controller('MainCtrl', ['$scope', '$window', '$location', '$animate', '$timeout', 'ngAudio', 'projectFactory', 'imageFactory', function ($scope, $window, $location, $animate, $timeout, ngAudio, projectFactory, imageFactory) {
 
   // vars for imageFactory
     $scope.isLoading = "loading";
@@ -178,14 +178,6 @@ angular.module('angularApp')
            
     }
 
-    $scope.viewProject = function () {
-
-    	$scope.target = projectFactory.getTarget();
-
-      var goGet = '/project/'+$scope.target.slug;
-
-      $location.path(goGet);
-
-    }
+  
 
   }]);

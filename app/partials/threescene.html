@@ -31,6 +31,16 @@
            
         
     </div>
+
+    <div class="sound-icon" ng-click="toggleSound()" ng-class="{on:soundOn}">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        
+    </div>
          <div class='next-tile' ng-hide="appViewState.threeUi!='details'" ng-click="nextTile()">
             <div class="nextbg bg-image-{{appViewState.hue}}"></div><a>Next</a>
         </div>
@@ -63,6 +73,5 @@
 
 
 <mythree id="container"></mythree>
-
 </div>
 

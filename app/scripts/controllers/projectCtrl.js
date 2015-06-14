@@ -184,15 +184,9 @@ $scope.goToNext = function() {
 
   jQuery('.page-project').fadeOut();    
 
-/*  angular.element('.page-project').fadeOut();
-
   $scope.appViewState.direction='rtl';
 
   $scope.appViewState.aniStatus='wait';
-
-  
-
-  projectFactory.setTarget(goingTo);*/
 
   if($scope.$$phase) {
 
@@ -213,15 +207,11 @@ $scope.goToPrev = function() {
   var goingTo = $scope.prevProject,
       theUrl = '/project/'+ goingTo.slug;
 
-  jQuery('.page-project').fadeOut();    
-
-/*  jQuery('.page-project').fadeOut();
+  jQuery('.page-project').fadeOut();  
 
   $scope.appViewState.direction='ltr';
 
-  $scope.appViewState.aniStatus='wait';
-
-  projectFactory.setTarget(goingTo);*/
+  $scope.appViewState.aniStatus='wait'; 
 
   if($scope.$$phase) {
 
@@ -260,8 +250,11 @@ $scope.close = function() {
 
 $scope.$on('$locationChangeStart', function(event, next, current) {
 
-  //console.log(current);
-  //console.log(next);
+  if ($scope.appViewState.aniStatus=='ready') {
+
+      jQuery('.page-project').fadeOut();  
+
+  }
    
   var n = next.lastIndexOf('/'),
       thePath = next.substring(n + 1);
@@ -288,7 +281,9 @@ $scope.$on('$locationChangeStart', function(event, next, current) {
 
    if (!$scope.getProject) {
 
-    console.log('404 invalid url')
+    console.log('404 invalid url');
+  
+    $location.path('/404.html');
    
    }
     
@@ -297,6 +292,12 @@ $scope.$on('$locationChangeStart', function(event, next, current) {
    if ($scope.getProject == $scope.nextProject) {
 
       $scope.appViewState.direction='rtl';
+
+      $scope.appViewState.aniStatus='wait';
+
+   } else if ($scope.getProject == $scope.prevProject) { 
+
+      $scope.appViewState.direction='ltr';
 
       $scope.appViewState.aniStatus='wait';
 
@@ -443,6 +444,7 @@ function prepareToLoad() {
                 $scope.project.contentImages = imgUrls;
 
                 $scope.appViewState.loadingContent = false;   
+                $scope.appViewState.aniStatus='ready';
 
                 showProjectContent();          
                 

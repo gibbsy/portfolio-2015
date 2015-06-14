@@ -1,0 +1,158 @@
+.sound-icon {
+	position: absolute;
+	bottom: 20px;
+	left: 35px;
+	width: 27px;
+	height: 16px;
+	z-index: 100;
+}
+
+.sound-icon ul {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	display: block;
+	cursor: pointer;
+}
+
+.sound-icon ul li {
+	position: absolute;
+	list-style: none;
+	width: 6px;
+	height: 100%;
+	margin: 0;
+	bottom: 0;
+	left: 0;
+	height: 30%;
+	background-color: #333;
+	-moz-transition: all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	-o-transition: all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	-ms-transition: all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	-webkit-transition: all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	transition: all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.sound-icon ul li:first-child {
+	left: 0;
+}
+
+.sound-icon ul li:nth-child(2) {
+	left: 7px;
+
+}
+
+.sound-icon ul li:nth-child(3) {
+	left: 14px;
+
+}
+
+.sound-icon ul li:nth-child(4) {
+	left: 21px;
+
+}
+
+.sound-icon.on ul li:first-child {
+	animation: equalize1 6.5s infinite;
+}
+
+.sound-icon.on ul li:nth-child(2) {
+	animation: equalize1 7.5s infinite;
+
+}
+
+.sound-icon.on ul li:nth-child(3) {
+	animation: equalize1 7s infinite;
+
+}
+
+.sound-icon.on ul li:nth-child(4) {
+	animation: equalize1 6s infinite;
+
+}
+
+.sound-icon.on ul li {
+	background-color: #a93ad8;
+}
+
+
+@keyframes equalize1 {
+  0% {
+    height: 30%;
+  }
+  4% {
+    height: 38%;
+  }
+  8% {
+    height: 28%;
+  }
+  12% {
+    height: 50%;
+  }
+  16% {
+    height: 58%;
+  }
+  20% {
+    height: 50%;
+  }
+  24% {
+    height: 44%;
+  }
+  28% {
+    height: 62%;
+  }
+  32% {
+    height: 78%;
+  }
+  36% {
+    height: 60%;
+  }
+  40% {
+    height: 77%;
+  }
+  44% {
+    height: 50%;
+  }
+  48% {
+    height: 65%;
+  }
+  52% {
+    height: 80%;
+  }
+  56% {
+    height: 85%;
+  }
+  60% {
+    height: 83%;
+  }
+  64% {
+    height: 90%;
+  }
+  68% {
+    height: 100%;
+  }
+  72% {
+    height: 93%;
+  }
+  76% {
+    height: 87%;
+  }
+  80% {
+    height: 67%;
+  }
+  84% {
+    height: 54%;
+  }
+  88% {
+    height: 43%;
+  }
+  92% {
+    height: 44%;
+  }
+  96% {
+    height: 33%;
+  }
+  100% {
+    height: 25%;
+  }
+}
