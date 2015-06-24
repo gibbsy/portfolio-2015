@@ -91,10 +91,51 @@ return {
 
     }
 
+    scope.muteSounds = function () {
+
+      if (scope.appViewState.viewing!='three') {
+
+         ambient.animate({volume: 0}, 1000);
+      }
+    }
+
+    scope.unmuteSounds = function () {
+
+      if (scope.appViewState.viewing==='three' && scope.soundOn == true) {
+
+         ambient.animate({volume: 1}, 1000);
+      
+      }
+
+    }
+
+  scope.$watch('appViewState.viewing', function() {
+
+    if (scope.appViewState.viewing!='three') {
+
+        ambient.animate({volume: 0}, 500);
+        ngAudio.mute();
+      
+      }
+      
+     else if (scope.appViewState.viewing==='three' && scope.soundOn == true) {
+
+        ambient.animate({volume: 1}, 500);
+        ngAudio.unmute();
+      
+      }
+
+   });
 
     scope.exploreWork = function () {
 
       scope.appViewState.threeUi = 'browse';
+
+      if(scope.soundOn === true){
+      
+       scope.selectSound.play();
+    
+    }
 
     }
 
@@ -103,6 +144,12 @@ return {
       if (scope.isAnimating) {
         return
       }
+
+      if(scope.soundOn === true){
+      
+       scope.selectSound.play();
+    
+    }
 
       view = 'scene'
       scope.explodeTiles();
@@ -116,6 +163,12 @@ return {
 
     scope.explodeView = function () {
 
+      if(scope.soundOn === true){
+      
+       scope.selectSound.play();
+    
+    }
+
       scope.appViewState.threeUi = 'browse';
       scope.appViewState.tileMode = 'explode';
       scope.explodeTiles();
@@ -123,6 +176,12 @@ return {
     }
 
     scope.resetGrid = function () {
+
+      if(scope.soundOn === true){
+      
+       scope.selectSound.play();
+    
+    }
       scope.appViewState.threeUi = 'browse';
       scope.appViewState.tileMode = 'grid'; 
       scope.tilesToGrid();
@@ -130,8 +189,6 @@ return {
     }
 
     scope.viewProject = function () {
-
-      console.log(scope.selectSound);
 
       if(scope.soundOn === true){
       
@@ -600,7 +657,6 @@ return {
           z: targetZ }, 800)
           .easing( TWEEN.Easing.Quadratic.Out);
           moveIt.start();
-            //console.log(test);
           }
         }
       }
@@ -644,7 +700,6 @@ return {
         .delay(500)
         .start();
 
-        //console.log(camera);
        var targetTween = new TWEEN.Tween(camera.rotation).to({
             x: 0,
             y: 0,
@@ -1058,8 +1113,6 @@ return {
 
        for ( var i = 0; i < scope.numImages; i ++ ) {
 
-        //console.log(scope.myProjects[i].featuredImage[0]);
-
         scope.myProjects[i].map = scope.myProjects[i].featuredImage[0];
         scope.myProjects[i].tile = new contentTile(i,tileWidth,tileHeight,1,scope.appViewState.hue,scope.myProjects[i].map);
 
@@ -1088,8 +1141,6 @@ return {
 
       event.preventDefault();
 
-      //console.log(ambient);
-
       if ( scope.isAnimating == true ) {
         return;
       }
@@ -1104,9 +1155,6 @@ return {
       if ( intersects.length > 0 ) {
 
         var hit = intersects[0].object;
-
-        /*console.log(target);*/
-
         
         if(hit.name === 'triangle') {
 
@@ -1188,7 +1236,7 @@ return {
 
       requestAnimationFrame( animate );
       //console.info('Not animating');
-    }
+      }
     }
 
     var radius = 600;
