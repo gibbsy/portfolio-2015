@@ -131,11 +131,41 @@ return {
 
       scope.appViewState.threeUi = 'browse';
 
+      scope.showInstructions = true;
+
+      scope.appViewState.viewing = 'instructions';
+
+      angular.element('.instructions')
+        .animate({
+          opacity: 1
+        },50,'linear' );
+
       if(scope.soundOn === true){
       
        scope.selectSound.play();
     
     }
+
+    }
+
+    scope.closeInstructions = function () {
+
+       if(scope.soundOn === true){
+      
+       scope.selectSound.play();
+    
+    }
+
+      angular.element('.instructions')
+        .animate({
+          opacity: 0
+        },200,'linear');
+
+        $timeout(function() {
+          scope.showInstructions = false;
+          scope.appViewState.viewing = 'three';
+        },500);
+
 
     }
 
@@ -390,7 +420,7 @@ return {
 
         r1.start();
 
-        if (scope.soundOn === true) {
+        if (scope.soundOn === true && scope.appViewState.viewing==='three') {
 
              whomp.play();
           
@@ -427,7 +457,7 @@ return {
 
         r1.start();
 
-        if (scope.soundOn === true) {
+        if (scope.soundOn === true && scope.appViewState.viewing==='three') {
 
              whomp.play();
           
@@ -566,7 +596,7 @@ return {
           .easing( TWEEN.Easing.Quadratic.InOut)
           .delay(100)
           .onComplete(function() {
-            if (scope.soundOn === true) {
+            if (scope.soundOn === true && scope.appViewState.viewing==='three') {
                   whomp.play();
               }
             $timeout(function() {
@@ -576,7 +606,7 @@ return {
               },2500);
 
             $timeout(function() {
-                if (scope.soundOn === true) {
+                if (scope.soundOn === true && scope.appViewState.viewing==='three') {
                   whomp2.play();
                 }
               },4000);
@@ -592,7 +622,7 @@ return {
               .delay(4500)
               .start();
               $timeout(function() {
-                if (scope.soundOn === true) {
+                if (scope.soundOn === true && scope.appViewState.viewing==='three') {
                   whoosh.play();
                 }
               },4750);
@@ -671,7 +701,7 @@ return {
       },4000); 
 
       $timeout(function() {
-            if (scope.soundOn === true) {
+            if (scope.soundOn === true && scope.appViewState.viewing==='three') {
               glitch.play();
             }
         },500);  
@@ -712,7 +742,7 @@ return {
             targetObj = undefined;
             $timeout(function() {
              flipAllTiles('image');
-                if (scope.soundOn === true) {
+                if (scope.soundOn === true && scope.appViewState.viewing==='three') {
                   whomp.play();
                 }
             },500);
@@ -727,7 +757,7 @@ return {
         scope.isAnimating = false;
       },4000);
 
-      if (scope.soundOn === true) {
+      if (scope.soundOn === true && scope.appViewState.viewing==='three') {
       $timeout(function() {
               whoosh.play();
         },750);
@@ -792,7 +822,7 @@ return {
 
     scope.nextTile = function () {
 
-     if (scope.soundOn === true) {
+     if (scope.soundOn === true && scope.appViewState.viewing==='three') {
 
            whomp.play();
         
@@ -822,7 +852,7 @@ return {
 
       scope.prevTile = function () {
 
-     if (scope.soundOn === true) {
+     if (scope.soundOn === true && scope.appViewState.viewing==='three') {
 
          whomp.play();
       
@@ -1070,11 +1100,8 @@ return {
 
 ////////////////////* CREATE THE TILES *///////////////////////////////
 
-
-      //projector = new THREE.Projector();
-
-     // renderer = new THREE.WebGLRenderer({ antialias:true });
-      renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer({ antialias:true }) : new THREE.CanvasRenderer();
+      renderer = scope.webgl ? new THREE.WebGLRenderer( { antialias:true }): new THREE.CanvasRenderer();
+      //renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer({ antialias:true }) : new THREE.CanvasRenderer();
       renderer.setClearColor( 0x1a181b );
       renderer.setSize( winWidth, winHeight );
       renderer.shadowMapEnabled = false;
@@ -1163,7 +1190,7 @@ return {
         } else {
 
 
-          if (scope.soundOn === true) {
+          if (scope.soundOn === true && scope.appViewState.viewing==='three') {
 
              whomp.play();
           

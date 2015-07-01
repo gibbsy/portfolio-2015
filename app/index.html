@@ -49,8 +49,15 @@
 
                     <!-- BEGIN: Results View. -->
                     <div class="three-fade" ng-switch-when="loaded">
+                    
+                    <span ng-if="webgl">
+                        <div ng-include src="'/partials/threescene.html'" ng-hide="appViewState.checkingRoute"></div>
+                    </span>
 
-                    <div ng-include src="'/partials/threescene.html'" ng-hide="appViewState.checkingRoute"></div>
+                    <span ng-if="!webgl">
+                        <div ng-include src="'/partials/no-webgl.html'" ng-hide="appViewState.checkingRoute"></div>
+                    </span>
+    
 
                     </div>
                     <!-- END: Results View. -->

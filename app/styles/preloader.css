@@ -46,11 +46,10 @@
 }
 
 .loading-graphics {
-  position: absolute;
-  width: 50%;
+  position: relative;
+  width: 520px;
   height: 500px;
-  left: 25%;
-  top: 30%;
+  margin: 300px auto 0 auto;
   text-align: center;
   opacity: 1;
 }
@@ -67,7 +66,7 @@
 }
 
 h3.loading-txt {
-  font-family: netto_otbold;
+  font-family: netto_otregular;
   text-transform: uppercase;
   font-size: 16px;
   letter-spacing: 12px;
@@ -75,7 +74,7 @@ h3.loading-txt {
   margin-top: 30px;
 }
 h3.project-loading-txt {
-  font-family: netto_otbold;
+  font-family: netto_otregular;
   text-transform: uppercase;
   font-size: 16px;
   letter-spacing: 12px;
@@ -84,12 +83,13 @@ h3.project-loading-txt {
 }
 
 .loading-graphics p {
-  color: #7a18b8;
+  color: #821bc4;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  letter-spacing: 1px;
+  font-weight: 300;
 }
 
-.loading-graphics p a {
-  color: #7a18b8;
-}
 
 .loading-overlay.ng-leave.ng-leave-active,
 .loading-overlay.ng-enter {
@@ -98,6 +98,60 @@ h3.project-loading-txt {
 .loading-overlay.ng-leave,
 .loading-overlay.ng-enter.ng-enter-active {
   opacity: 1;
+}
+
+/* NO WEBGL Message */
+
+.no-webgl {
+  position: relative;
+  width: 520px;
+  height: 500px;
+  margin: 300px auto 0 auto;
+  text-align: center;
+  opacity: 1;
+}
+
+.no-webgl img {
+  border: none;
+  width: 37px;
+  height: 62px;
+  margin: 0 auto !important;
+}
+
+.no-webgl p , .graphics p {
+   color: #821bc4;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.no-webgl p {
+  text-align: left;
+}
+
+.no-webgl a , .loading-graphics a {
+  color: #d47cff;
+  text-decoration: none;
+  font-weight: 300;
+  webkit-transition:color 0.5s;
+  -moz-transition:color 0.5s;
+  -o-transition:color 0.5s;
+  transition:color 0.5s;
+}
+
+.loading-graphics a:hover , .no-webgl a:hover {
+  color: #eaeaea;
+}
+
+.no-webgl h3 {
+  font-family: netto_otregular;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 10px;
+  color: #fff;
+  margin-top: 20px;
 }
 
 /* LOADING ANIMATION */

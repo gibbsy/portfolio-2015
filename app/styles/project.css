@@ -247,6 +247,26 @@
   margin: 0 auto;
 }
 
+.copy-content a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #821bc4;
+  padding: 0 3px; 
+  -moz-transition:all 0.2s;
+  -webkit-transition:all 0.2s;
+  -ms-transition:all 0.2s;
+  -o-transition:all 0.2s;
+  transition:all 0.2s;
+}
+
+.copy-content a:hover {
+  text-decoration: none;
+  background-color: #eaeaea;
+  color: #630197;
+
+}
+
+
 .angle-top {
   position: absolute;
   display: block;

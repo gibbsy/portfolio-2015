@@ -21,14 +21,28 @@ angular.module('angularApp')
     $scope.imageObjects = {};
     $scope.myProjects = {};
     $scope.numImages = 0;
+    $scope.showInstructions = false;
+
+    $scope.webgl = ( function () { try { var canvas = document.createElement( 'canvas' ); return !! ( window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ) ); } catch ( e ) { return false; } } )();
+
+    console.log($scope.webgl);
 
    function setWelcome() {
-    var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1,
+    is_firefox = (navigator.userAgent.toLowerCase().indexOf('firefox') > -1 && $scope.webgl ),
+    is_safari = (navigator.userAgent.toLowerCase().indexOf('safari') > -1 && navigator.userAgent.toLowerCase().indexOf('chrome') == -1);
+
     if(is_chrome) {
       $scope.welcomeMessage='Looks like you are using Google Chrome. Happy days.'
 
-    } else {
-      $scope.welcomeMessage='This website uses WebGL, so kindly please check it out with a <a href="http://browsehappy.com/" target="_blank">nice modern browser</a> like Google Chrome'
+    } else if (is_safari) {
+      $scope.welcomeMessage='This website works best in Chrome or the latest version of Firefox, but we should be fine if you have WebGL enabled.'
+
+    } else if (is_firefox) {
+      $scope.welcomeMessage='Looks like you are using a nice modern browser. Happy Days.'
+    }
+      else {
+      $scope.welcomeMessage='This website uses WebGL, so please check it out with a <a href="http://browsehappy.com/" target="_blank">nice modern browser</a> like Google Chrome.'
     }
    }
 
@@ -78,11 +92,7 @@ angular.module('angularApp')
 
       setColors();
 
-      
     });
-
-    
-
 
   	$scope.postQuery = projectFactory.queryPosts();
 

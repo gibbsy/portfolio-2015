@@ -23,17 +23,24 @@
 .page-about p {
   font-weight: 300;
   font-size: 1.2em;
-  line-height: 1.6;
+  line-height: 1.6em;
   letter-spacing: 0.05em;
 }
 
 .page-about p a {
-  color: #ce24ff;
+  color: #b31ede;
   text-decoration: none;
+  padding: 0 3px;
+  -moz-transition:all 0.2s;
+  -webkit-transition:all 0.2s;
+  -ms-transition:all 0.2s;
+  -o-transition:all 0.2s;
+  transition:all 0.2s;
 }
 
 .page-about p a:hover {
-
+  background-color: #361460;
+  color: #ce24ff;
 }
 
 .about-me {
@@ -109,6 +116,7 @@
   height: 60px;
   border: 1px solid #fff;
   text-decoration: none;
+  padding: 0 !important;
 }
 
 .email-btn h4  {

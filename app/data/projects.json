@@ -4,10 +4,10 @@
 			"client":"Mercedes",
 			"slug":"mercedes-c-class",
 			"featured_image": "/images/content/featured/512_0011_mercedes.jpg",
-			"tags":["design / motion"],
+			"tags":["design / Animation"],
 			"subtitle":"<p>this is my project</p>",
 			"intro": "<p>Beautiful video content delivered in a responsive HTML5 web app for Mercedes Benz.</p>",
-			"content":"<p>Working in partnership with Weapon7, Wireworks produced this site for the stunning new Mercedes C-Class. Featuring beautiful photography directed by Wireworks and post production by Glassworks, the site delivers a rich, immersive experience, with bespoke mobile versions, providing a consistent experience across all platforms.</p>",
+			"content":"<p>Video content and microsite to promote the refreshed Mercedes C-Class. Using HTML5 animations and video, the resulting site gave a highly interactive (did somebody say ‘slick’?) experience across desktop and mobile devices.</p>",			
 			"hero_image":"/images/content/heroes/mercedes-gradients.jpg",
 			"content_images":[ 
 								"/images/content/mercedes02.jpg",
@@ -25,7 +25,7 @@
 			"tags":["Creative Direction"],
 			"subtitle":"this is my project",
 			"intro": "<p>Getting under the skin of top athletes in the name of science.</p>",
-			"content":"<p>Gatorade produces some of the most researched and remarkable sports nutrition products in the world. They have an extremely cool brand and they work with the best athletes around. That’s why we were incredibly excited when they asked us to take a look inside Team Sky rider Alex Dowsett. The resulting film – a close collaboration between the Wireworks creative team, our sister company Glassworks and directors White-Rabbit – speaks for itself!</p>",
+			"content":"<p>Gatorade produces sports nutrition products for some of the most elite athletes around such as Team Sky and Arsenal. We created a campaign to emphasise the scientific research that goes into their products. The result? Two films, one aimed at cyclists, one at rugby players. The films were directed by White Rabbit, and post-production was done at Glassworks.</p>",			
 			"hero_image":"/images/content/heroes/gatorade-gradients-2.jpg",
 			"content_images":[	
 								"/images/content/gatorade-shoot-01.jpg",
@@ -44,7 +44,7 @@
 			"tags":["UX / Creative Direction / Design"],
 			"subtitle":"this is my project",
 			"intro": "<p>Big brother's not so little website.</p>",
-			"content":"<p>Careers website for the British intelligence and security agency GCHQ. I did all the UX and design for this website, there's also a good amount of rich media and video content on there which I was responsible for too. You can check out that stuff <a href='/#/project/gchq-video-content' target='_self'>here.</a>It kept me busy for a while this one.</p>",
+			"content":"<p>The Government Communications Headquarters (GCHQ) is an intelligence and security organisation with the mission to protect the UK in the cyber age. They employ thousands of people, with a broad range of skillsets, in 3 main sites across the UK. I led the UX and Design of their new careers website. I have also been responsible for the creation of much of the video content on the site. You can check out some of the video stuff <a href='/#/project/gchq-video-content' target='_self'>here</a>. And the live site <a href='http://www.gchq-careers.co.uk/' target='_blank'>here</a>.</p>",
 			"hero_image":"/images/content/heroes/hero-gchq-site.jpg",
 			"content_images":[	
 								"/images/content/gchq-site-01.jpg",
@@ -61,7 +61,7 @@
 			"tags":["Design / Development"],
 			"subtitle":"this is my project",
 			"intro": "<p>Showreel website for commercials director Rory Kelleher. I built this minimal ajax powered wordpress theme to showcase the work.</p>",
-			"content":"",
+			"content":"<p>Rory Kelleher is an award winning commercials director from Ireland who has produced amazing work for the likes of Guinness, Axa and Crocs. I built a showcase website for him, using background images that he shot on a roadtrip in the States. Minimal but impactful, this HTML5 website is powered by PJAX and Wordpress.You can check it out <a href='http://rorykelleher.co.uk/' target='_self'>here</a>.</p>",			
 			"hero_image":"/images/content/heroes/rory-gradients.jpg",
 			"content_images":[
 								"/images/content/rk-00.jpg",
@@ -82,7 +82,7 @@
 			"tags":["UX / Design"],
 			"subtitle":"this is my project",
 			"intro": "<p>Find your house on Google Streetview and turn it into your personal cinema to celebrate the launch of a new HD film channel.</p>",
-			"content":"<p>As part of the campaign to relaunch the Viasat Film HD channels in Scandinavia, we designed and built a website where you can find your house on Google Streetview and ‘pimp it up’ with lots of cool cinema signs and objects, choose a film to show and invite your friends via Facebook (the app even creates the facebook event for you). The site received over 100,000 visits in 6 weeks and nearly 2000 users created and shared their personal cinemas.</p>",
+			"content":"<p>Part of the campaign to relaunch Viasat Film HD in Scandinavia, we created a website where you could find your house on Google Streetview and ‘pimp it up’ with lots of cool cinema signs and objects, choose a film to show and invite your friends via Facebook (the app even created the Facebook event for you). The site received over 100,000 visits in 6 weeks and nearly 2000 users created and shared their personal cinemas.</p>",			
 			"hero_image":"/images/content/heroes/viasat-hero.jpg",
 			"content_images":[
 								"/images/content/viasat-01.jpg",
@@ -101,7 +101,7 @@
 			"tags":["Creative Direction / Design"],
 			"subtitle":"this is my project",
 			"intro": "<p>Never knowingly out-designed</p>",
-			"content":"<p>Unfortunately this is one that got away, but the client loved the creative, and I still think it looks rather good. We were asked to come up with some concepts to improve the website of the John Lewis Partnership - the corporate face of the retail group. The resulting creative is bold and contemporary, with the emphasis on interactivity and storytelling, as it should be :-)</p>",
+			"content":"<p>I worked with the agency Penna on a pitch for the website of the John Lewis Partnership - the corporate face of the retail group. I came up with a bold and contemporary direction for the design, with the emphasis on interactivity and storytelling.</p>",			
 			"hero_image":"/images/content/heroes/hero-jlp.jpg",
 			"content_images":[
 							"/images/content/jlp-01.jpg",
@@ -119,7 +119,7 @@
 			"tags":["Brand / Design / Development"],
 			"subtitle":"this is my project",
 			"intro": "<p>Houston, we have a new website.</p>",
-			"content":"<p>Identity, web design and build for the new Animation Production studio Ground Control.</p>",
+			"content":"<p>Identity, web design and build for the animation company Ground Control. The site is responsive, delivering full browser video and a very minimal interface, which lets the amazing work of directors such as GMUNK and Rudiger, speak for itself. Have a look at the live site <a href='http://www.thisisgroundcontrol.co.uk/' target='_blank'>here</a>.</p>",
 			"hero_image":"/images/content/heroes/ground-ctrl-gradients.jpg",
 			"content_images":[
 							
@@ -138,7 +138,7 @@
 			"tags":["UX / Design"],
 			"subtitle":"this is my project",
 			"intro": "<p>Giving a famous drinks brand some digital legs.</p>",
-			"content":"<p>Gatorade is a great sports drinks brand with a growing reputation over here in Great England. At Wireworks we were lucky enough to do a few cool projects with these guys over a two year period. But we wanted to do more. Thats why I went all out with these concepts to show them what their website could be. Sadly it's still only what it could be.</p>",
+			"content":"<p>Gatorade: a world famous brand. Sure. We all know that they produce sports nutrition products for the most elite athletes on the planet such as Team Sky and Arsenal. Their website? Sadly, it really doesn’t reflect any of that prestige. I was asked to come up with design concepts to give a more exciting experience than their current site. The project never went any further but I was excited by the work, so here it is!</p>",
 			"hero_image":"/images/content/heroes/hero-gatorade-site.jpg",
 			"content_images":[
 								"/images/content/gatorade-site-01.jpg",
@@ -157,7 +157,7 @@
 			"tags":["Brand / Creative Direction / Management"],
 			"subtitle":"this is my project",
 			"intro": "<p>Blurring the lines between post production and digital. And having some great times in Soho as well.</p>",
-			"content":"<p>In 2009 I had the opportunity to co-found a digital agency in Partnership with Post Production House Glassworks. Wireworks is the digital sister company of Glassworks London (www.glassworks.co.uk). As co-founder and Creative Director I was involved in all areas of the business from developing the brand identity and proposition to quoting, pitching and hiring as well as managing developers and designers. During my time at Wireworks I led many projects in partnership with top advertising agencies and also direct to a wide range of clients from Pepsico to Reckitt Benckiser. I was responsible for the entire creative output of the studio - this meant directing and managing teams of designers and developers across numerous projects simultaneously. Being a startup company has meant I was also still very much involved in the production process and so have more than kept my hand in - designing, animating and coding on a daily basis.</p>",
+			"content":"<p>In 2009 I had the opportunity to co-found a digital agency in partnership with the post-production company <a href='http://www.glassworks.co.uk/' target='_blank'>Glassworks</a>. I jumped at the chance and Wireworks was born. The idea was to work closely with Glassworks to deliver video-rich high end websites and rich media campaigns for direct clients and agencies. During a hectic but hugely fun 5 years, I was creative director to our small team on a number of projects big and small, from our little office on Dean Street - handily positioned next door to the French House.</p>",
 			"hero_image":"/images/content/heroes/hero-image-wireworks.jpg",
 			"content_images":[
 								"/images/content/wireworks-01.jpg",
@@ -174,7 +174,7 @@
 			"tags":["Creative Direction / Animation"],
 			"subtitle":"this is my project",
 			"intro": "<p>this is an intro to my project</p>",
-			"content":"<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n<p>Mauris non nulla libero. Vivamus luctus quis nibh vel varius. Suspendisse quis dignissim purus. Integer ut nulla vel mi sollicitudin efficitur. Sed velit arcu, luctus et lacinia ut, finibus ut dui. Vivamus at massa eros. Morbi porta risus et mauris consectetur, id interdum libero rutrum. Fusce ullamcorper nulla quis mauris venenatis condimentum.</p>\n",
+			"content":"<p>The Government Communications Headquarters (GCHQ) is an intelligence and security organisation with the mission to protect the UK in the cyber age. I was lead designer on the new  <a href='/#/project/gchq-careers-website' target='_self'>careers website</a>, which also includes lots and lots of video content. I was happy to don my motion-graphics hat when it came to producing these videos, a selection of which you can see below.</p>",	
 			"hero_image":"/images/content/heroes/hero-gchq-tech.jpg",
 			"content_images":[
 							"/images/content/gchq-tech-01.jpg",
@@ -196,8 +196,7 @@
 			"tags":["UX / Design"],
 			"subtitle":"this is my project",
 			"intro": "<p>What's that coming over the hill, is it a hair monster?</p>",
-			"content":"<p>The Wireworks team designed and built this app where people create their ultimate hair monster, getting a lovely new facebook pic in the process. Users are also uploading and voting on their videos showing how best to tame the terrifying critters!</p>",
-			"hero_image":"/images/content/heroes/hero-hair-monsters.jpg",
+			"content":"<p>What's that coming over the hill, is it a hair monster? Using this Facebook app, people created their ultimate hair monster, getting a lovely new profile pic in the process. Users also uploaded and voted on their videos showing how best to tame the terrifying critters! Creative Direction was by Kat Hahn, I worked on the UX and design of the web app and led the Wireworks team throughout the job.</p>",			"hero_image":"/images/content/heroes/hero-hair-monsters.jpg",
 			"content_images":[
 								"/images/content/got2be-01.jpg",
 								"/images/content/got2be-02.jpg"
@@ -213,7 +212,7 @@
 			"tags":["Design"],
 			"subtitle":"this is my project",
 			"intro": "<p>this is an intro to my project</p>",
-			"content":"<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n<p>Mauris non nulla libero. Vivamus luctus quis nibh vel varius. Suspendisse quis dignissim purus. Integer ut nulla vel mi sollicitudin efficitur. Sed velit arcu, luctus et lacinia ut, finibus ut dui. Vivamus at massa eros. Morbi porta risus et mauris consectetur, id interdum libero rutrum. Fusce ullamcorper nulla quis mauris venenatis condimentum.</p>\n",
+			"content":"<p>Beat the Street is a global walk-to-school competition where pupils are issued a card to ‘tap in’ on various designated routes to and from school. I designed the website which displayed the kids' stats and standings in leaderboards versus their classmates and rival schools. Brand by Jon at Creative Nation.</p>",
 			"hero_image":"/images/content/heroes/hero-image-bts.jpg",
 			"content_images":[
 								"/images/content/bts-01.jpg",
@@ -227,14 +226,14 @@
 			"client":"Inventive Medical",
 			"slug":"heartworks-elearning",
 			"featured_image": "/images/content/featured/512_0013_heartworks.jpg",
-			"tags":["UX / Creative Direction"],
+			"tags":["Concept / UX / Design"],
 			"subtitle":"this is my project",
 			"intro": "<p>Cutting edge e-learning application that trains doctors and nurses in echocardiography</p>",
-			"content":"<p>At Wireworks, we worked with Heartworks for over 2 years to create an e-learning application to exist alongside the unique Heartworks training simulator. The course content has been developed by world leading echocardiography experts and Wireworks have created a range of interactive multimedia tools to make this a truly interactive learning experience. We are still working with Heartworks to maintain and improve the application, which has been accredited by the American Society of Echocardiography (ASE).</p>",
+			"content":"<p>Heartworks is a collaboration between Glassworks and leading cardiac anaesthesiologists at University College London Hospital.  They worked together to create the most anatomically correct and realistic 3-D heart and a range of fully interactive mannequin-based educational simulators for Transthoracic and Transoesophogeal echocardiography. I was initially asked to make a DVD to complement the simulator product range but decided to go a bit beyond the brief and come up with a concept for a highly interactive, online e-learning course. After 2 years of collaboration with the doctors, the application went live, delivering a range of multimedia tools to make this a truly interactive learning experience which has gained accreditation by the American Society of Echocardiography (ASE). You can check out the living breathing site for yourself <a href='http://learn.heartworks.me.uk/' target='_blank'>here</a>.</p>",
 			"hero_image":"/images/content/heroes/hero-heartworks.jpg",
 			"content_images":[
 							"/images/content/heartworks-01.jpg",
-							"/images/content/heartworks-02.jpg",
+							"/images/content/heartworks-02.jpg",	
 							"/images/content/heartworks-03.jpg"
 
 								],
@@ -246,10 +245,10 @@
 			"client":"BBC America YouTube Takeover",
 			"slug":"crash-the-web",
 			"featured_image": "/images/content/featured/512_0016_crash-the-web.jpg",
-			"tags":["Design / Motion"],
+			"tags":["Art Direction / Design / Motion"],
 			"subtitle":"this is my project",
 			"intro": "<p>What do you get when you cross a Hamster and a 1970s British Tank? A bloody big hole in your youtube page, that's what.</p>",
-			"content":"<p>YouTube Mimicry to promote the launch of Richard Hammond's BBC America series 'Crash Course' Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n<p>Mauris non nulla libero. Vivamus luctus quis nibh vel varius. Suspendisse quis dignissim purus. Integer ut nulla vel mi sollicitudin efficitur. Sed velit arcu, luctus et lacinia ut, finibus ut dui. Vivamus at massa eros. Morbi porta risus et mauris consectetur, id interdum libero rutrum. Fusce ullamcorper nulla quis mauris venenatis condimentum.</p>\n",
+			"content":"<p>Richard Hammond driving a tank around the streets of Kent certainly caused a bit of a stir, but in fact was our shoot for a You Tube ‘mimicry’ (basically a fake YouTube channel!) to promote the launch of his BBC America series 'Crash Course'. No walls were harmed in the making of the video, that was up to the 3-D guys at Glassworks. I was responsible for Art Direction, design and animation.</p>",
 			"hero_image":"/images/content/heroes/hero-crash-course.jpg",
 			"content_images":[
 								"/images/content/crash-course-01.jpg",
@@ -264,10 +263,10 @@
 			"client":"Met Police",
 			"slug":"met-police-cyber-ops",
 			"featured_image": "/images/content/featured/512_0018_met.jpg",
-			"tags":["Animation, design"],
+			"tags":["Art Direction / Design / Animation"],
 			"subtitle":"this is my project",
 			"intro": "<p>this is an intro to my project</p>",
-			"content":"<p>Campaign to recruit new officers to the Met Cyber and Digital Operations team. I created the main animated video which was a central piece to the campaign.</p>\n",
+			"content":"<p>The Met's Counter Terrorism Cyber and Digital Operations team was formed 18 months ago, to combat the increasing threat from extremist organisations and terrorists in the UK. I was asked to help on a campaign to recruit officers to this new team by creating a video animation and accompanying banners.</p>\n",
 			"hero_image":"/images/content/heroes/hero-met.jpg",
 			"content_images":[
 								"/images/content/met-SO-01.jpg",

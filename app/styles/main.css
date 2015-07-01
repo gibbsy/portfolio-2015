@@ -1,52 +1,11 @@
-a.debug {
-  position: absolute;
-  background: #ddd;
-  display: block;
-  font-size: 24px;
-  bottom: 20px;
-  left: 46%;
-  z-index: 10000;
-  text-decoration: none;
-  padding: 5px;
-  color: #222;
-}
-
-a.debug:visited {
-  color: #222;
-}
-
-a.debug:hover {
-  background-color: #fff;
-  color: #222;
-}
-
-a.debug-projects {
-  position: relative;
-  display: block;
-  background: #ccc;
-  font-size: 12px;
-  z-index: 10000;
-  text-decoration: none;
-  padding: 20px;
-  color: #fff;
-  width: 300px;
-  margin: 20px auto;
-}
-
-a.debug-projects:visited {
-  color: #222;
-}
-
-a.debug-projects:hover {
-  background-color: #fff;
-  color: #222;
-}
-
 .view-container {
 position: absolute;
 top: 100%;
 }
 
+p {
+ 
+}
 
 
 

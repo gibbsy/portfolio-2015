@@ -8,6 +8,15 @@
    <div class="brand-ui" id="explore-work"><div class="explore-link-bg explore-bg-image-{{appViewState.hue}}"></div><a href="" ng-click="exploreWork()">Explore Work</a></div>
     </div>
 </div>
+<div ng-class="{active:showInstructions}" class="instructions" ng-click="closeInstructions()">
+    <div class="graphics">
+        <img src="/images/instructions-tile.png">
+        <p>Click on a tile to view a project</p>
+        <div class="got-it">
+        <h4>Okay</h4>
+    </div>
+    </div>
+</div>
     
     <div class="view-select" ng-hide="appViewState.threeUi=='brand'">
         <div class="view-select-bg"></div>
