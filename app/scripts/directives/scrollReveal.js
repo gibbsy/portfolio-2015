@@ -14,6 +14,7 @@ link:  function linkFunc(scope, element, attrs) {
             var self;
             var myEl = element;
             var revealEl;
+            var winwidth = $window.innerWidth;
 
         
             function scrollReveal (myElement) {
@@ -75,8 +76,13 @@ link:  function linkFunc(scope, element, attrs) {
                 '-ms-transform': 'translate(0,20px)',
                 'transform': 'translate(0,20px)'
                 };
+                } else if (winwidth > 768) {
+
+                    self.initial = {'opacity':0,'padding-top':'+=20','padding-bottom':'-=20' };
+
                 } else {
-                self.initial = {'opacity':0,'padding-top':'+=20','padding-bottom':'-=20' };
+
+                    self.initial = {'opacity':0 };
                 }
                 self.transition = { 
                 '-webkit-transition': 'all 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 )',
@@ -96,8 +102,10 @@ link:  function linkFunc(scope, element, attrs) {
                 'transform': 'translate(0,0)'
 
                 };
-              } else {
+              } else if (winwidth > 768) {
                 self.reveal = {'opacity':1,'padding-top':'-=20','padding-bottom':'+=20' };
+              } else {
+                self.reveal = {'opacity':1 };
               }
                 self.vFactor = 0.15;
 

@@ -14,11 +14,18 @@ angular.module('angularApp')
     angular.element($window).on('scroll', function() {
 
         var scrollTarget = (angular.element(element).offset().top - ($window.innerHeight)),
+        closeMove = (angular.element('.hero-image-container').height() - 120),
         scrolled = angular.element($window).scrollTop(),
         parallax = (scrolled - scrollTarget)*0.3,
         video = videojs(scope.promoVideoId);
 
         angular.element('.home-btn').css({'bottom':parallax});
+
+        if (scrolled > closeMove) {
+          scope.closeToggle = true;
+        } else {
+          scope.closeToggle = false;
+        }
 
         if (scrolled >= scrollTarget) {
 
@@ -30,7 +37,7 @@ angular.module('angularApp')
 
         }
 
-        angular.element('#'+scope.promoVideoId).css({'position':'fixed','bottom':-200});
+        angular.element('#'+scope.promoVideoId).css({'position':'fixed','bottom':0});
 
         }
 

@@ -28,9 +28,10 @@
 
 .project-title {
   position: fixed;
-  width: 70%;
+  width: 80%;
   top: 220px;
-  left:15%;
+  left: 10%;
+  letter-spacing: 1px;
   padding:0;
   overflow: hidden;
   text-align: center;
@@ -40,7 +41,7 @@
 .project-title h1 {
   font-family: "futura-pt", helvetica, arial, sans-serif;
   line-height: 1.5;
-  font-size:36px;
+  font-size:32px;
   letter-spacing: 10px;
   margin: 0;
   font-weight: 700;
@@ -53,7 +54,7 @@
 }
 
 .project-title h4 {
-  font-family: netto_otbold, helvetica, arial, sans-serif;
+  font-family: netto_otregular, helvetica, arial, sans-serif;
   font-size: 13px;
   letter-spacing: 6px;
   color: #fff;
@@ -97,15 +98,16 @@
 }
 
 .close-btn {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 16px;
   display: block;
-  background: url('../images/close-btn.png');
-  position: absolute;
+  background: url('../images/close-btn.png') no-repeat 0 0;
+  position: fixed;
   top: 25px;
-  right: 28px;
-  opacity: 0.5;
+  right: 32px;
+  opacity: 0.6;
   cursor: pointer;
+  z-index: 5001;
   -moz-transition:all 0.5s;
   -o-transition:all 0.5s;
   -webkit-transition:all 0.5s;
@@ -113,22 +115,97 @@
   transition:all 0.5s;
 }
 
+.close-btn.purple {
+  background-position: 0 -16px;
+  opacity: 0.5;
+  -webkit-transform: rotate(-180deg);
+     -moz-transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+       -o-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+
 .close-btn:hover {
   opacity: 1;
+  -webkit-transform: rotate(180deg);
+     -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+       -o-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
+
+.close-btn.purple:hover {
+  -webkit-transform: rotate(0deg);
+     -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+       -o-transform: rotate(0deg);
+          transform: rotate(0deg);
+
+}
+
+/*.scroll-prompt {
+  position: relative;
+  display: block;
+  width: 200px;
+  height: 0;
+  margin: 0 auto;
+  z-index: 5000;
+  background: none;
+  text-align: center;
+  padding-top: 62px;
+  opacity: 0;
+  -moz-transition:all 0.5s;
+  -o-transition:all 0.5s;
+  -webkit-transition:all 0.5s;
+  -ms-transition:all 0.5s;
+  transition:all 0.5s;
+}
+
+.scroll-prompt h4 {
+  margin: 0;
+  color: #bababa;
+  width: 100%;
+  padding-top: 0;
+  text-align: center;
+  font-family: netto_otlight;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 6px;
+  margin-left: 3px;
+  text-align: center;
+  font-weight: lighter;
+}
+
+.scroll-prompt img {
+  display: block;
+  width: 39px;
+  height: 15px;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+
+.scroll-prompt.showprompt {
+  opacity: 1;
+  padding-top: 30px;
+  height: 32px;
+}
+*/
 
 .scroll-prompt {
   position: absolute;
   display: inline-block;
   bottom: -100px;
-  left: 43%;
-  width: 14%;
+  left: 50%;
+  width: 150px;
   height: 76px;
   z-index: 5000;
   background: none;
   text-align: center;
   padding: 0;
   opacity: 0;
+  margin-left: -75px;
   -moz-transition:all 0.5s;
   -o-transition:all 0.5s;
   -webkit-transition:all 0.5s;
@@ -163,8 +240,9 @@
 
 .scroll-prompt.showprompt {
   opacity: 1;
-  bottom: -80px;
+  bottom: -56px;
 }
+
 
 .hero-clip {
   position: absolute;
@@ -186,9 +264,9 @@
   position: relative;
   display: block;
   margin: 0 auto;
-  width: 70%;
+  width: 80%;
   min-height: 120px;
-  max-width: 1340px;
+  max-width: 1140px;
   padding: 20px;
   background-color: #fff;
   color: #222;
@@ -204,7 +282,6 @@
 
 .copyfadein {
   opacity: 1;
-  padding-top: 620;
 }
 
 .copy-content h4 {
@@ -275,7 +352,7 @@
   left: 0;
   width: 100%;
   height: 150px;
-  background: url('../images/angle-divider-top.png') no-repeat top left;
+  background: url('../images/angle-divider-top.png') no-repeat bottom left;
 
 }
 
@@ -316,19 +393,12 @@
   position: relative;
   display: block;
   max-width: 100%;
-  margin: 60px auto;
+  margin: 40px auto;
 }
 
 
 img.first-image {
   margin: 20px auto;
-  padding-top: 20px;
-  opacity: 0;
-  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
  
 }
 
@@ -382,13 +452,14 @@ img.first-image.showfirst {
 .home-btn {
   position: fixed;
   cursor: pointer;
-  width: 8%;
+  width: 193px;
   height: 40px;
   bottom: -200px;
-  left: 46%;
+  left: 50%;
+  margin: 0;
+  margin-left: -96px;
   z-index: 1;
   padding: 0;
-  margin: 0;
   /*border: 1px solid #461ca8;*/
   text-align: center;
   -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
@@ -410,7 +481,7 @@ img.first-image.showfirst {
   letter-spacing: 7px;
   text-align: center;
   font-weight: normal;
-  margin: 12px 0 0 2px;
+  margin: 12px 0 0 -4px;
 }
 
 
@@ -440,7 +511,7 @@ img.first-image.showfirst {
 
 .home-btn:hover .home-btn-bg {
   top: -10px;
-  left: -22px;
+  left: 0;
   width: 193px;
   height: 52px;
 
@@ -449,7 +520,7 @@ img.first-image.showfirst {
 .home-btn-bg-keyline {
   position: absolute;
   top: -10px;
-  left: -22px;
+  left: 0;
   width: 193px;
   height: 52px;
   background-color: none;

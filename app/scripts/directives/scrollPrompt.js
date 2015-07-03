@@ -12,7 +12,7 @@ angular.module('angularApp')
     var scrolled = false;
     scope.showPrompt = false;
 
-    $timeout(checkScrolled,10000);
+    $timeout(checkScrolled,8000);
 
     function checkScrolled() {
 
@@ -28,7 +28,7 @@ angular.module('angularApp')
       scrolled = true;
 
       if(scope.showPrompt){
-        angular.element(element).css({'opacity':0,'bottom':'-60px'});
+        angular.element(element).css({'opacity':0,'bottom':'-100px'});
         angular.element($window).off('scroll', scrollHandler);
       }
 

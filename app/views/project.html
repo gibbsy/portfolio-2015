@@ -2,7 +2,7 @@
         <projectloader></projectloader>
 </div>
 <div class="hero-image-container bg-color-dark-{{appViewState.hue}}" ng-class="{fadein:showImage}" bg-image img-loc="heroImg">
-	<div class="close-btn" ng-click="close()"></div>
+	<div class="close-btn" ng-click="close()" ng-class="{purple:closeToggle}"></div>
 	<div class="project-title" >
 		<h1 ng-bind-html="project.title"></h1>
 		<div class="text-divider"></div>
@@ -35,7 +35,7 @@
 				</div>
 			</div>
 		</div> <!-- end vid content -->
-		<img ng-src="{{project.firstImage}}" ng-class="{showfirst:showFirstImage}" class="first-image"/>
+		<img ng-src="{{project.firstImage}}" class="first-image" data-reveal/>
 
 		<div ng-switch on="imagesReady">
 

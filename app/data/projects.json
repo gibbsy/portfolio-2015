@@ -1,7 +1,7 @@
 { "Projects": [
 		{	"index":0,
 			"title": "The New Mercedes C-Class",
-			"client":"Mercedes",
+			"client":"Web app and Video",
 			"slug":"mercedes-c-class",
 			"featured_image": "/images/content/featured/512_0011_mercedes.jpg",
 			"tags":["design / Animation"],
@@ -9,8 +9,8 @@
 			"intro": "<p>Beautiful video content delivered in a responsive HTML5 web app for Mercedes Benz.</p>",
 			"content":"<p>Video content and microsite to promote the refreshed Mercedes C-Class. Using HTML5 animations and video, the resulting site gave a highly interactive (did somebody say ‘slick’?) experience across desktop and mobile devices.</p>",			
 			"hero_image":"/images/content/heroes/mercedes-gradients.jpg",
-			"content_images":[ 
-								"/images/content/mercedes02.jpg",
+			"content_images":[ 	
+								"/images/content/mercedes01.jpg",
 								"/images/content/mercedes03.jpg",
 								"/images/content/mercedes05.jpg",
 								"/images/content/mercedes06.jpg"
@@ -19,7 +19,7 @@
 		},
 		{	"index": 1,
 			"title": "Win from Within",
-			"client":"Gatorade",
+			"client":"Video for Gatorade",
 			"slug":"gatorade-win-from-within",
 			"featured_image": "/images/content/featured/512_0015_gatorade-cycling.jpg",
 			"tags":["Creative Direction"],
@@ -37,8 +37,8 @@
 			
 		},
 		{	"index": 2,
-			"title": "GCHQ Careers Website",
-			"client":"GCHQ",
+			"title": "Careers at GCHQ",
+			"client":"Website",
 			"slug":"gchq-careers-website",
 			"featured_image": "/images/content/featured/512_0003_gchq3.jpg",
 			"tags":["UX / Creative Direction / Design"],
@@ -47,6 +47,7 @@
 			"content":"<p>The Government Communications Headquarters (GCHQ) is an intelligence and security organisation with the mission to protect the UK in the cyber age. They employ thousands of people, with a broad range of skillsets, in 3 main sites across the UK. I led the UX and Design of their new careers website. I have also been responsible for the creation of much of the video content on the site. You can check out some of the video stuff <a href='/#/project/gchq-video-content' target='_self'>here</a>. And the live site <a href='http://www.gchq-careers.co.uk/' target='_blank'>here</a>.</p>",
 			"hero_image":"/images/content/heroes/hero-gchq-site.jpg",
 			"content_images":[	
+								"/images/content/gchq-site-00.jpg",
 								"/images/content/gchq-site-01.jpg",
 								"/images/content/gchq-site-02.jpg"
 								],
@@ -54,14 +55,14 @@
 			
 		},
 		{	"index": 3,
-			"title": "Rory Kelleher director's website",
-			"client":"Rory Kelleher",
+			"title": "Rory Kelleher Showcase",
+			"client":"Website",
 			"slug":"rory-kelleher-website",
 			"featured_image": "/images/content/featured/512_0004_rory.jpg",
 			"tags":["Design / Development"],
 			"subtitle":"this is my project",
 			"intro": "<p>Showreel website for commercials director Rory Kelleher. I built this minimal ajax powered wordpress theme to showcase the work.</p>",
-			"content":"<p>Rory Kelleher is an award winning commercials director from Ireland who has produced amazing work for the likes of Guinness, Axa and Crocs. I built a showcase website for him, using background images that he shot on a roadtrip in the States. Minimal but impactful, this HTML5 website is powered by PJAX and Wordpress.You can check it out <a href='http://rorykelleher.co.uk/' target='_self'>here</a>.</p>",			
+			"content":"<p>Rory Kelleher is an award winning commercials director from Ireland who has produced amazing work for the likes of Guinness, Axa and Crocs. I built a showcase website for him, using background images that he shot on a roadtrip in the States. Minimal but impactful, this website is powered by HTML5 push-state, AJAX and Wordpress.You can check it out <a href='http://rorykelleher.co.uk/' target='_self'>here</a>.</p>",			
 			"hero_image":"/images/content/heroes/rory-gradients.jpg",
 			"content_images":[
 								"/images/content/rk-00.jpg",
@@ -85,17 +86,17 @@
 			"content":"<p>Part of the campaign to relaunch Viasat Film HD in Scandinavia, we created a website where you could find your house on Google Streetview and ‘pimp it up’ with lots of cool cinema signs and objects, choose a film to show and invite your friends via Facebook (the app even created the Facebook event for you). The site received over 100,000 visits in 6 weeks and nearly 2000 users created and shared their personal cinemas.</p>",			
 			"hero_image":"/images/content/heroes/viasat-hero.jpg",
 			"content_images":[
-								"/images/content/viasat-01.jpg",
+								"/images/content/viasat-00.jpg",
 								"/images/content/viasat-02.jpg",
 								"/images/content/viasat-03.jpg",
 								"/images/content/viasat-04.jpg"
 								],
-			"vimeo_ids":["58093715"]
+			"vimeo_ids":["132561878"]
 			
 		},
 		{	"index": 5,
-			"title": "John Lewis Partnership Site Concepts",
-			"client":"Penna",
+			"title": "The John Lewis Partnership",
+			"client":"Website Concepts",
 			"slug":"jlp-pitch",
 			"featured_image": "/images/content/featured/512_0017_jlp.jpg",
 			"tags":["Creative Direction / Design"],
@@ -113,13 +114,13 @@
 		},
 		{	"index": 6,
 			"title": "This is Ground Control",
-			"client":"ground control",
+			"client":"Brand and Website",
 			"slug":"ground-control-website",
 			"featured_image": "/images/content/featured/512_0008_ground-control.jpg",
 			"tags":["Brand / Design / Development"],
 			"subtitle":"this is my project",
 			"intro": "<p>Houston, we have a new website.</p>",
-			"content":"<p>Identity, web design and build for the animation company Ground Control. The site is responsive, delivering full browser video and a very minimal interface, which lets the amazing work of directors such as GMUNK and Rudiger, speak for itself. Have a look at the live site <a href='http://www.thisisgroundcontrol.co.uk/' target='_blank'>here</a>.</p>",
+			"content":"<p>Identity, web design and build for the animation company Ground Control. The site is responsive, delivering full browser video and a minimal interface, which lets the amazing work of directors such as GMUNK and Rudiger, speak for itself. Have a look at the live site <a href='http://www.thisisgroundcontrol.co.uk/' target='_blank'>here</a>.</p>",
 			"hero_image":"/images/content/heroes/ground-ctrl-gradients.jpg",
 			"content_images":[
 							
@@ -131,16 +132,17 @@
 			
 		},
 		{	"index": 7,
-			"title": "Gatorade Site Concepts",
-			"client":"Gatorade",
+			"title": "Prime, Perform, Recover",
+			"client":"Gatorade Website concepts",
 			"slug":"gatorade-site-concepts",
 			"featured_image": "/images/content/featured/512_0007_gatorade-concept.jpg",
 			"tags":["UX / Design"],
 			"subtitle":"this is my project",
 			"intro": "<p>Giving a famous drinks brand some digital legs.</p>",
-			"content":"<p>Gatorade: a world famous brand. Sure. We all know that they produce sports nutrition products for the most elite athletes on the planet such as Team Sky and Arsenal. Their website? Sadly, it really doesn’t reflect any of that prestige. I was asked to come up with design concepts to give a more exciting experience than their current site. The project never went any further but I was excited by the work, so here it is!</p>",
+			"content":"<p>Gatorade: a world famous brand. Sure. We all know that they produce sophisticated sports nutrition products for the most elite athletes on the planet such as Barcelona and the NFL. Their website? Sadly, it doesn't convey the scientific research that goes into making the products. I was asked to come up with design concepts to tell the story of the product range in a more compelling way. The project never went any further but I was excited by the work, so here it is!</p>",
 			"hero_image":"/images/content/heroes/hero-gatorade-site.jpg",
-			"content_images":[
+			"content_images":[	
+								"/images/content/gatorade-site-00.jpg",
 								"/images/content/gatorade-site-01.jpg",
 								"/images/content/gatorade-site-02.jpg",
 								"/images/content/gatorade-site-03.jpg",
@@ -151,17 +153,20 @@
 		},
 		{	"index": 8,
 			"title": "Wireworks digital agency",
-			"client":"Glassworks",
-			"slug":"Wireworks-digital-agency",
+			"client":"Co-Founder and Creative Director",
+			"slug":"wireworks-digital-agency",
 			"featured_image": "/images/content/featured/512_0010_wireworks.jpg",
-			"tags":["Brand / Creative Direction / Management"],
+			"tags":["Brand / Creative Direction"],
 			"subtitle":"this is my project",
 			"intro": "<p>Blurring the lines between post production and digital. And having some great times in Soho as well.</p>",
 			"content":"<p>In 2009 I had the opportunity to co-found a digital agency in partnership with the post-production company <a href='http://www.glassworks.co.uk/' target='_blank'>Glassworks</a>. I jumped at the chance and Wireworks was born. The idea was to work closely with Glassworks to deliver video-rich high end websites and rich media campaigns for direct clients and agencies. During a hectic but hugely fun 5 years, I was creative director to our small team on a number of projects big and small, from our little office on Dean Street - handily positioned next door to the French House.</p>",
 			"hero_image":"/images/content/heroes/hero-image-wireworks.jpg",
-			"content_images":[
+			"content_images":[	
+								"/images/content/wireworks-00.jpg",
 								"/images/content/wireworks-01.jpg",
-								"/images/content/wireworks-02.jpg"
+								"/images/content/wireworks-02.jpg",
+								"/images/content/wireworks-03.jpg",
+								"/images/content/wireworks-04.jpg"
 								],
 			"vimeo_ids":[]
 			
@@ -190,7 +195,7 @@
 		},
 		{	"index": 10,
 			"title": "Here come the Hair Monsters",
-			"client":"Schwarzkopff Got2be",
+			"client":"Schwarzkopff Got2be Facebook App",
 			"slug":"got2be",
 			"featured_image": "/images/content/featured/512_0014_got2be.jpg",
 			"tags":["UX / Design"],
@@ -201,7 +206,7 @@
 								"/images/content/got2be-01.jpg",
 								"/images/content/got2be-02.jpg"
 								],
-			"vimeo_ids":[ "41368668" ]
+			"vimeo_ids":[ "132561881" ]
 			
 		},
 		{	"index": 11,
@@ -214,7 +219,8 @@
 			"intro": "<p>this is an intro to my project</p>",
 			"content":"<p>Beat the Street is a global walk-to-school competition where pupils are issued a card to ‘tap in’ on various designated routes to and from school. I designed the website which displayed the kids' stats and standings in leaderboards versus their classmates and rival schools. Brand by Jon at Creative Nation.</p>",
 			"hero_image":"/images/content/heroes/hero-image-bts.jpg",
-			"content_images":[
+			"content_images":[	
+								"/images/content/bts-00.jpg",
 								"/images/content/bts-01.jpg",
 								"/images/content/bts-02.jpg"
 							],
@@ -232,6 +238,7 @@
 			"content":"<p>Heartworks is a collaboration between Glassworks and leading cardiac anaesthesiologists at University College London Hospital.  They worked together to create the most anatomically correct and realistic 3-D heart and a range of fully interactive mannequin-based educational simulators for Transthoracic and Transoesophogeal echocardiography. I was initially asked to make a DVD to complement the simulator product range but decided to go a bit beyond the brief and come up with a concept for a highly interactive, online e-learning course. After 2 years of collaboration with the doctors, the application went live, delivering a range of multimedia tools to make this a truly interactive learning experience which has gained accreditation by the American Society of Echocardiography (ASE). You can check out the living breathing site for yourself <a href='http://learn.heartworks.me.uk/' target='_blank'>here</a>.</p>",
 			"hero_image":"/images/content/heroes/hero-heartworks.jpg",
 			"content_images":[
+							"/images/content/heartworks-00.jpg",
 							"/images/content/heartworks-01.jpg",
 							"/images/content/heartworks-02.jpg",	
 							"/images/content/heartworks-03.jpg"
@@ -241,14 +248,14 @@
 			
 		},
 		{	"index": 13,
-			"title": "Crash the Web",
-			"client":"BBC America YouTube Takeover",
+			"title": "Hammond Crashes the Web",
+			"client":"YouTube Takeover for BBC America",
 			"slug":"crash-the-web",
 			"featured_image": "/images/content/featured/512_0016_crash-the-web.jpg",
 			"tags":["Art Direction / Design / Motion"],
 			"subtitle":"this is my project",
 			"intro": "<p>What do you get when you cross a Hamster and a 1970s British Tank? A bloody big hole in your youtube page, that's what.</p>",
-			"content":"<p>Richard Hammond driving a tank around the streets of Kent certainly caused a bit of a stir, but in fact was our shoot for a You Tube ‘mimicry’ (basically a fake YouTube channel!) to promote the launch of his BBC America series 'Crash Course'. No walls were harmed in the making of the video, that was up to the 3-D guys at Glassworks. I was responsible for Art Direction, design and animation.</p>",
+			"content":"<p>Richard Hammond driving a tank around the streets of Kent certainly caused a bit of a stir, but in fact was our shoot for a You Tube ‘mimicry’ (basically a fake YouTube channel!) to promote the launch of his BBC America series 'Crash Course'. No walls were harmed in the making of the video, that was up to the 3-D guys at Glassworks. I was responsible for Art Direction, design and animation. You can check out a demo <a href='http://demo.andrewgillon.com/bbca-crash-course/' target='_blank'>here</a>.</p>",
 			"hero_image":"/images/content/heroes/hero-crash-course.jpg",
 			"content_images":[
 								"/images/content/crash-course-01.jpg",
@@ -260,7 +267,7 @@
 		},
 		{	"index": 14,
 			"title": "Met Police Cyber Operations",
-			"client":"Met Police",
+			"client":"Video Content",
 			"slug":"met-police-cyber-ops",
 			"featured_image": "/images/content/featured/512_0018_met.jpg",
 			"tags":["Art Direction / Design / Animation"],

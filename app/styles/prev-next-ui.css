@@ -1,38 +1,30 @@
-.next-tile {
-  width: 88px;
-  height: 234px;
+.next-tile , .next-project {
+  width: 80px;
+  height: 200px;
   position: absolute;
   right:0;
-  top: 35%;
+  top: 50%;
   z-index: 5000;
   overflow: hidden;
   cursor: pointer;
   background: none;
+  margin-top: -168px
 }
 
 .nextbg {
   position: absolute;
   right: 0;
   top: 0;
-  width: 88px;
-  height: 234px;
+  width: 80px;
+  height: 200px;
   background-color: none;
-  opacity: 0.2;
+  opacity: 0.5;
   background-repeat: no-repeat;
   -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-
-  /*-webkit-transform: perspective(50) rotate(-231deg) rotateX(-355deg) rotateY(16deg) rotateZ(0deg) skew(140deg, 5deg);
-  -moz-transform: perspective(50) rotate(-231deg) rotateX(-355deg) rotateY(16deg) rotateZ(0deg) skew(140deg, 5deg);
-  -o-transform: perspective(50) rotate(-231deg) rotateX(-355deg) rotateY(16deg) rotateZ(0deg) skew(140deg, 5deg);
-  -ms-transform: perspective(50) rotate(-231deg) rotateX(-355deg) rotateY(16deg) rotateZ(0deg) skew(140deg, 5deg);
-  transform: perspective(50) rotate(-231deg) rotateX(-355deg) rotateY(16deg) rotateZ(0deg) skew(140deg, 5deg);*/
-
-  /*-webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;*/
 
 }
 
@@ -56,12 +48,12 @@
 
 }
 
-.next-tile a {
+.next-tile a , .next-project a {
   position: absolute;
-  top: 127px;
-  right: 20px;
-  width: 24px;
-  height: 34px;
+  top: 112px;
+  right: 18px;
+  width: 16px;
+  height: 32px;
   background: url('/images/next-arrow.png') no-repeat 0 0;
   text-indent: 100%;
   white-space: nowrap;
@@ -83,25 +75,23 @@
 
 }
 
-.next-tile:hover a {
-/*  -moz-transform: translate(7px,0);
-  -o-transform: translate(7px,0);
-  -ms-transform: translate(7px,0);
-  -webkit-transform: translate(7px,0); 
-  transform: translate(7px,0);*/
+.next-tile:hover a , .next-project:hover a {
+  right:12px;
+
 }
 
 
-.prev-tile {
-  width: 92px;
-  height: 215px;
+.prev-tile , .prev-project {
+  width: 80px;
+  height: 200px;
   position: absolute;
   left:0;
-  top: 40%;
+  top: 50%;
   z-index: 5000;
   overflow: hidden;
   cursor: pointer;
   background: none;
+  margin-top: -135px;
 }
 
 .prevbg {
@@ -110,11 +100,11 @@
   top: 0;
   background-repeat: no-repeat;
   background-color: none; 
-  width: 92px;
-  height: 215px;
+  width: 80px;
+  height: 200px;
   background-size: 100%;
   background-position: 0 0;
-  opacity: 0.2;
+  opacity: 0.5;
 /* */
   -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
   -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
@@ -135,13 +125,13 @@
 
 }
 
-.prev-tile a {
+.prev-tile a , .prev-project a {
   position: absolute;
-  top: 83px;
-  left: 20px;
-  width: 24px;
-  height: 34px;
-  background: url('/images/prev-arrow.png') no-repeat 6px 0;
+  top: 78px;
+  left: 18px;
+  width: 16px;
+  height: 32px;
+  background: url('/images/prev-arrow.png') no-repeat 0 0;
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -169,84 +159,34 @@
   opacity: 1;
 }
 
-.prev-tile:hover a {
-  background-position: 0 0;
+.prev-tile:hover a , .prev-project:hover a {
+  left: 12px;
 }
-
 
 .next-project {
-  width: 88px;
-  height: 234px;
   position: fixed;
   right: -100px;
-  top: 25%;
-  z-index: 5000;
-  cursor: pointer;
-  background: none;
-  -moz-transition: right 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -o-transition: right 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -ms-transition: right 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -webkit-transition: right 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  transition: right 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
- 
+  -moz-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  -o-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  -ms-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  -webkit-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
 }
 
-.next-project a {
-  position: absolute;
-  top: 127px;
-  right: 26px;
-  width: 24px;
-  height: 34px;
-  background: url('/images/next-arrow.png') no-repeat 0 0;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  -moz-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -o-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -ms-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -webkit-transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  transition:all 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 );
+.prev-project {
+  position: fixed;
+  left: -100px;
+  -moz-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  -o-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  -ms-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  -webkit-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
+  transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
 }
 
 .next-project:hover .nextbg {
 
   opacity: 1;
 
-}
-
-
-.prev-project {
-  width: 92px;
-  height: 228px;
-  position: fixed;
-  left: -100px;
-  top: 31%;
-  z-index: 5000;
-  overflow: hidden;
-  cursor: pointer;
-  background: none;
-  -moz-transition: left 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -o-transition: left 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -ms-transition: left 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  -webkit-transition: left 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-  transition: left 0.7s cubic-bezier( 0.6, 0.2, 0.1, 1 );
-}
-
-
-.prev-project a {
-  position: absolute;
-  top: 83px;
-  left: 26px;
-  width: 24px;
-  height: 34px;
-  background: url('/images/prev-arrow.png') no-repeat 0 0;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  -moz-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
-  -o-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
-  -webkit-transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
-  transition:all cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0.5s;
 }
 
 .prev-project:hover .prevbg {
@@ -261,10 +201,102 @@
   left: 0;
 }
 
-.prev-project:hover a {
-  left:20px;
+
+@media screen and (min-width: 481px) and (max-width: 1099px) {
+
+  .nextbg , .prevbg {
+    width: 60px;
+    height: 152px;
+    background-size: 100%;
+  }
+
+
+  .next-project , .next-tile {
+    width: 60px;
+    height: 152px;
+    margin-top: -100px
+  }
+
+  .next-project a , .next-tile a {
+    top: 72px;
+    right: 20px;
+    width: 12px;
+    height: 34px;
+    background-position: -4px 0;
+   
+  }
+
+  .next-project:hover a ,.next-tile:hover a {
+    right: 14px;
+  }
+
+  .prev-project , .prev-tile{
+    width: 68px;
+    height: 152px;
+    margin-top: -80px
+  }
+
+
+  .prev-project a , .prev-tile a {
+    top: 50px;
+    left: 22px;
+    width: 12px;
+    height: 34px;
+  }
+
+  .prev-project:hover a {
+    left:14px;
+  }
+
+
 }
 
-.next-project:hover a {
- right: 20px; 
+@media screen and (min-width: 1px) and (max-width: 480px) {
+
+  .nextbg , .prevbg {
+    width: 40px;
+    height: 100px;
+    background-size: 100%;
+    opacity: 1;
+  }
+
+
+  .next-project , .next-tile {
+    width: 40px;
+    height: 100px;
+    margin-top: -50px
+  }
+
+  .next-project a , .next-tile a {
+    top: 44px;
+    right: 10px;
+    width: 8px;
+    height: 34px;
+    background-position: -8px 0;
+   
+  }
+
+  .next-project:hover a ,.next-tile:hover a {
+    right: 10px;
+  }
+
+  .prev-project , .prev-tile{
+    width: 40px;
+    height: 100px;
+    margin-top: -36px
+  }
+
+
+  .prev-project a , .prev-tile a {
+    top: 30px;
+    left: 10px;
+    width: 8px;
+    height: 34px;
+  }
+
+  .prev-project:hover a {
+    left:10px;
+  }
+
+
 }

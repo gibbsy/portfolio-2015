@@ -29,7 +29,12 @@ angular
       templateUrl: 'views/project.html',
       controller: 'ProjectCtrl'
     })
+     .when('/404', {
+        templateUrl: 'partials/404.html',
+        controller: 'errorCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });
   });
+

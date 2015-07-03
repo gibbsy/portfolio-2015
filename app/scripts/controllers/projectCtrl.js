@@ -24,6 +24,8 @@ angular.module('angularApp')
     $scope.showPrevNext = false;
     $scope.showFirstImage = false;
 
+    $scope.closeToggle = false;
+
     $scope.vidContent = "hide";
 
     $scope.imagesReady = "wait";
@@ -281,13 +283,13 @@ $scope.$on('$locationChangeStart', function(event, next, current) {
 
    if (!$scope.getProject) {
 
-    console.log('404 invalid url');
+    //console.log('404 invalid url');
   
-    $location.path('/404.html');
+    $location.path('/404');
    
    }
     
-    console.log($scope.getProject);
+    //console.log($scope.getProject);
 
    if ($scope.getProject == $scope.nextProject) {
 
