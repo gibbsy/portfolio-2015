@@ -13,20 +13,29 @@ return {
     winHeight = $window.innerHeight,
     windowHalfX = winWidth / 2,
     windowHalfY = winHeight / 2,
-    gridPaddingX = winWidth * 0.13,
-    gridPaddingY = winHeight * 0.16,
+    gridPaddingX,gridPaddingY,
     tileWidth, tileHeight;
     
-    if( winWidth < 1100 ) {
+    if( winWidth > 0 && winWidth < 768 ) {
 
+      gridPaddingX = winWidth * 0.25,
+      gridPaddingY = winHeight * 0.25,
       tileWidth = 100,
       tileHeight = 80;
 
-    } else {
+    } else if( winWidth > 768 && winWidth < 1200 ) {
 
+      gridPaddingX = winWidth * 0.14,
+      gridPaddingY = winHeight * 0.17,
+      tileWidth = 112,
+      tileHeight = 90;
+
+    } else {
+      
+      gridPaddingX = winWidth * 0.13,
+      gridPaddingY = winHeight * 0.16,
       tileWidth = 150,
       tileHeight = 120;
-
     }
 
     var container, stats;
@@ -1100,8 +1109,7 @@ return {
 
 ////////////////////* CREATE THE TILES *///////////////////////////////
 
-      renderer = scope.webgl ? new THREE.WebGLRenderer( { antialias:true }): new THREE.CanvasRenderer();
-      //renderer = window.WebGLRenderingContext ? new THREE.WebGLRenderer({ antialias:true }) : new THREE.CanvasRenderer();
+      renderer = scope.is_chrome || scope.is_firefox ? new THREE.WebGLRenderer( { antialias:true , alpha:false } ): new THREE.WebGLRenderer( { alpha:false } );
       renderer.setClearColor( 0x1a181b );
       renderer.setSize( winWidth, winHeight );
       renderer.shadowMapEnabled = false;

@@ -143,19 +143,19 @@
 }
 
 .prev-tile .prevbg {
-  -moz-transform: translate(-7px,0);
+/*  -moz-transform: translate(-7px,0);
   -o-transform: translate(-7px,0);
   -ms-transform: translate(-7px,0);
   -webkit-transform: translate(-7px,0); 
-  transform: translate(-7px,0);
+  transform: translate(-7px,0);*/
 }
 
 .prev-tile:hover .prevbg {
-  -moz-transform: translate(0,0);
+/*  -moz-transform: translate(0,0);
   -o-transform: translate(0,0);
   -ms-transform: translate(0,0);
   -webkit-transform: translate(0,0); 
-  transform: translate(0,0);
+  transform: translate(0,0);*/
   opacity: 1;
 }
 

@@ -28,17 +28,17 @@ angular.module('angularApp')
     //console.log($scope.webgl);
 
    function setWelcome() {
-    var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1,
-    is_firefox = (navigator.userAgent.toLowerCase().indexOf('firefox') > -1 && $scope.webgl ),
-    is_safari = (navigator.userAgent.toLowerCase().indexOf('safari') > -1 && navigator.userAgent.toLowerCase().indexOf('chrome') == -1);
+    $scope.is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    $scope.is_firefox = (navigator.userAgent.toLowerCase().indexOf('firefox') > -1 && $scope.webgl );
+    $scope.is_safari = (navigator.userAgent.toLowerCase().indexOf('safari') > -1 && navigator.userAgent.toLowerCase().indexOf('chrome') == -1);
 
-    if(is_chrome) {
+    if($scope.is_chrome) {
       $scope.welcomeMessage='Looks like you are using Google Chrome. Happy days.'
 
-    } else if (is_safari) {
-      $scope.welcomeMessage='This website works best in Chrome or the latest version of Firefox, but we should be fine if you have WebGL enabled.'
+    } else if ($scope.is_safari) {
+      $scope.welcomeMessage='This website uses webGL - performance is much better in Chrome or the latest version of Firefox, but we should be fine if you have WebGL enabled.'
 
-    } else if (is_firefox) {
+    } else if ($scope.is_firefox) {
       $scope.welcomeMessage='Looks like you are using a nice modern browser. Happy Days.'
     }
       else {
