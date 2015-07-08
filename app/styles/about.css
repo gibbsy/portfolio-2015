@@ -9,6 +9,8 @@
 .page-about {
   padding: 7% 10% 2% 10%;
   color: #fff;
+  height: 100%;
+  overflow: scroll;
 }
 
 .page-about h1 {
@@ -50,8 +52,15 @@
   opacity: 1;
   padding:0;
   float: left;
-
+  
 }
+
+.page-about:after {
+  content:"";
+  display:table;
+  clear:both;
+}
+
 
 .about-right-col {
   float: left;
@@ -117,6 +126,7 @@
   border: 1px solid #fff;
   text-decoration: none;
   padding: 0 !important;
+  margin-bottom: 60px;
 }
 
 .email-btn h4  {

@@ -26,7 +26,7 @@
 
 			<div ng-switch-when="include">
 
-				<div ng-repeat="vid in project.vimeo_ids" data-reveal>
+				<div class="reveal" ng-repeat="vid in project.vimeo_ids" data-reveal>
 
 					<div vimeo vimeo-id="vid" class="fluid-vimeo-wrapper">
 						
@@ -35,13 +35,13 @@
 				</div>
 			</div>
 		</div> <!-- end vid content -->
-		<img ng-src="{{project.firstImage}}" class="first-image" data-reveal/>
+		<img ng-src="{{project.firstImage}}" class="first-image reveal" data-reveal/>
 
 		<div ng-switch on="imagesReady">
 
 			<div ng-switch-when="ready">
 
-				<div ng-repeat="img in project.contentImages" data-reveal>
+				<div class="reveal" ng-repeat="img in project.contentImages" data-reveal>
 
 					<img ng-src="{{img}}"/>
 
