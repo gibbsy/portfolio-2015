@@ -1,37 +1,65 @@
-@media screen and (min-width: 300px) and (max-width: 479px), screen and (min-width: 300px) and (max-width: 479px) and (-webkit-min-device-pixel-ratio: 2) {
+@media screen and (min-width: 200px) and (max-width: 480px), screen and (min-width: 300px) and (max-width: 480px) {
 
+h3.loading-txt {
+font-size: 12px;
+letter-spacing: 8px;
+color: #fff;
+margin-top: 10px;
+}
+h3.project-loading-txt {
+font-size: 12px;
+letter-spacing: 8px;
+color: #ddd;
+margin-top: 7px;
+}
+
+.loading-graphics p {
+font-size: 9px;
+letter-spacing: 0;
+}
+
+.loading-graphics {
+  width: 100%;
+  height: 180px;
+  top: 50%;
+  left: 0;
+  margin-top: -90px;
+  margin-left: 0px;
+}
 
 /* THREE INTERFACE */
 
 .brand {
   width: 70%;
   left: 15%;
-  top: 15%;
+  margin-top: -70px;
+  height: 140px;
 }
 
 .brand-ui h2 , .brand-ui a {
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 5px;
 
   }
 
 #designer {
-  top: 50px;
+  margin-top: 40px;
+  margin-left: 0;
   width: 100%;
   text-align: left;
 }
 
 #about-link {
-  top: 155px;
+  margin-top: 20px;
   width: 120px;
   height: 40px;
 }
 
 #explore-work {
-  top: 110px;
+  margin-top: -10px;
+  margin-left: 20%;
   width: 186px;
   height: 40px;
-  left: 0;
 }
 
 .brand-ui a:hover {
@@ -39,9 +67,20 @@
 
 }
 
+.about-link-bg.about-bg-image-purple {
+  background-size: 120px 40px;
+}
+.explore-link-bg.explore-bg-image-purple {
+  background-size: 186px 40px;
+}
+
+.brand-ui:hover > .about-link-bg , .brand-ui:hover > .explore-link-bg {
+  top: -8px;
+}
+
 .logo-top-left {
-  width: 27%;
-  top: 15px;
+  width: 40%;
+  top: 20px;
   left: 15px;
 }
 
@@ -66,12 +105,12 @@
 
 .project-details {
   position: absolute;
-  width: 50%; 
+  width: 80%; 
   background: none;
   display: inline-block;
   opacity: 0.7;
   bottom: 13%;
-  left: 25%;
+  left: 10%;
 }
 
 .project-details h1 {
@@ -84,7 +123,8 @@
 .project-details h4 {
   font-size: 9px;
   letter-spacing: 4px;
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   margin-left: 6px;
   font-weight: normal;
 
@@ -95,7 +135,7 @@
 #view-btn {
   width: 120px;
   height: 34px;
-  bottom: 3%;
+  bottom: 5%;
   margin-left: -60px;
 }
 
@@ -159,6 +199,57 @@
 }
 .explore-link-bg.explore-bg-image-purple {
   background-size: 186px 40px;
+}
+
+.view-select {
+  width: 150px;
+  height: 70px;
+
+  }
+
+.view-select-bg {
+  width: 150px;
+  height: 70px;
+  background-size: 100%;
+
+}
+
+.view-select p {
+  top: 18px;
+  left: 58%;
+  font-size: 8px;
+  letter-spacing: 4px;
+  text-align: right;
+}
+
+.explode-icon, .grid-icon {
+  position: absolute;
+  margin: 0 10px 10px 20px;
+  padding: 3px;
+
+}
+
+.explode-icon {
+  top: 30px;
+  left: 4%;
+  width: 38px;
+  height: 30px;
+
+}
+
+.grid-icon {
+  top: 30px;
+  right: 7%;
+  width: 42px;
+  height: 17px;
+
+}
+
+.sound-icon { 
+  
+  bottom: 10px;
+  left: 10px;  
+
 }
 
 /* PROJECT VIEW */
@@ -262,7 +353,34 @@ img.first-image {
 
 }
 
-@media screen and (min-width: 480px) and (max-width: 768px), screen and (min-width: 480px) and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+@media screen and (min-width: 481px) and (max-width: 768px), screen and (min-width: 481px) and (max-width: 768px) {
+
+h3.loading-txt {
+font-size: 12px;
+letter-spacing: 8px;
+color: #fff;
+margin-top: 10px;
+}
+h3.project-loading-txt {
+font-size: 12px;
+letter-spacing: 8px;
+color: #ddd;
+margin-top: 7px;
+}
+
+.loading-graphics p {
+font-size: 9px;
+letter-spacing: 0;
+}
+
+.loading-graphics {
+  width: 100%;
+  height: 180px;
+  top: 50%;
+  left: 0;
+  margin-top: -90px;
+  margin-left: 0px;
+}
 
 
 /* THREE INTERFACE */
@@ -270,32 +388,33 @@ img.first-image {
 .brand {
   width: 60%;
   left: 20%;
-  top: 20%;
+  margin-top: -95px;
+  height: 190px;
 }
 
 .brand-ui h2 , .brand-ui a {
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 5px;
 
   }
 
 #designer {
-  top: 50px;
+  margin-top: 60px;
+  margin-left: 3%;
   width: 100%;
   text-align: left;
 }
 
 #about-link {
-  top: 135px;
+  margin-top: 25px;
   width: 120px;
   height: 40px;
 }
 
 #explore-work {
-  top: 110px;
+  margin-top: 5px;
   width: 186px;
   height: 40px;
-  left: 0;
 }
 
 .brand-ui a:hover {
@@ -310,16 +429,20 @@ img.first-image {
   background-size: 186px 40px;
 }
 
+.brand-ui:hover > .about-link-bg , .brand-ui:hover > .explore-link-bg {
+  top: -8px;
+}
+
 .logo-top-left {
-  width: 27%;
-  top: 15px;
-  left: 15px;
+  width: 35%;
+  top: 25px;
+  left: 20px;
 }
 
 .about-top-right {
   width: 100px;
   height: 30px;
-  top: 5px;
+  top: 10px;
   right: 5px;
 }
 
@@ -336,16 +459,16 @@ img.first-image {
 
 .project-details {
   position: absolute;
-  width: 50%; 
+  width: 80%; 
   background: none;
   display: inline-block;
   opacity: 0.7;
-  bottom: 13%;
-  left: 25%;
+  bottom: 10%;
+  left: 10%;
 }
 
 .project-details h1 {
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 6px;
   margin: 0;
   margin-left: 7px;
@@ -354,7 +477,8 @@ img.first-image {
 .project-details h4 {
   font-size: 9px;
   letter-spacing: 4px;
-  margin-top: 10px;
+  margin-top: 7px;
+  margin-bottom: 7px;
   margin-left: 6px;
   font-weight: normal;
 
@@ -365,7 +489,7 @@ img.first-image {
 #view-btn {
   width: 120px;
   height: 34px;
-  bottom: 3%;
+  bottom: 5%;
   margin-left: -60px;
 }
 
@@ -421,6 +545,57 @@ img.first-image {
   font-size: 10px;
   letter-spacing: 6px;
   padding-left:02px
+
+}
+
+.view-select {
+  width: 150px;
+  height: 70px;
+
+  }
+
+.view-select-bg {
+  width: 150px;
+  height: 70px;
+  background-size: 100%;
+
+}
+
+.view-select p {
+  top: 18px;
+  left: 58%;
+  font-size: 8px;
+  letter-spacing: 4px;
+  text-align: right;
+}
+
+.explode-icon, .grid-icon {
+  position: absolute;
+  margin: 0 10px 10px 20px;
+  padding: 3px;
+
+}
+
+.explode-icon {
+  top: 30px;
+  left: 4%;
+  width: 38px;
+  height: 30px;
+
+}
+
+.grid-icon {
+  top: 30px;
+  right: 7%;
+  width: 42px;
+  height: 17px;
+
+}
+
+.sound-icon { 
+  
+  bottom: 10px;
+  left: 10px;  
 
 }
 
@@ -532,7 +707,42 @@ img.first-image {
 .brand {
   width: 50%;
   left:25%;
-  top: 25%;
+  height: 260px;
+  margin-top: -130px;
+}
+
+.brand-ui h2 , .brand-ui a {
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 9px;
+
+  }
+
+#designer {
+  margin-top: 80px;
+  margin-left: 7%;
+  text-align: left;
+}
+
+#about-link {
+  margin-top: 45px;
+}
+
+#explore-work {
+  margin-top: 10px;
+  margin-left: 20%;
+}
+
+.brand-ui a:hover {
+  letter-spacing: 9px;
+
+}
+
+
+.logo-top-left {
+  width: 35%;
+  top: 40px;
+  left: 40px;
 }
 
 

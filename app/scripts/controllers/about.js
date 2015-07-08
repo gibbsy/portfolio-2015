@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('AboutCtrl',['$scope', '$routeParams', '$location', '$timeout', '$animate', function ($scope, $routParams, $location, $timeout, $animate) {
+  .controller('AboutCtrl',['$window', '$scope', '$routeParams', '$location', '$timeout', '$animate', function ($window, $scope, $routParams, $location, $timeout, $animate) {
    
    $scope.pageClass = 'page-about';
 

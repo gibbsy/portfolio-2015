@@ -13,29 +13,55 @@ return {
     winHeight = $window.innerHeight,
     windowHalfX = winWidth / 2,
     windowHalfY = winHeight / 2,
-    gridPaddingX,gridPaddingY,
+    camFOV, gridOffsetXval, gridOffsetYval, 
+    gridPaddingX, gridPaddingY,
     tileWidth, tileHeight;
-    
-    if( winWidth > 0 && winWidth < 768 ) {
 
-      gridPaddingX = winWidth * 0.25,
-      gridPaddingY = winHeight * 0.25,
-      tileWidth = 100,
-      tileHeight = 80;
+    var isLandscape = winWidth > winHeight;
 
-    } else if( winWidth > 768 && winWidth < 1200 ) {
+    if(isLandscape) {
+      
+      if( winWidth > 0 && winWidth < 769 ) {
 
-      gridPaddingX = winWidth * 0.14,
-      gridPaddingY = winHeight * 0.17,
-      tileWidth = 112,
-      tileHeight = 90;
+        gridPaddingX = winWidth * 0.25,
+        gridPaddingY = winHeight * 0.27,
+        gridOffsetXval = winWidth * 0.5,
+        gridOffsetYval = 70,
+        tileWidth = 100,
+        tileHeight = 80,
+        camFOV = 35;
+
+      } else if( winWidth > 768 && winWidth < 1200 ) {
+
+        gridPaddingX = winWidth * 0.14,
+        gridPaddingY = winHeight * 0.18,
+        gridOffsetXval = winWidth * 0.27,
+        gridOffsetYval = 150,
+        tileWidth = 112,
+        tileHeight = 90,
+        camFOV = 50;
+
+      } else {
+        
+        gridPaddingX = winWidth * 0.13,
+        gridPaddingY = winHeight * 0.18,
+        gridOffsetXval = winWidth * 0.25,
+        gridOffsetYval = 200,
+        tileWidth = 150,
+        tileHeight = 120,
+        camFOV = 55;
+      }
 
     } else {
-      
-      gridPaddingX = winWidth * 0.13,
-      gridPaddingY = winHeight * 0.16,
-      tileWidth = 150,
-      tileHeight = 120;
+
+        gridPaddingX = winWidth * 0.25,
+        gridPaddingY = winHeight * 0.15,
+        gridOffsetXval = winWidth * 0.5,
+        gridOffsetYval = 200,
+        tileWidth = 150,
+        tileHeight = 120,
+        camFOV = 75;
+
     }
 
     var container, stats;
@@ -300,8 +326,8 @@ return {
       var delay = delay || 0,
         theObj = this.object,
         complete = callback || undefined,
-        gridX = ( ( this.order % 5 ) * gridPaddingX ) - (windowHalfX/2),
-        gridY = ( - ( Math.floor( this.order / 5 ) % 8 ) * gridPaddingY ) + 200,
+        gridX = ( ( this.order % 5 ) * gridPaddingX ) - gridOffsetXval,
+        gridY = ( - ( Math.floor( this.order / 5 ) % 8 ) * gridPaddingY ) + gridOffsetYval,
         gridZ = ( Math.floor( this.order / 25 ) ) * 100 - 200;
 
       var gridTween = new TWEEN.Tween( theObj.position ).to( {
@@ -734,7 +760,7 @@ return {
        var camTween = new TWEEN.Tween( camera.position ).to( {
         x: 0,
         y:0,
-        z: 550 }, 2000)
+        z: 650 }, 2000)
         .easing( TWEEN.Easing.Quadratic.InOut)
         .delay(500)
         .start();
@@ -1017,7 +1043,7 @@ return {
 
       container = angular.element('#container')[0];
 
-      camera = new THREE.PerspectiveCamera( 55, winWidth / winHeight, 1, 12000 );
+      camera = new THREE.PerspectiveCamera( camFOV, winWidth / winHeight, 1, 12000 );
       camera.position.y = 0;
       camera.position.x = 0;
       camera.position.z = 0;
