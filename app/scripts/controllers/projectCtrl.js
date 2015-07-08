@@ -503,6 +503,9 @@ function prepareToLoad() {
 
       $timeout(function() {
         $scope.fullyLoaded = true;
+
+        $window.ga('send', 'pageview', { page: $location.url() });
+        
       },500);
 
       

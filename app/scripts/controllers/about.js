@@ -31,6 +31,7 @@ angular.module('angularApp')
 
       $timeout(function() {
       	$scope.showAbout = true;
+        $window.ga('send', 'pageview', { page: $location.url() });
       },1000);
       
 
