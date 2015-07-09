@@ -23,8 +23,8 @@ return {
       
       if( winWidth > 0 && winWidth < 769 ) {
 
-        gridPaddingX = winWidth * 0.25,
-        gridPaddingY = winHeight * 0.27,
+        gridPaddingX = winWidth * 0.27,
+        gridPaddingY = winHeight * 0.3,
         gridOffsetXval = winWidth * 0.5,
         gridOffsetYval = 70,
         tileWidth = 100,
@@ -52,15 +52,29 @@ return {
         camFOV = 55;
       }
 
-    } else {
+    } else if (!isLandscape) {
+
+      if( winWidth > 0 && winWidth < 640 ) {
+
+        gridPaddingX = winWidth * 0.32,
+        gridPaddingY = winHeight * 0.2,
+        gridOffsetXval = winWidth * 0.6,
+        gridOffsetYval = 200,
+        tileWidth = 80,
+        tileHeight = 64,
+        camFOV = 75;
+
+      } else {
 
         gridPaddingX = winWidth * 0.25,
         gridPaddingY = winHeight * 0.15,
         gridOffsetXval = winWidth * 0.5,
         gridOffsetYval = 200,
-        tileWidth = 150,
-        tileHeight = 120,
+        tileWidth = 130,
+        tileHeight = 104,
         camFOV = 75;
+
+      }
 
     }
 
@@ -343,8 +357,8 @@ return {
       backToGrid: function () {
 
     var theObj = this.object,
-        gridX = ( ( this.order % 5 ) * gridPaddingX ) - (windowHalfX/2),
-        gridY = ( - ( Math.floor( this.order / 5 ) % 8 ) * gridPaddingY ) + 200,
+        gridX = ( ( this.order % 5 ) * gridPaddingX ) - gridOffsetXval,
+        gridY = ( - ( Math.floor( this.order / 5 ) % 8 ) * gridPaddingY ) + gridOffsetYval,
         gridZ = ( Math.floor( this.order / 25 ) ) * 100 - 200;
 
       var gridTween = new TWEEN.Tween( theObj.position ).to( {

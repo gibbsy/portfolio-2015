@@ -33,16 +33,16 @@ angular.module('angularApp')
     $scope.is_safari = (navigator.userAgent.toLowerCase().indexOf('safari') > -1 && navigator.userAgent.toLowerCase().indexOf('chrome') == -1);
 
     if($scope.is_chrome) {
-      $scope.welcomeMessage='Looks like you are using Google Chrome. Happy days.'
+      $scope.welcomeMessage='Get you, looks like you are using Google Chrome. Happy days.'
 
     } else if ($scope.is_safari) {
-      $scope.welcomeMessage='This website uses webGL - performance is much better in Chrome or the latest version of Firefox, but we should be fine if you have WebGL enabled.'
+      $scope.welcomeMessage='This website uses webGL - performance is best in Chrome, but we should be fine if you have WebGL enabled.'
 
     } else if ($scope.is_firefox) {
       $scope.welcomeMessage='Looks like you are using a nice modern browser. Happy Days.'
     }
       else {
-      $scope.welcomeMessage='This website uses WebGL, so please check it out with a <a href="http://browsehappy.com/" target="_blank">nice modern browser</a> like Google Chrome.'
+      $scope.welcomeMessage='This website uses WebGL - performance is best in Chrome, but we should be fine if you have WebGL enabled.'
     }
    }
 

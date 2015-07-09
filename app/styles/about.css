@@ -63,7 +63,7 @@
 
 
 .about-right-col {
-  float: left;
+  float: right;
   width: 35%;
   margin-left: 5%;
   padding-top: 10px;
@@ -85,9 +85,9 @@
 }
 
 .close-btn.about {
-  position: absolute;
-  right: 2%;
-  top: 3%;
+  top: 45px;
+  right: 62px;
+
 }
 
 .about-right-col.ng-hide-add.ng-hide-add-active,

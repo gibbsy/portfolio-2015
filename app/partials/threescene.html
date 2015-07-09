@@ -9,9 +9,9 @@
     </div>
 </div>
 <div ng-class="{active:showInstructions}" class="instructions" ng-click="closeInstructions()">
-    <div class="graphics" abs-centre>
+    <div class="graphics">
         <img src="/images/instructions-tile.png">
-        <p>Click on a tile to view a project</p>
+        <p>Click on the shapes to view my projects</p>
         <div class="got-it">
         <h4>Okay</h4>
     </div>
@@ -71,13 +71,15 @@
 
      <h4 class="text-color-{{appViewState.hue}}" content-change content="projectInfo.client" sync="'#view-btn'"></h4>
 
-    </div>
-
-    <div class="ui" id="view-btn" ng-hide="appViewState.threeUi!='details'" ng-click='viewProject()'>
+      <div class="ui" id="view-btn" ng-hide="appViewState.threeUi!='details'" ng-click='viewProject()'>
         <div class='view-btn-bg bg-image-{{appViewState.hue}}'></div>
         <div class='view-btn-bg-keyline bg-image-{{appViewState.hue}}'></div>
         <h4>View</h4>
     </div> 
+
+    </div>
+
+   
 
 
 
