@@ -11,7 +11,7 @@
 }
 .three {
   position: absolute;
-  cursor: all-scroll;
+  cursor: auto;
   overflow: hidden;
   width: 100%;
   height: 100%;

@@ -1398,7 +1398,7 @@ return {
         if ( INTERSECTED && INTERSECTED != triangle)  INTERSECTED.material.opacity=0.9;
 
         INTERSECTED = null;
-        jQuery('.three').css({'cursor': 'all-scroll'});
+        jQuery('.three').css({'cursor': 'auto'});
 
       }
 
