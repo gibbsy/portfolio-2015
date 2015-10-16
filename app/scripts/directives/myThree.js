@@ -881,6 +881,8 @@ return {
       currentLoc = current.index,
       nextLoc = (currentLoc === scope.numImages - 1) ? 0 : currentLoc + 1;
 
+     //ga('push','_trackevent','next-tile', 'clicked');
+
       for (var p in scope.myProjects) {
         var thisLoc = scope.myProjects[p].index;
 
@@ -910,6 +912,8 @@ return {
       var current = projectFactory.getTarget(),
       currentLoc = current.index,
       prevLoc = (currentLoc === 0) ? scope.numImages - 1 : currentLoc - 1;
+
+      //ga('push','_trackevent','prev-tile', 'clicked');
 
       for (var p in scope.myProjects) {
         var thisLoc = scope.myProjects[p].index;

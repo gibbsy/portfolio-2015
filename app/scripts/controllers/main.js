@@ -145,7 +145,7 @@ angular.module('angularApp')
 
             showSite();
 
-            },3000);
+            },500);
             
             $scope.isSuccessful = true;
 
