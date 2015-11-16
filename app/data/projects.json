@@ -62,7 +62,7 @@
 			"tags":["Design / Development"],
 			"subtitle":"this is my project",
 			"intro": "<p>Showreel website for commercials director Rory Kelleher. I built this minimal ajax powered wordpress theme to showcase the work.</p>",
-			"content":"<p>Rory Kelleher is an award winning commercials director from Ireland who has produced amazing work for the likes of Guinness, Axa and Crocs. I built a showcase website for him, using background images that he shot on a roadtrip in the States. Minimal but impactful, this website is powered by HTML5 push-state, AJAX and Wordpress.You can check it out <a href='http://rorykelleher.co.uk/' target='_self'>here</a>.</p>",			
+			"content":"<p>Rory Kelleher is an award winning commercials director from Ireland who has produced amazing work for the likes of Guinness, Axa and Crocs. I built a showcase website for him, using background images that he shot on a roadtrip in the States. Minimal but impactful, this website is powered by HTML5 push-state, AJAX and Wordpress.</p>",			
 			"hero_image":"/images/content/heroes/rory-gradients.jpg",
 			"content_images":[
 								"/images/content/rk-00.jpg",
