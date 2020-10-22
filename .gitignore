@@ -1,7 +1,4 @@
-node_modules
-dist
 .tmp
 .sass-cache
-bower_components
 .DS_store
-package-lock.json
+node_modules
