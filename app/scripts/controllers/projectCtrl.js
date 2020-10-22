@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * @ngdoc function
@@ -7,12 +7,28 @@
  * # projectCtrl
  * Controller of the angularApp
  */
-angular.module('angularApp')
-  .controller('ProjectCtrl', ['$scope', '$window', '$routeParams', '$animate', '$location','$timeout','projectFactory', 'imageFactory', function ($scope, $window, $routeParams, $animate, $location, $timeout, projectFactory, imageFactory) {
+angular.module("angularApp").controller("ProjectCtrl", [
+  "$scope",
+  "$window",
+  "$routeParams",
+  "$animate",
+  "$location",
+  "$timeout",
+  "projectFactory",
+  "imageFactory",
+  function (
+    $scope,
+    $window,
+    $routeParams,
+    $animate,
+    $location,
+    $timeout,
+    projectFactory,
+    imageFactory
+  ) {
+    //////////////// DETERMINE WHICH ANIMATION IS NECESSARY //////////////////////
 
-//////////////// DETERMINE WHICH ANIMATION IS NECESSARY //////////////////////
-
-    $scope.pageClass = 'page-project';
+    $scope.pageClass = "page-project";
 
     $scope.showImage = false;
     $scope.showCopy = false;
@@ -31,298 +47,228 @@ angular.module('angularApp')
     $scope.imagesReady = "wait";
 
     var imgUrls = [],
-    domain = 'http://' + $window.location.host;
+      domain = "http://" + $window.location.host;
 
-    var container = angular.element('.view-container'),
-    threeView = angular.element('.three');
+    var container = angular.element(".view-container"),
+      threeView = angular.element(".three");
 
-    $animate.removeClass(container,'about-container');
+    $animate.removeClass(container, "about-container");
 
     projectSetUp();
 
-///////////// CHECK IF THE PROJECT INDEX IS READY AND WHETHER LOADING A DEEP LINK OR NOT ////////////////
+    ///////////// CHECK IF THE PROJECT INDEX IS READY AND WHETHER LOADING A DEEP LINK OR NOT ////////////////
 
-function projectSetUp() {
+    function projectSetUp() {
+      //console.log($routeParams.slug);
 
-  //console.log($routeParams.slug);
+      $scope.appViewState.loadingProject = true;
+      $scope.appViewState.loadingContent = true;
 
-  $scope.appViewState.loadingProject = true;
-  $scope.appViewState.loadingContent = true;
+      /* check the project index is READY */
 
-/* check the project index is READY */
+      if (projectFactory.getDeepLinking() === "READY") {
+        $scope.projects = projectFactory.getAllProjects();
 
-if ((projectFactory.getDeepLinking())==='READY') {
+        $scope.target = projectFactory.getTarget();
 
-  $scope.projects = projectFactory.getAllProjects();
+        $scope.numProjects = projectFactory.getNumProjects();
 
-  $scope.target = projectFactory.getTarget();
+        /* check if the user has come through the 3D UI - target will be set */
 
-  $scope.numProjects = projectFactory.getNumProjects();
+        if (jQuery.type($scope.target.index) === "number") {
+          $scope.project = $scope.target;
 
-  /* check if the user has come through the 3D UI - target will be set */
+          $timeout(function () {
+            prepareToLoad();
+          }, 50);
+        } else {
+          /* process the deep link */
 
-    if (jQuery.type($scope.target.index)==='number') {
+          $scope.appViewState.deepLink = true;
 
-      $scope.project = $scope.target;
+          $scope.gettingDeeplink = "LOADING";
 
-      $timeout( function() {
+          var goToID = $routeParams.slug;
 
-        prepareToLoad();
+          for (var p in $scope.projects) {
+            var project = $scope.projects[p];
 
-      },50); 
-
-    } else { 
-
-      /* process the deep link */
-
-      $scope.appViewState.deepLink = true;
-
-      $scope.gettingDeeplink = "LOADING";
-
-      var goToID = $routeParams.slug;
-
-      for (var p in $scope.projects) {
-
-          var project = $scope.projects[p];
-
-          if (project.slug===goToID) {
-
+            if (project.slug === goToID) {
               $scope.project = project;
 
               projectFactory.setTarget(project);
 
               // check that the three ui is ready before going to the project
 
-                prepareToLoad();        
+              prepareToLoad();
+            }
+          }
+        }
+      } else {
+        $timeout(projectSetUp, 500);
+      }
+    }
 
+    function setNextLink() {
+      var currentPos = $scope.project.index,
+        nextID = currentPos + 1;
+
+      for (var n in $scope.projects) {
+        var next = $scope.projects[n];
+
+        if (next.index === nextID) {
+          return "/#/project/" + next.slug;
         }
       }
-
     }
 
-} else {
-  $timeout(projectSetUp,500);
-}
-} 
+    function setPrevLink() {
+      var currentPos = $scope.project.index,
+        nextID = currentPos - 1;
 
+      for (var n in $scope.projects) {
+        var next = $scope.projects[n];
 
-function setNextLink() {
-
-  var currentPos = $scope.project.index,
-      nextID = currentPos + 1;
-
-  for (var n in $scope.projects) {
-
-    var next = $scope.projects[n];
-
-    if (next.index===nextID) {
-
-        return '/#/project/' + next.slug;
-          
+        if (next.index === nextID) {
+          return "/#/project/" + next.slug;
+        }
+      }
     }
-  }
-}
 
-function setPrevLink() {
+    function setNextProject() {
+      //sbtrkt 1 from numProjects because order is zero based
 
-  var currentPos = $scope.project.index,
-      nextID = currentPos - 1;
+      var currentPos = $scope.project.index,
+        nextID = currentPos === $scope.numProjects - 1 ? 0 : currentPos + 1;
 
-  for (var n in $scope.projects) {
+      for (var n in $scope.projects) {
+        var next = $scope.projects[n];
 
-    var next = $scope.projects[n];
-
-    if (next.index===nextID) {
-
-        return '/#/project/' + next.slug;
-          
+        if (next.index === nextID) {
+          return next;
+        }
+      }
     }
-  }
-}
 
-function setNextProject() {
+    function setPrevProject() {
+      //sbtrkt 1 from numProjects because order is zero based
 
-  //sbtrkt 1 from numProjects because order is zero based 
+      var currentPos = $scope.project.index,
+        prevID = currentPos === 0 ? $scope.numProjects - 1 : currentPos - 1;
 
-  var currentPos = $scope.project.index,
-      nextID = (currentPos === $scope.numProjects - 1) ? 0 : currentPos + 1;
+      for (var p in $scope.projects) {
+        var prev = $scope.projects[p];
 
-  for (var n in $scope.projects) {
-
-    var next = $scope.projects[n];
-
-    if (next.index===nextID) {
-
-        return next;
-          
+        if (prev.index === prevID) {
+          return prev;
+        }
+      }
     }
-  }
-}
 
-function setPrevProject() {
+    $scope.goToNext = function () {
+      var goingTo = $scope.nextProject,
+        theUrl = "/project/" + goingTo.slug;
 
-  //sbtrkt 1 from numProjects because order is zero based
+      jQuery(".page-project").fadeOut();
 
-  var currentPos = $scope.project.index,
-      prevID = (currentPos === 0) ? $scope.numProjects - 1 : currentPos - 1;
+      $scope.appViewState.direction = "rtl";
 
-  for (var p in $scope.projects) {
+      $scope.appViewState.aniStatus = "wait";
 
-    var prev = $scope.projects[p];
+      if ($scope.$$phase) {
+        $timeout(function () {
+          $location.path(theUrl);
+        }, 500);
+      } else {
+        $location.path(theUrl);
+      }
+    };
 
-    if (prev.index===prevID) {
+    $scope.goToPrev = function () {
+      var goingTo = $scope.prevProject,
+        theUrl = "/project/" + goingTo.slug;
 
-        return prev;
-          
-    }
-  }
-}
+      jQuery(".page-project").fadeOut();
 
-$scope.goToNext = function() {
-  
-  var goingTo = $scope.nextProject,
-      theUrl = '/project/'+ goingTo.slug;
+      $scope.appViewState.direction = "ltr";
 
+      $scope.appViewState.aniStatus = "wait";
 
-  jQuery('.page-project').fadeOut();    
+      if ($scope.$$phase) {
+        $timeout(function () {
+          $location.path(theUrl);
+        }, 500);
+      } else {
+        $location.path(theUrl);
+      }
+    };
 
-  $scope.appViewState.direction='rtl';
-
-  $scope.appViewState.aniStatus='wait';
-
-  if($scope.$$phase) {
-
-  $timeout(function() {
-    $location.path(theUrl);
-  },500);
-
-  } else {
-
-    $location.path(theUrl)
-
- }
-
-}
-
-$scope.goToPrev = function() {
-
-  var goingTo = $scope.prevProject,
-      theUrl = '/project/'+ goingTo.slug;
-
-  jQuery('.page-project').fadeOut();  
-
-  $scope.appViewState.direction='ltr';
-
-  $scope.appViewState.aniStatus='wait'; 
-
-  if($scope.$$phase) {
-
-  $timeout(function() {
-    $location.path(theUrl);
-  },500);
-
-  } else {
-
-    $location.path(theUrl)
-
- }
-
-}
-
-$scope.close = function() {
-
-      $scope.appViewState.viewing='three';
-      $scope.appViewState.direction='';
-      $animate.addClass(threeView,'three-focus');
-      $animate.removeClass(container,'projects-container').then(function(){
-
-        var cont = angular.element('.view-container')
-        .attr( "style", "" )
-        .css({
-          position:'absolute',
-          top:'100%'
+    $scope.close = function () {
+      $scope.appViewState.viewing = "three";
+      $scope.appViewState.direction = "";
+      $animate.addClass(threeView, "three-focus");
+      $animate.removeClass(container, "projects-container").then(function () {
+        var cont = angular.element(".view-container").attr("style", "").css({
+          position: "absolute",
+          top: "100%",
         });
 
-        $scope.$apply(function() {
-          $location.path('');
-          });
+        $scope.$apply(function () {
+          $location.path("");
+        });
       });
+    };
 
-}
+    $scope.$on("$locationChangeStart", function (event, next, current) {
+      if ($scope.appViewState.aniStatus == "ready") {
+        jQuery(".page-project").fadeOut();
+      }
 
-$scope.$on('$locationChangeStart', function(event, next, current) {
+      var n = next.lastIndexOf("/"),
+        thePath = next.substring(n + 1);
 
-  if ($scope.appViewState.aniStatus=='ready') {
-
-      jQuery('.page-project').fadeOut();  
-
-  }
-   
-  var n = next.lastIndexOf('/'),
-      thePath = next.substring(n + 1);
-
-   if (thePath == '' || thePath == 'about' ) { 
-
-    $scope.close();
-
-   } else if (thePath != $scope.project.slug) {
-
-    for (var p in $scope.projects) {
-
+      if (thePath == "" || thePath == "about") {
+        $scope.close();
+      } else if (thePath != $scope.project.slug) {
+        for (var p in $scope.projects) {
           var project = $scope.projects[p];
 
-          if (project.slug===thePath) {
+          if (project.slug === thePath) {
+            $scope.getProject = project;
 
-              $scope.getProject = project;
+            projectFactory.setTarget(project);
+          }
+        }
 
-              projectFactory.setTarget(project);      
+        if (!$scope.getProject) {
+          //console.log('404 invalid url');
 
-        } 
+          $location.path("/404");
+        }
 
-   }
+        //console.log($scope.getProject);
 
-   if (!$scope.getProject) {
+        if ($scope.getProject == $scope.nextProject) {
+          $scope.appViewState.direction = "rtl";
 
-    //console.log('404 invalid url');
-  
-    $location.path('/404');
-   
-   }
-    
-    //console.log($scope.getProject);
+          $scope.appViewState.aniStatus = "wait";
+        } else if ($scope.getProject == $scope.prevProject) {
+          $scope.appViewState.direction = "ltr";
 
-   if ($scope.getProject == $scope.nextProject) {
+          $scope.appViewState.aniStatus = "wait";
+        } else {
+          $scope.appViewState.direction = "ltr";
 
-      $scope.appViewState.direction='rtl';
+          $scope.appViewState.aniStatus = "wait";
+        }
+      }
+    });
 
-      $scope.appViewState.aniStatus='wait';
+    ///////////// GET THE PROJECT DATA ////////////////
 
-   } else if ($scope.getProject == $scope.prevProject) { 
-
-      $scope.appViewState.direction='ltr';
-
-      $scope.appViewState.aniStatus='wait';
-
-   } else { 
-
-      $scope.appViewState.direction='ltr';
-
-      $scope.appViewState.aniStatus='wait';
-
-   }
-
- }
-
-
-});
-
-
-///////////// GET THE PROJECT DATA ////////////////
-
-function prepareToLoad() {
-
-      $scope.appViewState.viewing = 'projects';
-      $scope.appViewState.showthree = 'false';
+    function prepareToLoad() {
+      $scope.appViewState.viewing = "projects";
+      $scope.appViewState.showthree = "false";
 
       $scope.nextProject = setNextProject();
       $scope.prevProject = setPrevProject();
@@ -330,188 +276,127 @@ function prepareToLoad() {
       $scope.nextLink = setNextLink();
       $scope.prevLink = setPrevLink();
 
-      $scope.promoVideoId= 'promo-'+$scope.project.slug;
+      $scope.promoVideoId = "promo-" + $scope.project.slug; // not now needed
 
-     /* $scope.target = {};*/ // not now needed
-
-     if ( $scope.project.content_images.length ) {
-        
-      for (var i = 1 ; i < $scope.project.content_images.length; i++ ) {
-
+      /* $scope.target = {};*/ if ($scope.project.content_images.length) {
+        for (var i = 1; i < $scope.project.content_images.length; i++) {
           imgUrls.push(domain + $scope.project.content_images[i]);
         }
-
       } else {
         imgUrls = null;
       }
 
-       
-
       if ($scope.project.vimeo_ids) {
-
         $scope.vidContent = "include";
+      }
 
-      }   
-
-      $animate.addClass(container,'projects-container').then(function() {
-        
-           $animate.removeClass(threeView,'three-focus');
-        
+      $animate.addClass(container, "projects-container").then(function () {
+        $animate.removeClass(threeView, "three-focus");
       });
 
-      loadTheHero();     
-
+      loadTheHero();
     }
 
     function loadTheHero() {
+      var theHero = $(new Image());
 
-      var theHero = $( new Image() );
+      theHero
+        .load(function (event) {
+          $scope.$apply(function () {
+            $scope.heroImg = event.target.src;
+          });
 
-      theHero.load(
-                  function( event ) {
-
-                      $scope.$apply(
-                          function() {
-
-                              $scope.heroImg = event.target.src;   
-                          }
-                      );
-
-                      if ( imgUrls ) {
-
-                        loadTheFirstImage();
-                        $scope.appViewState.loadingProject = false;
-                        showProjectHero();
-
-                      } else {
-
-                        showProject();
-                        
-                      }
-                      
-
-                  }
-              )
-              .error(
-                  function( event ) {
-
-                      console.info('error loading hero')
-
-                  }
-              )
-              .prop( "src", $scope.project.hero_image );
-
+          if (imgUrls) {
+            loadTheFirstImage();
+            $scope.appViewState.loadingProject = false;
+            showProjectHero();
+          } else {
+            showProject();
+          }
+        })
+        .error(function (event) {
+          console.info("error loading hero");
+        })
+        .prop("src", $scope.project.hero_image);
     }
 
     function loadTheFirstImage() {
+      var firstImage = $(new Image());
 
-      var firstImage = $( new Image() );
+      firstImage
+        .load(function (event) {
+          $scope.$apply(function () {
+            $scope.project.firstImage = event.target.src;
+          });
 
-      firstImage.load(
-                  function( event ) {
+          loadTheContent();
 
-                      $scope.$apply(
-                          function() {
-
-                              $scope.project.firstImage = event.target.src;   
-                          }
-                      );
-
-                      loadTheContent();
-
-                      $timeout(function() {
-                        $scope.showFirstImage = true;
-                      },2000);
-
-                  }
-              )
-              .error(
-                  function( event ) {
-
-                      console.info('error loading hero')
-                  }
-              )
-              .prop( "src", $scope.project.content_images[0] );
+          $timeout(function () {
+            $scope.showFirstImage = true;
+          }, 2000);
+        })
+        .error(function (event) {
+          console.info("error loading hero");
+        })
+        .prop("src", $scope.project.content_images[0]);
     }
 
     function loadTheContent() {
+      imageFactory.preloadImages(imgUrls).then(
+        function handleResolve(imgStore) {
+          // Loading was successful.
+          $scope.isLoading = false;
+          $scope.isSuccessful = true;
+          $scope.project.contentImages = imgUrls;
 
-      imageFactory.preloadImages( imgUrls ).then(
+          $scope.appViewState.loadingContent = false;
+          $scope.appViewState.aniStatus = "ready";
 
-            function handleResolve( imgStore ) {
+          showProjectContent();
+        },
+        function handleReject(featuredImg) {
+          // Loading failed on at least one image.
+          $scope.isLoading = false;
+          $scope.isSuccessful = false;
 
-                // Loading was successful.
-                $scope.isLoading = false;
-                $scope.isSuccessful = true;
-                $scope.project.contentImages = imgUrls;
-
-                $scope.appViewState.loadingContent = false;   
-                $scope.appViewState.aniStatus='ready';
-
-                showProjectContent();          
-                
-
-            },
-            function handleReject( featuredImg ) {
-
-                // Loading failed on at least one image.
-                $scope.isLoading = false;
-                $scope.isSuccessful = false;
-
-                console.info( "Preload Failure" );
-
-            },
-            function handleNotify( event ) {
-
-                $scope.percentLoaded = event.percent;
-            
-            });
-
+          console.info("Preload Failure");
+        },
+        function handleNotify(event) {
+          $scope.percentLoaded = event.percent;
+        }
+      );
     }
 
     function showProjectHero() {
-
       $scope.radius = 100;
       $scope.winWidth = $window.innerWidth;
 
-     /* var resetTarget = {};
+      /* var resetTarget = {};
       projectFactory.setTarget(resetTarget);*/
 
       /// set up some visual stuff ... fade in image, parallax etc
 
-      $timeout(function() {
+      $timeout(function () {
+        $scope.showImage = true;
+      }, 1000);
 
-      $scope.showImage = true;               
+      $timeout(function () {
+        $scope.showCopy = true;
+      }, 1500);
 
-      },1000);
-
-      $timeout(function() {
-
-      $scope.showCopy = true;
-
-      },1500);
-
-      $timeout(function() {
+      $timeout(function () {
         $scope.showPrevNext = true;
-      },2000);
-
+      }, 2000);
     }
 
     function showProjectContent() {
-
       $scope.imagesReady = "ready";
 
-      $timeout(function() {
+      $timeout(function () {
         $scope.fullyLoaded = true;
 
-        $window.ga('send', 'pageview', { page: $location.url() });
-        
-      },500);
-
-      
-
+        $window.ga("send", "pageview", { page: $location.url() });
+      }, 500);
     }
-
-
-
-}]);
+  },
+]);

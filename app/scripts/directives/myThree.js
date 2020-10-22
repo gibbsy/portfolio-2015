@@ -1,305 +1,281 @@
-'use strict';
+"use strict";
 
-angular.module('angularApp')
-  .directive('mythree', ['$window', '$location','$document','$timeout', 'ngAudio', 'imageFactory','projectFactory', function ($window, $location, $document, $timeout, ngAudio, imageFactory, projectFactory) {
+angular.module("angularApp").directive("mythree", [
+  "$window",
+  "$location",
+  "$document",
+  "$timeout",
+  "ngAudio",
+  "imageFactory",
+  "projectFactory",
+  function (
+    $window,
+    $location,
+    $document,
+    $timeout,
+    ngAudio,
+    imageFactory,
+    projectFactory
+  ) {
+    return {
+      restrict: "E",
+      scope: false,
+      link: function linkFunc(scope, element, attrs) {
+        var mouseX = 0,
+          mouseY = 0,
+          winWidth = $window.innerWidth,
+          winHeight = $window.innerHeight,
+          windowHalfX = winWidth / 2,
+          windowHalfY = winHeight / 2,
+          camFOV,
+          gridOffsetXval,
+          gridOffsetYval,
+          gridPaddingX,
+          gridPaddingY,
+          tileWidth,
+          tileHeight;
 
-return {
-  restrict: 'E',
-  scope: false,
-  link: function linkFunc(scope, element, attrs) {
+        var isLandscape = winWidth > winHeight;
 
-   var mouseX = 0, mouseY = 0,
-    winWidth = $window.innerWidth,
-    winHeight = $window.innerHeight,
-    windowHalfX = winWidth / 2,
-    windowHalfY = winHeight / 2,
-    camFOV, gridOffsetXval, gridOffsetYval, 
-    gridPaddingX, gridPaddingY,
-    tileWidth, tileHeight;
+        if (isLandscape) {
+          if (winWidth > 0 && winWidth < 769) {
+            (gridPaddingX = winWidth * 0.27),
+              (gridPaddingY = winHeight * 0.3),
+              (gridOffsetXval = winWidth * 0.5),
+              (gridOffsetYval = 70),
+              (tileWidth = 100),
+              (tileHeight = 80),
+              (camFOV = 35);
+          } else if (winWidth > 768 && winWidth < 1200) {
+            (gridPaddingX = winWidth * 0.14),
+              (gridPaddingY = winHeight * 0.18),
+              (gridOffsetXval = winWidth * 0.27),
+              (gridOffsetYval = 150),
+              (tileWidth = 112),
+              (tileHeight = 90),
+              (camFOV = 50);
+          } else {
+            (gridPaddingX = winWidth * 0.13),
+              (gridPaddingY = winHeight * 0.18),
+              (gridOffsetXval = winWidth * 0.25),
+              (gridOffsetYval = 200),
+              (tileWidth = 150),
+              (tileHeight = 120),
+              (camFOV = 55);
+          }
+        } else if (!isLandscape) {
+          if (winWidth > 0 && winWidth < 640) {
+            (gridPaddingX = winWidth * 0.32),
+              (gridPaddingY = winHeight * 0.2),
+              (gridOffsetXval = winWidth * 0.6),
+              (gridOffsetYval = 200),
+              (tileWidth = 80),
+              (tileHeight = 64),
+              (camFOV = 75);
+          } else {
+            (gridPaddingX = winWidth * 0.25),
+              (gridPaddingY = winHeight * 0.15),
+              (gridOffsetXval = winWidth * 0.5),
+              (gridOffsetYval = 200),
+              (tileWidth = 130),
+              (tileHeight = 104),
+              (camFOV = 75);
+          }
+        }
 
-    var isLandscape = winWidth > winHeight;
+        var container, stats;
+        var camera,
+          scene,
+          renderer,
+          light,
+          directionalLight,
+          directionalLight2,
+          directionalLight3,
+          spotlight,
+          triangle,
+          lightTarget,
+          shape;
+        var targetTile, targetObj;
+        var tileMeshes = [],
+          rays,
+          caster;
 
-    if(isLandscape) {
-      
-      if( winWidth > 0 && winWidth < 769 ) {
+        var PI2 = Math.PI * 2;
 
-        gridPaddingX = winWidth * 0.27,
-        gridPaddingY = winHeight * 0.3,
-        gridOffsetXval = winWidth * 0.5,
-        gridOffsetYval = 70,
-        tileWidth = 100,
-        tileHeight = 80,
-        camFOV = 35;
+        var mouse = { x: 10000, y: 10000 },
+          INTERSECTED;
 
-      } else if( winWidth > 768 && winWidth < 1200 ) {
+        var view = "scene";
 
-        gridPaddingX = winWidth * 0.14,
-        gridPaddingY = winHeight * 0.18,
-        gridOffsetXval = winWidth * 0.27,
-        gridOffsetYval = 150,
-        tileWidth = 112,
-        tileHeight = 90,
-        camFOV = 50;
-
-      } else {
-        
-        gridPaddingX = winWidth * 0.13,
-        gridPaddingY = winHeight * 0.18,
-        gridOffsetXval = winWidth * 0.25,
-        gridOffsetYval = 200,
-        tileWidth = 150,
-        tileHeight = 120,
-        camFOV = 55;
-      }
-
-    } else if (!isLandscape) {
-
-      if( winWidth > 0 && winWidth < 640 ) {
-
-        gridPaddingX = winWidth * 0.32,
-        gridPaddingY = winHeight * 0.2,
-        gridOffsetXval = winWidth * 0.6,
-        gridOffsetYval = 200,
-        tileWidth = 80,
-        tileHeight = 64,
-        camFOV = 75;
-
-      } else {
-
-        gridPaddingX = winWidth * 0.25,
-        gridPaddingY = winHeight * 0.15,
-        gridOffsetXval = winWidth * 0.5,
-        gridOffsetYval = 200,
-        tileWidth = 130,
-        tileHeight = 104,
-        camFOV = 75;
-
-      }
-
-    }
-
-    var container, stats;
-    var camera, scene, renderer, light, directionalLight, directionalLight2, directionalLight3, spotlight, triangle, lightTarget, shape;
-    var targetTile, targetObj;
-    var tileMeshes = [], rays, caster;
-
-    var PI2 = Math.PI * 2;
-
-    var mouse = { x: 10000, y: 10000 }, INTERSECTED;
-
-    var view = 'scene';
-
-    scope.isAnimating = true;
-    scope.soundOn = true;
-
-    var whomp = ngAudio.load("media/sound/whomp.mp3"),
-    whoosh = ngAudio.load("media/sound/whoosh1.mp3"),
-    whomp2 = ngAudio.load("media/sound/whomp2.mp3"),
-    glitch = ngAudio.load("media/sound/glitch.mp3"),
-    zap = ngAudio.load("media/sound/zap.mp3"),
-    electro = ngAudio.load("media/sound/electro-zoom.mp3");
-
-    scope.selectSound = ngAudio.load("media/sound/select.mp3");
-
-    var ambient;
-
-    function createSound() {
-
-        var bg = document.createElement('audio');
-
-        ambient = jQuery( bg );
-
-        ambient.on('canplay', function( event ) {
-
-            scope.soundOn = true;
-      
-        })
-        .prop('src', '/media/sound/soundscape.mp3')
-        .prop('autoplay', 'autoplay')
-        .prop('loop', 'loop')
-        .prop('id', 'ambient-sound');
-
-    }
-
-    
-
-    scope.toggleSound = function () {
-      if (scope.soundOn == true) {
-
-        ambient.animate({volume: 0}, 1000);
-        ngAudio.mute();
-        scope.soundOn = false;
-
-      } else if (scope.soundOn == false) {
-
-        ambient.animate({volume: 1}, 1000);
-        ngAudio.unmute();
+        scope.isAnimating = true;
         scope.soundOn = true;
 
-      }
+        var whomp = ngAudio.load("media/sound/whomp.mp3"),
+          whoosh = ngAudio.load("media/sound/whoosh1.mp3"),
+          whomp2 = ngAudio.load("media/sound/whomp2.mp3"),
+          glitch = ngAudio.load("media/sound/glitch.mp3"),
+          zap = ngAudio.load("media/sound/zap.mp3"),
+          electro = ngAudio.load("media/sound/electro-zoom.mp3");
 
-    }
+        scope.selectSound = ngAudio.load("media/sound/select.mp3");
 
-    scope.muteSounds = function () {
+        var ambient;
 
-      if (scope.appViewState.viewing!='three') {
+        function createSound() {
+          var bg = document.createElement("audio");
 
-         ambient.animate({volume: 0}, 1000);
-      }
-    }
+          ambient = jQuery(bg);
 
-    scope.unmuteSounds = function () {
+          ambient
+            .on("canplay", function (event) {
+              scope.soundOn = true;
+            })
+            .prop("src", "/media/sound/soundscape.mp3")
+            .prop("autoplay", "autoplay")
+            .prop("loop", "loop")
+            .prop("id", "ambient-sound");
+        }
 
-      if (scope.appViewState.viewing==='three' && scope.soundOn == true) {
+        scope.toggleSound = function () {
+          if (scope.soundOn == true) {
+            ambient.animate({ volume: 0 }, 1000);
+            ngAudio.mute();
+            scope.soundOn = false;
+          } else if (scope.soundOn == false) {
+            ambient.animate({ volume: 1 }, 1000);
+            ngAudio.unmute();
+            scope.soundOn = true;
+          }
+        };
 
-         ambient.animate({volume: 1}, 1000);
-      
-      }
+        scope.muteSounds = function () {
+          if (scope.appViewState.viewing != "three") {
+            ambient.animate({ volume: 0 }, 1000);
+          }
+        };
 
-    }
+        scope.unmuteSounds = function () {
+          if (scope.appViewState.viewing === "three" && scope.soundOn == true) {
+            ambient.animate({ volume: 1 }, 1000);
+          }
+        };
 
-  scope.$watch('appViewState.viewing', function() {
+        scope.$watch("appViewState.viewing", function () {
+          if (scope.appViewState.viewing != "three") {
+            ambient.animate({ volume: 0 }, 500);
+            ngAudio.mute();
+          } else if (
+            scope.appViewState.viewing === "three" &&
+            scope.soundOn == true
+          ) {
+            ambient.animate({ volume: 1 }, 500);
+            ngAudio.unmute();
+          }
+        });
 
-    if (scope.appViewState.viewing!='three') {
+        scope.exploreWork = function () {
+          scope.appViewState.threeUi = "browse";
 
-        ambient.animate({volume: 0}, 500);
-        ngAudio.mute();
-      
-      }
-      
-     else if (scope.appViewState.viewing==='three' && scope.soundOn == true) {
+          scope.showInstructions = true;
 
-        ambient.animate({volume: 1}, 500);
-        ngAudio.unmute();
-      
-      }
+          scope.appViewState.viewing = "instructions";
 
-   });
+          angular.element(".instructions").animate(
+            {
+              opacity: 1,
+            },
+            50,
+            "linear"
+          );
 
-    scope.exploreWork = function () {
+          if (scope.soundOn === true) {
+            scope.selectSound.play();
+          }
+        };
 
-      scope.appViewState.threeUi = 'browse';
+        scope.closeInstructions = function () {
+          if (scope.soundOn === true) {
+            scope.selectSound.play();
+          }
 
-      scope.showInstructions = true;
+          angular.element(".instructions").animate(
+            {
+              opacity: 0,
+            },
+            200,
+            "linear"
+          );
 
-      scope.appViewState.viewing = 'instructions';
+          $timeout(function () {
+            scope.showInstructions = false;
+            scope.appViewState.viewing = "three";
+          }, 500);
+        };
 
-      angular.element('.instructions')
-        .animate({
-          opacity: 1
-        },50,'linear' );
+        scope.resetThree = function () {
+          if (scope.isAnimating) {
+            return;
+          }
 
-      if(scope.soundOn === true){
-      
-       scope.selectSound.play();
-    
-    }
+          if (scope.soundOn === true) {
+            scope.selectSound.play();
+          }
 
-    }
+          view = "scene";
+          scope.explodeTiles();
+          targetTile = undefined;
+          projectFactory.setTarget(undefined);
+          scope.appViewState.threeUi = "brand";
+          scope.appViewState.tileMode = "explode";
+        };
 
-    scope.closeInstructions = function () {
+        scope.explodeView = function () {
+          if (scope.soundOn === true) {
+            scope.selectSound.play();
+          }
 
-       if(scope.soundOn === true){
-      
-       scope.selectSound.play();
-    
-    }
+          scope.appViewState.threeUi = "browse";
+          scope.appViewState.tileMode = "explode";
+          scope.explodeTiles();
+        };
 
-      angular.element('.instructions')
-        .animate({
-          opacity: 0
-        },200,'linear');
+        scope.resetGrid = function () {
+          if (scope.soundOn === true) {
+            scope.selectSound.play();
+          }
+          scope.appViewState.threeUi = "browse";
+          scope.appViewState.tileMode = "grid";
+          scope.tilesToGrid();
+        };
 
-        $timeout(function() {
-          scope.showInstructions = false;
-          scope.appViewState.viewing = 'three';
-        },500);
+        scope.viewProject = function () {
+          if (scope.soundOn === true) {
+            scope.selectSound.play();
+          }
+          scope.target = projectFactory.getTarget();
 
+          var goGet = "/project/" + scope.target.slug;
 
-    }
+          $location.path(goGet);
+        };
 
-    scope.resetThree = function () {
+        function contentTile(order, w, h, op, hue, img) {
+          this.order = order;
+          this.geometry = new THREE.PlaneBufferGeometry(w, h);
+          this.opacity = op;
+          this.map = img;
+          this.tex = new THREE.MeshPhongMaterial({
+            color: randomColor({ luminosity: "bright", hue: hue }),
+            side: THREE.DoubleSide,
+            opacity: this.opacity,
+          });
 
-      if (scope.isAnimating) {
-        return
-      }
+          this.newTex = new THREE.Texture(this.map);
+          this.newTex.needsUpdate = true;
 
-      if(scope.soundOn === true){
-      
-       scope.selectSound.play();
-    
-    }
+          ///// aspect ratio stuff
 
-      view = 'scene'
-      scope.explodeTiles();
-      targetTile = undefined;
-      projectFactory.setTarget(undefined);
-      scope.appViewState.threeUi = 'brand';
-      scope.appViewState.tileMode = 'explode';
-
-
-    }
-
-    scope.explodeView = function () {
-
-      if(scope.soundOn === true){
-      
-       scope.selectSound.play();
-    
-    }
-
-      scope.appViewState.threeUi = 'browse';
-      scope.appViewState.tileMode = 'explode';
-      scope.explodeTiles();
-
-    }
-
-    scope.resetGrid = function () {
-
-      if(scope.soundOn === true){
-      
-       scope.selectSound.play();
-    
-    }
-      scope.appViewState.threeUi = 'browse';
-      scope.appViewState.tileMode = 'grid'; 
-      scope.tilesToGrid();
-
-    }
-
-    scope.viewProject = function () {
-
-      if(scope.soundOn === true){
-      
-       scope.selectSound.play();
-    
-    }
-      scope.target = projectFactory.getTarget();
-
-      var goGet = '/project/'+scope.target.slug;
-
-      $location.path(goGet);
-
-    }
-
-     function contentTile (order,w,h,op,hue,img) {
-
-      this.order = order;
-      this.geometry = new THREE.PlaneBufferGeometry( w,h );
-      this.opacity = op;
-      this.map = img;
-      this.tex = new THREE.MeshPhongMaterial( { 
-        color: randomColor({ luminosity: 'bright', hue: hue}), 
-        side: THREE.DoubleSide ,
-        opacity: this.opacity 
-         });
-
-      this.newTex = new THREE.Texture( this.map );
-      this.newTex.needsUpdate = true; 
-
-      ///// aspect ratio stuff
-
-      /*var texWidth = this.newTex.image.width,
+          /*var texWidth = this.newTex.image.width,
       texHeight = this.newTex.image.height,
       imgAspect;
         if ( texWidth > texHeight ) {
@@ -317,724 +293,827 @@ return {
           this.newTex.repeat.y = 1;
         }*/
 
+          this.imgTex = new THREE.MeshPhongMaterial({
+            color: 0xffffff,
+            opacity: this.opacity,
+            side: THREE.DoubleSide,
+            map: this.newTex,
+          });
 
-      this.imgTex = new THREE.MeshPhongMaterial( { 
-        color: 0xffffff, 
-        opacity: this.opacity , 
-        side: THREE.DoubleSide, 
-        map: this.newTex}); 
+          //this.imgTex.needsUpdate = true;
 
-      //this.imgTex.needsUpdate = true;
-      
-      this.object = new THREE.Mesh( this.geometry, this.tex );  
-      this.object.position.set(0,0,-5000);
-      this.object.isNavigation = true;
+          this.object = new THREE.Mesh(this.geometry, this.tex);
+          this.object.position.set(0, 0, -5000);
+          this.object.isNavigation = true;
 
-      return this;
-    }
-
-    contentTile.prototype = {
-
-      aniToGrid: function ( delay , callback) {
-
-      var delay = delay || 0,
-        theObj = this.object,
-        complete = callback || undefined,
-        gridX = ( ( this.order % 5 ) * gridPaddingX ) - gridOffsetXval,
-        gridY = ( - ( Math.floor( this.order / 5 ) % 8 ) * gridPaddingY ) + gridOffsetYval,
-        gridZ = ( Math.floor( this.order / 25 ) ) * 100 - 200;
-
-      var gridTween = new TWEEN.Tween( theObj.position ).to( {
-          x: gridX,
-          y: gridY,
-          z: gridZ }, 2000)
-          .delay(delay)
-          .onComplete(complete)
-          .easing( TWEEN.Easing.Quadratic.Out);
-      return gridTween; 
-      },
-
-      backToGrid: function () {
-
-    var theObj = this.object,
-        gridX = ( ( this.order % 5 ) * gridPaddingX ) - gridOffsetXval,
-        gridY = ( - ( Math.floor( this.order / 5 ) % 8 ) * gridPaddingY ) + gridOffsetYval,
-        gridZ = ( Math.floor( this.order / 25 ) ) * 100 - 200;
-
-      var gridTween = new TWEEN.Tween( theObj.position ).to( {
-          x: gridX,
-          y: gridY,
-          z: gridZ }, 500)
-          .easing( TWEEN.Easing.Quadratic.Out);
-      return gridTween; 
-      },
-
-      randScale: function( delay, duration ) {
-
-       var delay = delay || 0,
-       duration = duration || 500,
-       randScale = new TWEEN.Tween(this.object.scale)
-          .to({ x: Math.random() * 6 - 2,
-              y: Math.random() * 6 - 2 }, duration)
-          .delay(delay)
-          .easing( TWEEN.Easing.Back.InOut);
-          return randScale;
-      },
-
-      randRotation: function ( delay, duration ) {
-
-      var delay = delay || 0, 
-        duration = duration || 1000,
-        rotation =  new TWEEN.Tween( this.object.rotation ).to( {
-        x: (Math.random() * 2 * Math.PI),
-        y: (Math.random() * 2 * Math.PI),
-        z: (Math.random() * 2 * Math.PI) }, duration )
-        .delay(delay)
-        .easing( TWEEN.Easing.Quadratic.InOut);
-      return rotation;
-      },
-      
-      showHideImage: function ( delay ) {
-
-      var delay = delay || 0, 
-        theObj = this,
-        theMesh = this.object,
-        postaction = function() {};
-
-        var r1 = new TWEEN.Tween( theMesh.rotation ).to( {
-        y: 90*(Math.PI/180)}, 200 )
-        .easing( TWEEN.Easing.Quadratic.In)
-        .delay(delay)
-        .onComplete(function() {
-          theObj.toggleTexture();
-        });
-        var r2 = new TWEEN.Tween( theMesh.rotation ).to( {
-        x: 0,
-        y: 0,
-        z: 0}, 200 )
-        .easing( TWEEN.Easing.Quadratic.Out);
-
-        var r3 = new TWEEN.Tween( theMesh.rotation ).to( {
-        y: 90*(Math.PI/180)}, 200 )
-        .easing( TWEEN.Easing.Quadratic.In)
-        .delay(2000)
-        .onComplete(function() {
-          theObj.toggleTexture();
-        });
-
-        var r4 = new TWEEN.Tween( theMesh.rotation ).to( {
-        x: 0,
-        y: 0,
-        z: 0}, 200 )
-        .easing( TWEEN.Easing.Quadratic.Out)
-        .onComplete(function() {
-          postaction(theObj);
-        });
-
-        r1.chain(r2);
-        r2.chain(r3);
-        r3.chain(r4);
-        r1.start();
-        //postaction();
-      return { 
-            done:function(f){
-                postaction=f || postaction 
-            }
+          return this;
         }
 
-      },
+        contentTile.prototype = {
+          aniToGrid: function (delay, callback) {
+            var delay = delay || 0,
+              theObj = this.object,
+              complete = callback || undefined,
+              gridX = (this.order % 5) * gridPaddingX - gridOffsetXval,
+              gridY =
+                -(Math.floor(this.order / 5) % 8) * gridPaddingY +
+                gridOffsetYval,
+              gridZ = Math.floor(this.order / 25) * 100 - 200;
 
-      flipToImage: function () {
+            var gridTween = new TWEEN.Tween(theObj.position)
+              .to(
+                {
+                  x: gridX,
+                  y: gridY,
+                  z: gridZ,
+                },
+                2000
+              )
+              .delay(delay)
+              .onComplete(complete)
+              .easing(TWEEN.Easing.Quadratic.Out);
+            return gridTween;
+          },
 
-        var theObj = this,
-        theMesh = this.object,
-        postaction = function() {};
+          backToGrid: function () {
+            var theObj = this.object,
+              gridX = (this.order % 5) * gridPaddingX - gridOffsetXval,
+              gridY =
+                -(Math.floor(this.order / 5) % 8) * gridPaddingY +
+                gridOffsetYval,
+              gridZ = Math.floor(this.order / 25) * 100 - 200;
 
-        var r1 = new TWEEN.Tween( theMesh.rotation ).to( {
-        y: 90*(Math.PI/180)}, 200 )
-        .easing( TWEEN.Easing.Quadratic.In)
-        .onComplete(function() {
-          theObj.imageTex();
-        });
-        var r2 = new TWEEN.Tween( theMesh.rotation ).to( {
-        x: 0,
-        y: 0,
-        z: 0}, 200 )
-        .easing( TWEEN.Easing.Quadratic.Out)
-        .onComplete(function() {
-          postaction(theObj);
-        });
+            var gridTween = new TWEEN.Tween(theObj.position)
+              .to(
+                {
+                  x: gridX,
+                  y: gridY,
+                  z: gridZ,
+                },
+                500
+              )
+              .easing(TWEEN.Easing.Quadratic.Out);
+            return gridTween;
+          },
 
-        r1.chain(r2);
+          randScale: function (delay, duration) {
+            var delay = delay || 0,
+              duration = duration || 500,
+              randScale = new TWEEN.Tween(this.object.scale)
+                .to(
+                  { x: Math.random() * 6 - 2, y: Math.random() * 6 - 2 },
+                  duration
+                )
+                .delay(delay)
+                .easing(TWEEN.Easing.Back.InOut);
+            return randScale;
+          },
 
-        r1.start();
+          randRotation: function (delay, duration) {
+            var delay = delay || 0,
+              duration = duration || 1000,
+              rotation = new TWEEN.Tween(this.object.rotation)
+                .to(
+                  {
+                    x: Math.random() * 2 * Math.PI,
+                    y: Math.random() * 2 * Math.PI,
+                    z: Math.random() * 2 * Math.PI,
+                  },
+                  duration
+                )
+                .delay(delay)
+                .easing(TWEEN.Easing.Quadratic.InOut);
+            return rotation;
+          },
 
-        if (scope.soundOn === true && scope.appViewState.viewing==='three') {
+          showHideImage: function (delay) {
+            var delay = delay || 0,
+              theObj = this,
+              theMesh = this.object,
+              postaction = function () {};
 
-             whomp.play();
-          
-          }
+            var r1 = new TWEEN.Tween(theMesh.rotation)
+              .to(
+                {
+                  y: 90 * (Math.PI / 180),
+                },
+                200
+              )
+              .easing(TWEEN.Easing.Quadratic.In)
+              .delay(delay)
+              .onComplete(function () {
+                theObj.toggleTexture();
+              });
+            var r2 = new TWEEN.Tween(theMesh.rotation)
+              .to(
+                {
+                  x: 0,
+                  y: 0,
+                  z: 0,
+                },
+                200
+              )
+              .easing(TWEEN.Easing.Quadratic.Out);
 
-         return { 
-            done:function(f){
-                postaction=f || postaction 
+            var r3 = new TWEEN.Tween(theMesh.rotation)
+              .to(
+                {
+                  y: 90 * (Math.PI / 180),
+                },
+                200
+              )
+              .easing(TWEEN.Easing.Quadratic.In)
+              .delay(2000)
+              .onComplete(function () {
+                theObj.toggleTexture();
+              });
+
+            var r4 = new TWEEN.Tween(theMesh.rotation)
+              .to(
+                {
+                  x: 0,
+                  y: 0,
+                  z: 0,
+                },
+                200
+              )
+              .easing(TWEEN.Easing.Quadratic.Out)
+              .onComplete(function () {
+                postaction(theObj);
+              });
+
+            r1.chain(r2);
+            r2.chain(r3);
+            r3.chain(r4);
+            r1.start();
+            //postaction();
+            return {
+              done: function (f) {
+                postaction = f || postaction;
+              },
+            };
+          },
+
+          flipToImage: function () {
+            var theObj = this,
+              theMesh = this.object,
+              postaction = function () {};
+
+            var r1 = new TWEEN.Tween(theMesh.rotation)
+              .to(
+                {
+                  y: 90 * (Math.PI / 180),
+                },
+                200
+              )
+              .easing(TWEEN.Easing.Quadratic.In)
+              .onComplete(function () {
+                theObj.imageTex();
+              });
+            var r2 = new TWEEN.Tween(theMesh.rotation)
+              .to(
+                {
+                  x: 0,
+                  y: 0,
+                  z: 0,
+                },
+                200
+              )
+              .easing(TWEEN.Easing.Quadratic.Out)
+              .onComplete(function () {
+                postaction(theObj);
+              });
+
+            r1.chain(r2);
+
+            r1.start();
+
+            if (
+              scope.soundOn === true &&
+              scope.appViewState.viewing === "three"
+            ) {
+              whomp.play();
             }
-        }
 
-      },
-      flipToColor: function () {
-        var theObj = this,
-        theMesh = this.object,
-        currentRy = this.object.rotation.y,
-        targetRy = currentRy+(90*(Math.PI/180)),
-        postaction = function() {};
+            return {
+              done: function (f) {
+                postaction = f || postaction;
+              },
+            };
+          },
+          flipToColor: function () {
+            var theObj = this,
+              theMesh = this.object,
+              currentRy = this.object.rotation.y,
+              targetRy = currentRy + 90 * (Math.PI / 180),
+              postaction = function () {};
 
-        var r1 = new TWEEN.Tween( theMesh.rotation ).to( {
-        y: targetRy}, 200 )
-        .easing( TWEEN.Easing.Quadratic.In)
-        .onComplete(function() {
-          theObj.colorTex();
-        });
-        var r2 = new TWEEN.Tween( theMesh.rotation ).to( {
-        y: currentRy}, 200 )
-        .easing( TWEEN.Easing.Quadratic.Out)
-        .onComplete(function() {
-          postaction(theObj);
-        });
+            var r1 = new TWEEN.Tween(theMesh.rotation)
+              .to(
+                {
+                  y: targetRy,
+                },
+                200
+              )
+              .easing(TWEEN.Easing.Quadratic.In)
+              .onComplete(function () {
+                theObj.colorTex();
+              });
+            var r2 = new TWEEN.Tween(theMesh.rotation)
+              .to(
+                {
+                  y: currentRy,
+                },
+                200
+              )
+              .easing(TWEEN.Easing.Quadratic.Out)
+              .onComplete(function () {
+                postaction(theObj);
+              });
 
-        r1.chain(r2);
+            r1.chain(r2);
 
-        r1.start();
+            r1.start();
 
-        if (scope.soundOn === true && scope.appViewState.viewing==='three') {
-
-             whomp.play();
-          
-          }
-
-         return { 
-            done:function(f){
-                postaction=f || postaction 
+            if (
+              scope.soundOn === true &&
+              scope.appViewState.viewing === "three"
+            ) {
+              whomp.play();
             }
-        }
 
-      },
-      toggleTexture: function () {
-        // toggle between showing and hiding the tile image
-      var theMesh = this.object;
-        theMesh.material.needsUpdate = true;
-        theMesh.geometry.buffersNeedUpdate = true;
-        theMesh.geometry.uvsNeedUpdate = true;
+            return {
+              done: function (f) {
+                postaction = f || postaction;
+              },
+            };
+          },
+          toggleTexture: function () {
+            // toggle between showing and hiding the tile image
+            var theMesh = this.object;
+            theMesh.material.needsUpdate = true;
+            theMesh.geometry.buffersNeedUpdate = true;
+            theMesh.geometry.uvsNeedUpdate = true;
 
-        theMesh.material = (theMesh.material==this.tex) ? this.imgTex : this.tex;
+            theMesh.material =
+              theMesh.material == this.tex ? this.imgTex : this.tex;
+          },
+          colorTex: function () {
+            var theMesh = this.object;
+            theMesh.material.needsUpdate = true;
+            theMesh.geometry.buffersNeedUpdate = true;
+            theMesh.geometry.uvsNeedUpdate = true;
 
-      },
-      colorTex: function () {
-         var theMesh = this.object;
-        theMesh.material.needsUpdate = true;
-        theMesh.geometry.buffersNeedUpdate = true;
-        theMesh.geometry.uvsNeedUpdate = true;
+            theMesh.material = this.tex;
+          },
+          imageTex: function () {
+            var theMesh = this.object;
+            theMesh.material.needsUpdate = true;
+            theMesh.geometry.buffersNeedUpdate = true;
+            theMesh.geometry.uvsNeedUpdate = true;
 
-        theMesh.material = this.tex;
+            theMesh.material = this.imgTex;
+          },
+          moveRandom: function (delay) {
+            var delay = delay || 0,
+              This = this,
+              theObj = this.object, // cache the object so the update function can access it
+              actualZPos = 0,
+              currentZPos = { zPos: 0 };
+            this.targetZPos = Math.random() * 600 - 200;
 
-      },
-      imageTex: function () {
-
-        var theMesh = this.object;
-        theMesh.material.needsUpdate = true;
-        theMesh.geometry.buffersNeedUpdate = true;
-        theMesh.geometry.uvsNeedUpdate = true;
-
-        theMesh.material = this.imgTex;
-
-      },
-      moveRandom: function ( delay ) {
-
-      var delay = delay || 0,
-        This = this,
-        theObj = this.object, // cache the object so the update function can access it
-        actualZPos= 0,
-          currentZPos = { zPos: 0 };
-          this.targetZPos = Math.random() * 600 - 200;
-
-      var move = new TWEEN.Tween(currentZPos)
-            .to({ zPos: this.targetZPos }, 1500)
-            .onUpdate(function() {
-
-              var difference = Math.abs(currentZPos.zPos - actualZPos);
+            var move = new TWEEN.Tween(currentZPos)
+              .to({ zPos: this.targetZPos }, 1500)
+              .onUpdate(function () {
+                var difference = Math.abs(currentZPos.zPos - actualZPos);
                 actualZPos = currentZPos.zPos;
                 theObj.translateX(difference);
                 theObj.translateY(difference);
                 theObj.translateZ(difference);
-            })
-            .delay(delay)
-            .easing(TWEEN.Easing.Quadratic.InOut);
-       return move;
-      },
-      setCameraPos: function () {
+              })
+              .delay(delay)
+              .easing(TWEEN.Easing.Quadratic.InOut);
+            return move;
+          },
+          setCameraPos: function () {
+            var relCameraOffset = new THREE.Vector3(0, 0, 220);
+            this.cameraOffset = relCameraOffset.applyMatrix4(
+              this.object.matrix
+            );
+          },
+          introAnimation: function () {
+            var theTile = this,
+              toGrid = this.aniToGrid(0, function () {
+                theTile.showHideImage(500).done(function (theObject) {
+                  var translate = theObject.moveRandom(),
+                    randRotate = theObject.randRotation(),
+                    randScale = theObject.randScale(500);
+                  randScale.chain(randRotate);
+                  randRotate.chain(translate);
 
-      var relCameraOffset = new THREE.Vector3(0,0,220);
-      this.cameraOffset = relCameraOffset.applyMatrix4(this.object.matrix); 
-      
-      } ,
-      introAnimation: function () {
+                  randScale.start();
+                });
+              });
 
-      var theTile = this,
-        toGrid = this.aniToGrid(0,function() { theTile.showHideImage(500)
-          .done(function(theObject){ 
+            toGrid.start();
+          },
+          resetTranslate: function () {
+            var theObj = this.object, // cache the object so the update function can access it
+              actualZPos = this.targetZPos,
+              currentZPos = { zPos: this.targetZPos },
+              targetZPos = 0;
 
-              var translate = theObject.moveRandom(),
-                randRotate = theObject.randRotation(),
-                randScale = theObject.randScale(500);
-                randScale.chain(randRotate);
-                randRotate.chain(translate);
-
-                randScale.start();
-
-          }) 
-        });
-
-        toGrid.start();
-
-      },
-      resetTranslate: function () {
-
-        var theObj = this.object, // cache the object so the update function can access it
-        actualZPos= this.targetZPos,
-          currentZPos = { zPos: this.targetZPos },
-          targetZPos = 0;
-
-      var move = new TWEEN.Tween(currentZPos)
-            .to({ zPos: targetZPos }, 500)
-            .onUpdate(function() {
-
-              var difference = Math.abs(currentZPos.zPos - actualZPos);
+            var move = new TWEEN.Tween(currentZPos)
+              .to({ zPos: targetZPos }, 500)
+              .onUpdate(function () {
+                var difference = Math.abs(currentZPos.zPos - actualZPos);
                 actualZPos = currentZPos.zPos;
                 theObj.translateX(difference);
                 theObj.translateY(difference);
                 theObj.translateZ(difference);
-            })
-            .easing(TWEEN.Easing.Quadratic.InOut);
-       return move;
+              })
+              .easing(TWEEN.Easing.Quadratic.InOut);
+            return move;
+          },
+          resetScale: function () {
+            var resetScale = new TWEEN.Tween(this.object.scale)
+              .to(
+                {
+                  x: 1,
+                  y: 1,
+                },
+                500
+              )
+              .easing(TWEEN.Easing.Back.InOut);
+            return resetScale;
+          },
+          resetRotation: function () {
+            var resetRotation = new TWEEN.Tween(this.object.rotation)
+              .to(
+                {
+                  x: 0,
+                  y: 0,
+                  z: 0,
+                },
+                1000
+              )
+              .easing(TWEEN.Easing.Quadratic.Out);
+            return resetRotation;
+          },
+        };
 
-      },
-      resetScale: function () {
-
-       var resetScale = new TWEEN.Tween(this.object.scale)
-          .to({ 
-            x: 1,
-            y: 1 }, 500)
-          .easing( TWEEN.Easing.Back.InOut);
-          return resetScale;
-
-      },
-      resetRotation: function () {
-        var resetRotation =  new TWEEN.Tween( this.object.rotation ).to( {
-        x: 0,
-        y: 0,
-        z: 0 }, 1000 )
-        .easing( TWEEN.Easing.Quadratic.Out);
-      return resetRotation;
-
-      }
-    }
-
-    function cameraMoveIntro () {
-      var tweenOut = new TWEEN.Tween( camera.position ).to( {
-          z: 650 }, 2000)
-          .easing( TWEEN.Easing.Quadratic.InOut)
-          .delay(100)
-          .onComplete(function() {
-            if (scope.soundOn === true && scope.appViewState.viewing==='three') {
-                  whomp.play();
+        function cameraMoveIntro() {
+          var tweenOut = new TWEEN.Tween(camera.position)
+            .to(
+              {
+                z: 650,
+              },
+              2000
+            )
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .delay(100)
+            .onComplete(function () {
+              if (
+                scope.soundOn === true &&
+                scope.appViewState.viewing === "three"
+              ) {
+                whomp.play();
               }
-            $timeout(function() {
+              $timeout(function () {
                 if (scope.soundOn === true) {
                   whomp.play();
                 }
-              },2500);
+              }, 2500);
 
-            $timeout(function() {
-                if (scope.soundOn === true && scope.appViewState.viewing==='three') {
+              $timeout(function () {
+                if (
+                  scope.soundOn === true &&
+                  scope.appViewState.viewing === "three"
+                ) {
                   whomp2.play();
                 }
-              },4000);
+              }, 4000);
 
-            secondMove();
+              secondMove();
             })
-          .start();
+            .start();
 
-            function secondMove () {
-              var tweenBack = new TWEEN.Tween( camera.position ).to( {
-              z: -650 }, 2000)
-              .easing( TWEEN.Easing.Quadratic.InOut)
+          function secondMove() {
+            var tweenBack = new TWEEN.Tween(camera.position)
+              .to(
+                {
+                  z: -650,
+                },
+                2000
+              )
+              .easing(TWEEN.Easing.Quadratic.InOut)
               .delay(4500)
               .start();
-              $timeout(function() {
-                if (scope.soundOn === true && scope.appViewState.viewing==='three') {
-                  whoosh.play();
-                }
-              },4750);
-            }
-    }
+            $timeout(function () {
+              if (
+                scope.soundOn === true &&
+                scope.appViewState.viewing === "three"
+              ) {
+                whoosh.play();
+              }
+            }, 4750);
+          }
+        }
 
-    function clearNearBy (target) {
-      var mesh = target,
-      mx = mesh.position.x,
-      my = mesh.position.y,
-      mz = mesh.position.z,
-      tolerance = 300,
-      moveDist = 180,
-      xmin = mx - tolerance,
-      xmax = mx + tolerance,
-      ymin = my - tolerance,
-      ymax = my + tolerance,
-      zmin = mz - tolerance,
-      zmax = mz + tolerance,
-      obstacles = tileMeshes;
+        function clearNearBy(target) {
+          var mesh = target,
+            mx = mesh.position.x,
+            my = mesh.position.y,
+            mz = mesh.position.z,
+            tolerance = 300,
+            moveDist = 180,
+            xmin = mx - tolerance,
+            xmax = mx + tolerance,
+            ymin = my - tolerance,
+            ymax = my + tolerance,
+            zmin = mz - tolerance,
+            zmax = mz + tolerance,
+            obstacles = tileMeshes;
 
-      for ( var i = 0; i < obstacles.length; i++) {
+          for (var i = 0; i < obstacles.length; i++) {
+            var test = obstacles[i];
 
-        var test = obstacles[i];
-        
-        if ( test!= mesh ) {
-
-          var tx = test.position.x,
-              ty = test.position.y,
-              tz = test.position.z;
+            if (test != mesh) {
+              var tx = test.position.x,
+                ty = test.position.y,
+                tz = test.position.z;
 
               //console.log ('mx '+mx+' tx'+ tx+' my '+my+' ty'+ ty+' mz '+mz+' tz'+ tz);
 
-          if( tx > xmin && tx < xmax && ty > ymin && ty < ymax && tz > zmin && tz < zmax ) {
+              if (
+                tx > xmin &&
+                tx < xmax &&
+                ty > ymin &&
+                ty < ymax &&
+                tz > zmin &&
+                tz < zmax
+              ) {
+                var currentX = test.position.x,
+                  currentY = test.position.y,
+                  currentZ = test.position.z,
+                  targetX,
+                  targetY,
+                  targetZ;
 
-          var currentX = test.position.x,
-          currentY = test.position.y,
-          currentZ = test.position.z,
-          targetX,targetY,targetZ;
+                if (currentX <= mx) {
+                  targetX = currentX - moveDist;
+                } else if (currentX > mx) {
+                  targetX = currentX + moveDist;
+                }
 
-          if(currentX<=mx){
-            targetX = currentX - moveDist;
-          } else if (currentX>mx) {
-            targetX = currentX + moveDist;
-          }
+                if (currentY <= my) {
+                  targetY = currentY - moveDist;
+                } else if (currentY > my) {
+                  targetY = currentY + moveDist;
+                }
 
-          if(currentY<=my){
-            targetY = currentY - moveDist;
-          } else if (currentY>my) {
-            targetY = currentY + moveDist;
-          }
+                if (currentZ <= mz) {
+                  targetZ = currentZ - moveDist;
+                } else if (currentZ > mz) {
+                  targetZ = currentZ + moveDist;
+                }
 
-          if(currentZ<=mz){
-            targetZ = currentZ - moveDist;
-          } else if (currentZ>mz) {
-            targetZ = currentZ+ moveDist;
-          }
-
-          var moveIt = new TWEEN.Tween( test.position ).to( {
-          x: targetX,
-          y: targetY,
-          z: targetZ }, 800)
-          .easing( TWEEN.Easing.Quadratic.Out);
-          moveIt.start();
+                var moveIt = new TWEEN.Tween(test.position)
+                  .to(
+                    {
+                      x: targetX,
+                      y: targetY,
+                      z: targetZ,
+                    },
+                    800
+                  )
+                  .easing(TWEEN.Easing.Quadratic.Out);
+                moveIt.start();
+              }
+            }
           }
         }
-      }
-    }
 
-    scope.tilesToGrid = function () { 
+        scope.tilesToGrid = function () {
+          scope.isAnimating = true;
 
-    scope.isAnimating = true;
+          $timeout(function () {
+            scope.isAnimating = false;
+          }, 4000);
 
-      $timeout(function() {
-        scope.isAnimating = false;
-      },4000); 
-
-      $timeout(function() {
-            if (scope.soundOn === true && scope.appViewState.viewing==='three') {
+          $timeout(function () {
+            if (
+              scope.soundOn === true &&
+              scope.appViewState.viewing === "three"
+            ) {
               glitch.play();
             }
-        },500);  
+          }, 500);
 
-      for (var p in scope.myProjects) {
+          for (var p in scope.myProjects) {
+            var tile = scope.myProjects[p].tile,
+              translate = tile.resetTranslate(),
+              rotate = tile.resetRotation(),
+              scale = tile.resetScale(),
+              gridTween = tile.backToGrid();
 
-          var tile = scope.myProjects[p].tile,
-          translate = tile.resetTranslate(),
-          rotate = tile.resetRotation(),
-          scale = tile.resetScale(),
-          gridTween = tile.backToGrid();
-          
-          translate.chain(rotate);
-          rotate.chain(scale);
-          scale.chain(gridTween);
+            translate.chain(rotate);
+            rotate.chain(scale);
+            scale.chain(gridTween);
 
-          tile.colorTex(),
+            tile.colorTex(), translate.start();
+          }
+          var camTween = new TWEEN.Tween(camera.position)
+            .to(
+              {
+                x: 0,
+                y: 0,
+                z: 650,
+              },
+              2000
+            )
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .delay(500)
+            .start();
 
-          translate.start();
-      }  
-       var camTween = new TWEEN.Tween( camera.position ).to( {
-        x: 0,
-        y:0,
-        z: 650 }, 2000)
-        .easing( TWEEN.Easing.Quadratic.InOut)
-        .delay(500)
-        .start();
-
-       var targetTween = new TWEEN.Tween(camera.rotation).to({
-            x: 0,
-            y: 0,
-            z: 0
-        }, 2000).easing(TWEEN.Easing.Quadratic.InOut)
-       .delay(500)
-        .onComplete(function () {
-            view = 'scene';
-            targetTile = undefined;
-            targetObj = undefined;
-            $timeout(function() {
-             flipAllTiles('image');
-                if (scope.soundOn === true && scope.appViewState.viewing==='three') {
+          var targetTween = new TWEEN.Tween(camera.rotation)
+            .to(
+              {
+                x: 0,
+                y: 0,
+                z: 0,
+              },
+              2000
+            )
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .delay(500)
+            .onComplete(function () {
+              view = "scene";
+              targetTile = undefined;
+              targetObj = undefined;
+              $timeout(function () {
+                flipAllTiles("image");
+                if (
+                  scope.soundOn === true &&
+                  scope.appViewState.viewing === "three"
+                ) {
                   whomp.play();
                 }
-            },500);
-        }).start();
-    }
+              }, 500);
+            })
+            .start();
+        };
 
-    scope.explodeTiles = function () {
+        scope.explodeTiles = function () {
+          scope.isAnimating = true;
 
-      scope.isAnimating = true;
+          $timeout(function () {
+            scope.isAnimating = false;
+          }, 4000);
 
-      $timeout(function() {
-        scope.isAnimating = false;
-      },4000);
-
-      if (scope.soundOn === true && scope.appViewState.viewing==='three') {
-      $timeout(function() {
+          if (
+            scope.soundOn === true &&
+            scope.appViewState.viewing === "three"
+          ) {
+            $timeout(function () {
               whoosh.play();
-        },750);
+            }, 750);
 
-        $timeout(function() {
+            $timeout(function () {
               whomp2.play();
-        },1750);  
+            }, 1750);
 
-      $timeout(function() {
-             electro.play();
-        },2000); 
+            $timeout(function () {
+              electro.play();
+            }, 2000);
 
-       $timeout(function() {
-             whoosh.play();
-        },3000); 
-    }
+            $timeout(function () {
+              whoosh.play();
+            }, 3000);
+          }
 
-      flipAllTiles('color');
+          flipAllTiles("color");
 
-      for (var p in scope.myProjects) {
-         var tile = scope.myProjects[p].tile;
+          for (var p in scope.myProjects) {
+            var tile = scope.myProjects[p].tile;
 
-          var translate = tile.moveRandom(),
-          randRotate = tile.randRotation(),
-          randScale = tile.randScale(1800,500);
-          randScale.chain(randRotate);
-          randRotate.chain(translate);
+            var translate = tile.moveRandom(),
+              randRotate = tile.randRotation(),
+              randScale = tile.randScale(1800, 500);
+            randScale.chain(randRotate);
+            randRotate.chain(translate);
 
-          randScale.start();
-          
-      }
+            randScale.start();
+          }
 
-          var camPull = new TWEEN.Tween( camera.position ).to( {
-          x: 0,
-          y:0,
-          z: 3150 }, 1500)
-          .easing( TWEEN.Easing.Quadratic.InOut);
+          var camPull = new TWEEN.Tween(camera.position)
+            .to(
+              {
+                x: 0,
+                y: 0,
+                z: 3150,
+              },
+              1500
+            )
+            .easing(TWEEN.Easing.Quadratic.InOut);
 
-          var camZoom = new TWEEN.Tween( camera.position ).to( {
-          x: 0,
-          y:0,
-          z: -650 }, 2000)
-          .delay(500)
-          .easing( TWEEN.Easing.Quadratic.Out);
-          
-           var camRotation = new TWEEN.Tween(camera.rotation).to({
-            x: 0,
-            y: 0,
-            z: 0 }, 500)
-           .easing(TWEEN.Easing.Quadratic.Out)
-           .onComplete(function () {
-            view = 'scene';    
-           });
+          var camZoom = new TWEEN.Tween(camera.position)
+            .to(
+              {
+                x: 0,
+                y: 0,
+                z: -650,
+              },
+              2000
+            )
+            .delay(500)
+            .easing(TWEEN.Easing.Quadratic.Out);
 
-        camRotation.chain(camPull);
+          var camRotation = new TWEEN.Tween(camera.rotation)
+            .to(
+              {
+                x: 0,
+                y: 0,
+                z: 0,
+              },
+              500
+            )
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .onComplete(function () {
+              view = "scene";
+            });
 
-        camPull.chain(camZoom);
+          camRotation.chain(camPull);
 
-        camRotation.start();
+          camPull.chain(camZoom);
 
-    }
+          camRotation.start();
+        };
 
-    scope.nextTile = function () {
+        scope.nextTile = function () {
+          if (
+            scope.soundOn === true &&
+            scope.appViewState.viewing === "three"
+          ) {
+            whomp.play();
+          }
 
-     if (scope.soundOn === true && scope.appViewState.viewing==='three') {
+          var current = projectFactory.getTarget(),
+            currentLoc = current.index,
+            nextLoc = currentLoc === scope.numImages - 1 ? 0 : currentLoc + 1;
 
-           whomp.play();
-        
-      }
+          //ga('push','_trackevent','next-tile', 'clicked');
 
-      var current = projectFactory.getTarget(),
-      currentLoc = current.index,
-      nextLoc = (currentLoc === scope.numImages - 1) ? 0 : currentLoc + 1;
+          for (var p in scope.myProjects) {
+            var thisLoc = scope.myProjects[p].index;
 
-     //ga('push','_trackevent','next-tile', 'clicked');
+            if (thisLoc === nextLoc) {
+              targetObj = scope.myProjects[p];
 
-      for (var p in scope.myProjects) {
-        var thisLoc = scope.myProjects[p].index;
+              projectFactory.setTarget(targetObj);
 
-        if (thisLoc===nextLoc) {
+              scope.goToTarget(targetObj);
 
-          targetObj = scope.myProjects[p];
+              return;
+            }
+          }
+        };
 
-          projectFactory.setTarget(targetObj);
+        scope.prevTile = function () {
+          if (
+            scope.soundOn === true &&
+            scope.appViewState.viewing === "three"
+          ) {
+            whomp.play();
+          }
 
-          scope.goToTarget(targetObj);
+          var current = projectFactory.getTarget(),
+            currentLoc = current.index,
+            prevLoc = currentLoc === 0 ? scope.numImages - 1 : currentLoc - 1;
 
-          return;
-        }
+          //ga('push','_trackevent','prev-tile', 'clicked');
 
-      }
+          for (var p in scope.myProjects) {
+            var thisLoc = scope.myProjects[p].index;
 
-    }
+            if (thisLoc === prevLoc) {
+              targetObj = scope.myProjects[p];
 
-      scope.prevTile = function () {
+              projectFactory.setTarget(targetObj);
 
-     if (scope.soundOn === true && scope.appViewState.viewing==='three') {
+              scope.goToTarget(targetObj);
 
-         whomp.play();
-      
-      }
+              return;
+            }
+          }
+        };
 
-      var current = projectFactory.getTarget(),
-      currentLoc = current.index,
-      prevLoc = (currentLoc === 0) ? scope.numImages - 1 : currentLoc - 1;
+        scope.goToTarget = function (obj) {
+          scope.appViewState.threeUi = "details";
 
-      //ga('push','_trackevent','prev-tile', 'clicked');
+          var thisObject = obj;
 
-      for (var p in scope.myProjects) {
-        var thisLoc = scope.myProjects[p].index;
+          /// set the info
 
-        if (thisLoc===prevLoc) {
+          scope.projectInfo = {
+            title: thisObject.title,
+            client: thisObject.client,
+          };
 
-          targetObj = scope.myProjects[p];
+          ///transform the old target
+          if (targetTile && scope.appViewState.tileMode == "explode") {
+            var prevTile = targetTile,
+              rotate = prevTile.randRotation(0, 200),
+              scale = prevTile.randScale(0, 500);
+            rotate.chain(scale);
+            rotate.start();
+            prevTile.colorTex();
+          }
 
-          projectFactory.setTarget(targetObj);
+          targetTile = thisObject.tile;
 
-          scope.goToTarget(targetObj);
+          targetTile.imageTex();
+          view = "target";
+          targetTile.setCameraPos();
 
-          return;
-        }
-      }
-    }
+          ///get rid of intersecting tiles
 
-    scope.goToTarget = function (obj) {
+          if (scope.appViewState.tileMode === "explode") {
+            $timeout(function () {
+              clearNearBy(targetTile.object);
+            }, 500);
+          }
 
-      scope.appViewState.threeUi = 'details';
+          targetTile.object.material.opacity = 1;
 
-      var thisObject = obj;
+          new TWEEN.Tween(targetTile.object.scale)
+            .to(
+              {
+                x: 1,
+                y: 1,
+              },
+              500
+            )
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .start();
 
-      /// set the info
+          new TWEEN.Tween(camera.position)
+            .to(
+              {
+                x: targetTile.cameraOffset.x,
+                y: targetTile.cameraOffset.y,
+                z: targetTile.cameraOffset.z,
+              },
+              1000
+            )
+            .onUpdate(function () {
+              // spotlight.position.copy(camera.position);
+            })
+            .onComplete(function () {})
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .start();
 
-      scope.projectInfo = {
-        title: thisObject.title,
-        client: thisObject.client
-      }
-
-      ///transform the old target
-      if(targetTile && scope.appViewState.tileMode == 'explode') {
-
-        var prevTile = targetTile,
-        rotate =  prevTile.randRotation(0,200),
-        scale = prevTile.randScale(0,500);
-        rotate.chain(scale);
-        rotate.start();
-        prevTile.colorTex();      
-      }
-
-      targetTile = thisObject.tile;
-
-      targetTile.imageTex();
-      view = 'target';
-      targetTile.setCameraPos();
-      
-      ///get rid of intersecting tiles
-
-      if (scope.appViewState.tileMode === 'explode') {
-        
-        $timeout(function() {
-          clearNearBy(targetTile.object);
-        },500);
-
-      }
-
-      targetTile.object.material.opacity = 1;
-
-      new TWEEN.Tween( targetTile.object.scale ).to( {
-      x: 1,
-      y: 1}, 500 )
-      .easing( TWEEN.Easing.Quadratic.InOut).start();
-
-      new TWEEN.Tween( camera.position ).to( {
-      x: targetTile.cameraOffset.x,
-      y: targetTile.cameraOffset.y,
-      z: targetTile.cameraOffset.z}, 1000 )
-      .onUpdate(function() {
-           // spotlight.position.copy(camera.position);
-          })
-      .onComplete( function() {
-        
-      } )
-      .easing( TWEEN.Easing.Quadratic.InOut).start();   
-
-      /*new TWEEN.Tween( spotlight.position ).to( {
+          /*new TWEEN.Tween( spotlight.position ).to( {
       x: targetTile.spotlightOffset.x,
       y: targetTile.spotlightOffset.y,
       z: targetTile.spotlightOffset.z}, 1000 )
-      .easing( TWEEN.Easing.Quadratic.Out).start();   */       
-    }
+      .easing( TWEEN.Easing.Quadratic.Out).start();   */
+        };
 
-    function flipAllTiles(texture) {
-      for (var p in scope.myProjects) {
-        var theTile = scope.myProjects[p].tile;
-        if (texture === 'image') {
-        theTile.flipToImage();
-      } else if (texture === 'color')
-        theTile.flipToColor();
-      }
-    }
-
-    THREE.Mesh.prototype.isNavigation=false;
-
-    THREE.Mesh.prototype.fetchParent = function () {
-      if(!this.isNavigation) { 
-
-        return undefined;
-      } else {  
-      var targetObject;
-      for (var i = 0; i < scope.numImages; i ++) {
-      var thisObject = scope.myProjects[i],
-        thisShape = scope.myProjects[i].tile.object;
-
-          if (thisShape===this) {
-          targetObject=thisObject;
-
-          return targetObject;
+        function flipAllTiles(texture) {
+          for (var p in scope.myProjects) {
+            var theTile = scope.myProjects[p].tile;
+            if (texture === "image") {
+              theTile.flipToImage();
+            } else if (texture === "color") theTile.flipToColor();
           }
         }
-      }
-    }
 
+        THREE.Mesh.prototype.isNavigation = false;
 
+        THREE.Mesh.prototype.fetchParent = function () {
+          if (!this.isNavigation) {
+            return undefined;
+          } else {
+            var targetObject;
+            for (var i = 0; i < scope.numImages; i++) {
+              var thisObject = scope.myProjects[i],
+                thisShape = scope.myProjects[i].tile.object;
 
-    function setImagePosition( texture ) {
-      tex = texture;
+              if (thisShape === this) {
+                targetObject = thisObject;
 
-      //console.log($(tex.map.image).width());
-      /*texWidth = tex.image.width,
+                return targetObject;
+              }
+            }
+          }
+        };
+
+        function setImagePosition(texture) {
+          tex = texture;
+
+          //console.log($(tex.map.image).width());
+          /*texWidth = tex.image.width,
       texHeight = tex.image.height,
       imgAspect;
 
@@ -1052,366 +1131,367 @@ return {
         tex.repeat.x = 1;
         tex.repeat.y = 1;
       }*/
+        }
 
-    }
+        function init() {
+          createSound();
 
-    function init() {
+          container = angular.element("#container")[0];
 
-      createSound();
+          camera = new THREE.PerspectiveCamera(
+            camFOV,
+            winWidth / winHeight,
+            1,
+            12000
+          );
+          camera.position.y = 0;
+          camera.position.x = 0;
+          camera.position.z = 0;
+          scene = new THREE.Scene();
 
-      container = angular.element('#container')[0];
+          light = new THREE.AmbientLight(0x7c7d64);
+          //scene.add( light );
 
-      camera = new THREE.PerspectiveCamera( camFOV, winWidth / winHeight, 1, 12000 );
-      camera.position.y = 0;
-      camera.position.x = 0;
-      camera.position.z = 0;
-      scene = new THREE.Scene();
+          directionalLight = new THREE.DirectionalLight(0xcccccc, 0.5);
+          directionalLight.position.set(-1000, 1000, 500);
+          directionalLight.lookAt(scene.position);
+          directionalLight.castShadow = false;
 
-      light = new THREE.AmbientLight( 0x7c7d64 );
-      //scene.add( light );
+          scene.add(directionalLight);
 
-      directionalLight = new THREE.DirectionalLight( 0xcccccc, 0.5 );
-      directionalLight.position.set(-1000, 1000, 500 );
-      directionalLight.lookAt( scene.position );
-      directionalLight.castShadow = false;
+          directionalLight2 = new THREE.DirectionalLight(0xcccccc, 1);
+          directionalLight2.position.set(1000, 1000, 500);
+          directionalLight2.lookAt(scene.position);
+          directionalLight2.castShadow = false;
 
-      scene.add( directionalLight );
+          scene.add(directionalLight2);
 
-      directionalLight2 = new THREE.DirectionalLight( 0xcccccc, 1 );
-      directionalLight2.position.set(1000, 1000, 500 );
-      directionalLight2.lookAt( scene.position );
-      directionalLight2.castShadow = false;
+          directionalLight3 = new THREE.DirectionalLight(0xcccccc, 1);
+          directionalLight3.position.set(0, -1000, -1000);
+          directionalLight3.lookAt(scene.position);
+          directionalLight3.castShadow = false;
 
-      scene.add( directionalLight2 );
+          scene.add(directionalLight3);
 
-      directionalLight3 = new THREE.DirectionalLight( 0xcccccc, 1 );
-      directionalLight3.position.set(0, -1000, -1000 );
-      directionalLight3.lookAt( scene.position );
-      directionalLight3.castShadow = false;
+          //directionalLight.shadowCameraVisible=true;
+          //directionalLight2.shadowCameraVisible=true;
+          //directionalLight3.shadowCameraVisible=true;
 
-      scene.add( directionalLight3 );
+          var tri = new THREE.Geometry();
 
-      //directionalLight.shadowCameraVisible=true;
-      //directionalLight2.shadowCameraVisible=true;
-      //directionalLight3.shadowCameraVisible=true;
+          var triV1 = new THREE.Vector3(3000, 4000, -6000);
+          var triV2 = new THREE.Vector3(-5000, 0, -6000);
+          var triV3 = new THREE.Vector3(800, -5000, -7000);
 
-      var tri = new THREE.Geometry();
+          tri.vertices.push(triV1);
+          tri.vertices.push(triV2);
+          tri.vertices.push(triV3);
 
-      var triV1 = new THREE.Vector3(3000,4000,-6000);
-      var triV2 = new THREE.Vector3(-5000,0,-6000);
-      var triV3 = new THREE.Vector3(800,-5000,-7000); 
+          tri.faces.push(new THREE.Face3(0, 1, 2));
 
-      tri.vertices.push( triV1 ); 
-      tri.vertices.push( triV2 );
-      tri.vertices.push( triV3 );   
+          tri.computeFaceNormals();
+          tri.computeVertexNormals(); // needed so my shape can accept lights!
 
-      tri.faces.push( new THREE.Face3( 0, 1, 2 ) );
+          triangle = new THREE.Mesh(
+            tri,
+            new THREE.MeshLambertMaterial({
+              color: 0x191919,
+              side: THREE.DoubleSide,
+            })
+          );
 
-      tri.computeFaceNormals();
-      tri.computeVertexNormals(); // needed so my shape can accept lights!
+          triangle.name = "triangle";
 
-      triangle = new THREE.Mesh( tri, new THREE.MeshLambertMaterial( { 
-        color: 0x191919, 
-        side: THREE.DoubleSide
-        } ) );  
+          triangle.geometry.dynamic = true;
+          triangle.geometry.__dirtyVertices = true;
+          triangle.geometry.__dirtyNormals = true;
+          scene.add(triangle);
 
-      triangle.name = 'triangle';
+          spotlight = new THREE.SpotLight(0xcccccc, 0.7);
+          //spotlight.shadowCameraVisible = true;
 
-      triangle.geometry.dynamic = true
-      triangle.geometry.__dirtyVertices = true;
-      triangle.geometry.__dirtyNormals = true;
-      scene.add( triangle );
-
-      spotlight = new THREE.SpotLight(0xcccccc,0.7);
-      //spotlight.shadowCameraVisible = true;
-
-      spotlight.castShadow = false;
-/*      spotlight.shadowCameraNear = 2;
+          spotlight.castShadow = false;
+          /*      spotlight.shadowCameraNear = 2;
       spotlight.shadowCameraFar = 200;
       spotlight.shadowCameraFov = 130;*/
-      spotlight.distance = 0;
-      spotlight.angle = Math.PI/2;
+          spotlight.distance = 0;
+          spotlight.angle = Math.PI / 2;
 
-      scene.add(spotlight);
+          scene.add(spotlight);
 
-      lightTarget = new THREE.Object3D();
-      lightTarget.position.set(0,0,-500);
-      scene.add(lightTarget);
-      spotlight.target=lightTarget;
-      
-      var sphereGeometry = new THREE.SphereGeometry( 10, 16, 8 );
-      var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x000000 } );
+          lightTarget = new THREE.Object3D();
+          lightTarget.position.set(0, 0, -500);
+          scene.add(lightTarget);
+          spotlight.target = lightTarget;
 
-      var wireframeMaterial = new THREE.MeshBasicMaterial( 
-        { color: 0xff0000, wireframe: true, transparent: true } ); 
-      shape = THREE.SceneUtils.createMultiMaterialObject( 
-        sphereGeometry, [ darkMaterial, wireframeMaterial ] );
-      shape.position.copy(lightTarget.position);
-      //scene.add( shape );
+          var sphereGeometry = new THREE.SphereGeometry(10, 16, 8);
+          var darkMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
 
-     
+          var wireframeMaterial = new THREE.MeshBasicMaterial({
+            color: 0xff0000,
+            wireframe: true,
+            transparent: true,
+          });
+          shape = THREE.SceneUtils.createMultiMaterialObject(sphereGeometry, [
+            darkMaterial,
+            wireframeMaterial,
+          ]);
+          shape.position.copy(lightTarget.position);
+          //scene.add( shape );
 
-////////////////////* CREATE THE TILES *///////////////////////////////
+          ////////////////////* CREATE THE TILES *///////////////////////////////
 
-      renderer = scope.is_chrome || scope.is_firefox ? new THREE.WebGLRenderer( { antialias:true , alpha:false } ): new THREE.WebGLRenderer( { alpha:false } );
-      renderer.setClearColor( 0x1a181b );
-      renderer.setSize( winWidth, winHeight );
-      renderer.shadowMapEnabled = false;
+          renderer =
+            scope.is_chrome || scope.is_firefox
+              ? new THREE.WebGLRenderer({ antialias: true, alpha: false })
+              : new THREE.WebGLRenderer({ alpha: false });
+          renderer.setClearColor(0x1a181b);
+          renderer.setSize(winWidth, winHeight);
+          renderer.shadowMapEnabled = false;
 
-      container.appendChild(renderer.domElement);
+          container.appendChild(renderer.domElement);
 
-      stats = new Stats();
-      stats.domElement.style.position = 'absolute';
-      stats.domElement.style.top = '0px';
-      //container.appendChild( stats.domElement );
+          stats = new Stats();
+          stats.domElement.style.position = "absolute";
+          stats.domElement.style.top = "0px";
+          //container.appendChild( stats.domElement );
 
-     /* $document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+          /* $document.addEventListener( 'mousedown', onDocumentMouseDown, false );
       $document.addEventListener( 'mousemove', onDocumentMouseMove, false );
       $document.addEventListener( 'touchstart', onDocumentTouchStart, false );
       $document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 
       $window.addEventListener( 'resize', onWindowResize, false );*/
 
-      jQuery(renderer.domElement).on('click' , onDocumentMouseDown);
+          jQuery(renderer.domElement).on("click", onDocumentMouseDown);
 
-      jQuery(document).on('mousemove', onDocumentMouseMove);
+          jQuery(document).on("mousemove", onDocumentMouseMove);
 
-      jQuery(window).on('resize', onWindowResize);
+          jQuery(window).on("resize", onWindowResize);
 
-       $timeout(function() {
-        createTiles();
-     },1000);
+          $timeout(function () {
+            createTiles();
+          }, 1000);
 
-       $timeout(function() {
-        scope.isAnimating = false;
-     },8000);
+          $timeout(function () {
+            scope.isAnimating = false;
+          }, 8000);
+        }
 
-    }
+        function createTiles() {
+          for (var i = 0; i < scope.numImages; i++) {
+            scope.myProjects[i].map = scope.myProjects[i].featuredImage[0];
+            scope.myProjects[i].tile = new contentTile(
+              i,
+              tileWidth,
+              tileHeight,
+              1,
+              scope.appViewState.hue,
+              scope.myProjects[i].map
+            );
 
-    function createTiles() {
+            var newObj = scope.myProjects[i].tile;
 
-       for ( var i = 0; i < scope.numImages; i ++ ) {
-
-        scope.myProjects[i].map = scope.myProjects[i].featuredImage[0];
-        scope.myProjects[i].tile = new contentTile(i,tileWidth,tileHeight,1,scope.appViewState.hue,scope.myProjects[i].map);
-
-        var newObj = scope.myProjects[i].tile;
-
-        scene.add(newObj.object);
-        tileMeshes.push(newObj.object);
-        newObj.introAnimation();  
-      }
-
-      cameraMoveIntro();
-    }
-
-
-    function onWindowResize() {
-      winWidth = $window.innerWidth;
-      winHeight = $window.innerHeight;
-      camera.aspect = winWidth / winHeight;
-      camera.updateProjectionMatrix();
-
-      renderer.setSize( winWidth, winHeight );
-
-      }
-
-    function onDocumentMouseDown( event ) {
-
-      event.preventDefault();
-
-      if ( scope.isAnimating == true ) {
-        return;
-      }
-
-      var vector = new THREE.Vector3( ( event.clientX / winWidth ) * 2 - 1, - ( event.clientY / winHeight ) * 2 + 1, 0.5 );
-      vector.unproject( camera );
-
-      var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-
-      var intersects = raycaster.intersectObjects( scene.children );
-
-      if ( intersects.length > 0 ) {
-
-        var hit = intersects[0].object;
-        
-        if(hit.name === 'triangle') {
-
-          return;
-        
-        } else {
-
-
-          if (scope.soundOn === true && scope.appViewState.viewing==='three') {
-
-             whomp.play();
-          
+            scene.add(newObj.object);
+            tileMeshes.push(newObj.object);
+            newObj.introAnimation();
           }
 
-          var thisObject = hit.fetchParent();
+          cameraMoveIntro();
+        }
 
-          if (thisObject.tile==targetTile) {
+        function onWindowResize() {
+          winWidth = $window.innerWidth;
+          winHeight = $window.innerHeight;
+          camera.aspect = winWidth / winHeight;
+          camera.updateProjectionMatrix();
 
-            scope.viewProject();
-            
+          renderer.setSize(winWidth, winHeight);
+        }
+
+        function onDocumentMouseDown(event) {
+          event.preventDefault();
+
+          if (scope.isAnimating == true) {
             return;
-
-          } else {
-
-            projectFactory.setTarget(thisObject);
-
-            scope.goToTarget(thisObject);
-
-            scope.$apply(function () {
-
-            scope.appViewState.threeUi = 'details';
-          
-         });
           }
-        }      
-      }     
-    }
 
-    function onDocumentMouseMove(event) {
+          var vector = new THREE.Vector3(
+            (event.clientX / winWidth) * 2 - 1,
+            -(event.clientY / winHeight) * 2 + 1,
+            0.5
+          );
+          vector.unproject(camera);
 
-      mouseX = event.clientX - windowHalfX;
-      mouseY = event.clientY - windowHalfY;
+          var raycaster = new THREE.Raycaster(
+            camera.position,
+            vector.sub(camera.position).normalize()
+          );
 
-      mouse.x = ( event.clientX / winWidth ) * 2 - 1;
-      mouse.y = - ( event.clientY / winHeight ) * 2 + 1;
+          var intersects = raycaster.intersectObjects(scene.children);
 
-    }
+          if (intersects.length > 0) {
+            var hit = intersects[0].object;
 
-    function onDocumentTouchStart( event ) {
+            if (hit.name === "triangle") {
+              return;
+            } else {
+              if (
+                scope.soundOn === true &&
+                scope.appViewState.viewing === "three"
+              ) {
+                whomp.play();
+              }
 
-      if ( event.touches.length > 1 ) {
+              var thisObject = hit.fetchParent();
 
-        event.preventDefault();
+              if (thisObject.tile == targetTile) {
+                scope.viewProject();
 
-        mouseX = event.touches[ 0 ].pageX - windowHalfX;
-        mouseY = event.touches[ 0 ].pageY - windowHalfY;
+                return;
+              } else {
+                projectFactory.setTarget(thisObject);
 
-      }
-    }
+                scope.goToTarget(thisObject);
 
-    function onDocumentTouchMove( event ) {
-
-      if ( event.touches.length == 1 ) {
-        event.preventDefault();
-        mouseX = event.touches[ 0 ].pageX - windowHalfX;
-        mouseY = event.touches[ 0 ].pageY - windowHalfY;
-
-      }
-    }
-
-    function animate() {
-
-      if (scope.appViewState.viewing==='three') {
-
-      requestAnimationFrame( animate );
-      render();
-    
-    } else {
-
-      requestAnimationFrame( animate );
-      //console.info('Not animating');
-      }
-    }
-
-    var radius = 600;
-    var theta = 0;
-
-    function render() {
-
-      theta += 0.2;
-      TWEEN.update();
-      if(view==='target'){
-      
-      var newQuaternion = new THREE.Quaternion();
-      THREE.Quaternion.slerp(camera.quaternion, targetTile.object.quaternion, newQuaternion, 0.1);
-      camera.quaternion.copy(newQuaternion);
-     /* camera.position.x += ( mouseX - camera.position.x ) * .0001;
-      camera.position.y += ( - mouseY - camera.position.y ) * .00005;*/
-      camera.position.x += ( mouseX - camera.position.x ) * .00005;
-      //target.object.rotation.y += ( mouseX - target.object.rotation.y ) * .00001;
-
-      //directionalLight.quaternion.copy(newQuaternion);
-      lightTarget.position.copy(targetTile.object.position);
-      lightTarget.translateX(-40);
-      lightTarget.translateY(-40);
-      shape.position.copy(lightTarget.position);
-      
-
-      } else if (scope.appViewState.tileMode === 'explode') {
-        camera.position.x += ( mouseX - camera.position.x ) * .03;
-        camera.position.y += ( - mouseY + 200 - camera.position.y ) * .03;
-        camera.lookAt( scene.position );
-        directionalLight.lookAt( scene.position );
-
-        lightTarget.position.copy(scene.position);
-        shape.position.copy(lightTarget.position);
-         
-      } else if (scope.appViewState.tileMode === 'grid') {
-
-        camera.position.x += ( mouseX - camera.position.x ) * .03;
-        camera.position.y += ( - mouseY + 200 - camera.position.y ) * .03;
-        camera.lookAt( scene.position );
-        directionalLight.lookAt( scene.position );
-
-        lightTarget.position.copy(scene.position);
-        shape.position.copy(lightTarget.position);
-
-      }
-      directionalLight.position.copy(camera.position);
-      
-      camera.updateMatrixWorld();
-      spotlight.position.copy(camera.position);
-
-
-      spotlight.translateX(-50);
-      spotlight.translateY(-20);
-      spotlight.translateZ(50);
-     
-      triangle.lookAt(camera.position);      
-
-      var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 );
-      vector.unproject( camera );
-
-      var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-
-      var intersects = raycaster.intersectObjects( scene.children );
-
-      if ( intersects.length > 0 ) {
-
-        if ( INTERSECTED != intersects[ 0 ].object ) {
-
-          if ( INTERSECTED && INTERSECTED != triangle ) INTERSECTED.material.opacity=1;
-          
-          INTERSECTED = intersects[ 0 ].object;
-
-          if (INTERSECTED != triangle) {
-          jQuery('.three').css({'cursor': 'pointer'});
-          var tween = new TWEEN.Tween( INTERSECTED.material ).to( {
-            opacity: 1 }, 200 )
-          .start();
+                scope.$apply(function () {
+                  scope.appViewState.threeUi = "details";
+                });
+              }
+            }
           }
         }
 
-      } else {
+        function onDocumentMouseMove(event) {
+          mouseX = event.clientX - windowHalfX;
+          mouseY = event.clientY - windowHalfY;
 
-        if ( INTERSECTED && INTERSECTED != triangle)  INTERSECTED.material.opacity=0.9;
+          mouse.x = (event.clientX / winWidth) * 2 - 1;
+          mouse.y = -(event.clientY / winHeight) * 2 + 1;
+        }
 
-        INTERSECTED = null;
-        jQuery('.three').css({'cursor': 'auto'});
+        function onDocumentTouchStart(event) {
+          if (event.touches.length > 1) {
+            event.preventDefault();
 
-      }
+            mouseX = event.touches[0].pageX - windowHalfX;
+            mouseY = event.touches[0].pageY - windowHalfY;
+          }
+        }
 
-      renderer.render( scene, camera );
+        function onDocumentTouchMove(event) {
+          if (event.touches.length == 1) {
+            event.preventDefault();
+            mouseX = event.touches[0].pageX - windowHalfX;
+            mouseY = event.touches[0].pageY - windowHalfY;
+          }
+        }
 
-      }
-      init();
-      animate();
+        function animate() {
+          if (scope.appViewState.viewing === "three") {
+            requestAnimationFrame(animate);
+            render();
+          } else {
+            requestAnimationFrame(animate);
+            //console.info('Not animating');
+          }
+        }
 
-      }
+        var radius = 600;
+        var theta = 0;
+
+        function render() {
+          theta += 0.2;
+          TWEEN.update();
+          if (view === "target") {
+            var newQuaternion = new THREE.Quaternion();
+            THREE.Quaternion.slerp(
+              camera.quaternion,
+              targetTile.object.quaternion,
+              newQuaternion,
+              0.1
+            );
+            camera.quaternion.copy(newQuaternion);
+            /* camera.position.x += ( mouseX - camera.position.x ) * .0001;
+      camera.position.y += ( - mouseY - camera.position.y ) * .00005;*/
+            camera.position.x += (mouseX - camera.position.x) * 0.00005;
+            //target.object.rotation.y += ( mouseX - target.object.rotation.y ) * .00001;
+
+            //directionalLight.quaternion.copy(newQuaternion);
+            lightTarget.position.copy(targetTile.object.position);
+            lightTarget.translateX(-40);
+            lightTarget.translateY(-40);
+            shape.position.copy(lightTarget.position);
+          } else if (scope.appViewState.tileMode === "explode") {
+            camera.position.x += (mouseX - camera.position.x) * 0.03;
+            camera.position.y += (-mouseY + 200 - camera.position.y) * 0.03;
+            camera.lookAt(scene.position);
+            directionalLight.lookAt(scene.position);
+
+            lightTarget.position.copy(scene.position);
+            shape.position.copy(lightTarget.position);
+          } else if (scope.appViewState.tileMode === "grid") {
+            camera.position.x += (mouseX - camera.position.x) * 0.03;
+            camera.position.y += (-mouseY + 200 - camera.position.y) * 0.03;
+            camera.lookAt(scene.position);
+            directionalLight.lookAt(scene.position);
+
+            lightTarget.position.copy(scene.position);
+            shape.position.copy(lightTarget.position);
+          }
+          directionalLight.position.copy(camera.position);
+
+          camera.updateMatrixWorld();
+          spotlight.position.copy(camera.position);
+
+          spotlight.translateX(-50);
+          spotlight.translateY(-20);
+          spotlight.translateZ(50);
+
+          triangle.lookAt(camera.position);
+
+          var vector = new THREE.Vector3(mouse.x, mouse.y, 0.5);
+          vector.unproject(camera);
+
+          var raycaster = new THREE.Raycaster(
+            camera.position,
+            vector.sub(camera.position).normalize()
+          );
+
+          var intersects = raycaster.intersectObjects(scene.children);
+
+          if (intersects.length > 0) {
+            if (INTERSECTED != intersects[0].object) {
+              if (INTERSECTED && INTERSECTED != triangle)
+                INTERSECTED.material.opacity = 1;
+
+              INTERSECTED = intersects[0].object;
+
+              if (INTERSECTED != triangle) {
+                jQuery(".three").css({ cursor: "pointer" });
+                var tween = new TWEEN.Tween(INTERSECTED.material)
+                  .to(
+                    {
+                      opacity: 1,
+                    },
+                    200
+                  )
+                  .start();
+              }
+            }
+          } else {
+            if (INTERSECTED && INTERSECTED != triangle)
+              INTERSECTED.material.opacity = 0.9;
+
+            INTERSECTED = null;
+            jQuery(".three").css({ cursor: "auto" });
+          }
+
+          renderer.render(scene, camera);
+        }
+        init();
+        animate();
+      },
     };
-}]);
+  },
+]);
