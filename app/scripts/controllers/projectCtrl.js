@@ -281,7 +281,7 @@ angular.module("angularApp").controller("ProjectCtrl", [
       /* $scope.target = {};*/ if ($scope.project.content_images.length) {
         for (var i = 1; i < $scope.project.content_images.length; i++) {
           // imgUrls.push(domain + $scope.project.content_images[i]);
-          imgUrls.push(domain + $scope.project.content_images[i]);
+          imgUrls.push($scope.project.content_images[i]);
         }
       } else {
         imgUrls = null;
